@@ -5,6 +5,6 @@ const plantAPI = axios.create({
 })
 
 export async function getAllPlants() {
-    const response = await plantAPI.get('species-list?key=' + PLANT_API_KEY);
+    const response = await plantAPI.get('species-list?key=');
     return response.data.data;
 }

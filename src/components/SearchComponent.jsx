@@ -13,6 +13,31 @@ export default function SearchComponent({ counter }) {
     const { pathname } = useLocation();
     React.useEffect(() => setTab(pathname), [pathname])
 
+    //Plant and Post searches state and methods below
+
+    const [plantSearchInput, setPlantSearchInput] = React.useState("");
+    const [postsSearchInput, setPostsSearchInput] = React.useState("");
+
+    function plantInputChange(event) {
+        setPlantSearchInput(event.target.value)
+    }
+
+    function postsInputChange(event) {
+        setPostsSearchInput(event.target.value)
+    }
+
+    function handlePlantSearchClick() {
+
+    }
+
+
+    function handlePostsSearchClick() {
+
+    }
+
+    console.log(plantSearchInput)
+    console.log(postsSearchInput)
+
     return (
         <section className="section mt-2 pt-0">
 
@@ -29,12 +54,13 @@ export default function SearchComponent({ counter }) {
                                 <div className="field has-addons">
                                     <p className="control">
                                         { tab === "/Plants" ?
-                                           <input className="input" type="text" name="plantsSearch" placeholder="Tip: Spelling Matters" />
-                                         : <input className="input" type="text" name="postsSearch" placeholder="5 digit Zip (ex: 01001)" />
+                                           <input onChange={plantInputChange} value={plantSearchInput} className="input" type="text" name="plantsSearch" placeholder="Tip: Spelling Matters" />
+                                         : <input onChange={postsInputChange} value={postsSearchInput} className="input" type="text" name="postsSearch" placeholder="5 digit Zip (ex: 01001)" />
                                         }
                                         </p>
                                     <p className="control">
-                                        {tab === "Plants" ? <button id="plants-search-btn" className="button">Search</button> : <button id="posts-search-btn" className="button">Search</button>}
+                                        {tab === "Plants" ? <button onClick={handlePlantSearchClick} id="plants-search-btn" className="button">Search</button> 
+                                            : <button onClick={handlePostsSearchClick} id="posts-search-btn" className="button">Search</button>}
                                     </p>
                                 </div>
                             </div>
