@@ -1,0 +1,60 @@
+html {
+  height: 100%;
+  margin: 0 auto;
+  background-color: #7bf1a8
+}
+
+body {
+  height: 100%;
+  /* background-color:hsl(0, 0%, 21%); */
+  width: 100%;
+  margin: 0 auto;
+  padding: .5rem;
+
+}
+
+#root {
+  background-color: white;
+  /* max-width: 1280px; */
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+div.hero-body {
+  background-image: url('./assets/HeroImage.png');
+  height: 200px; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+}
+
+#header {
+  border-radius: 5px;
+  margin-bottom: 10px;
+  /* border: 3px solid #ffef9f; */
+  box-shadow: -1px -2px 5px inset #ffef9f;
+}
+
+#hero-box {
+  border-radius: 50px;
+  /* border: 2px solid #363636; */
+  box-shadow: 1px 2px 10px #363636;
+}
+
+#bloomiful {
+  color: #ffef9f;
+}
+
+#Bloom {
+  color: #ffd6e0
+}
+
+#borhood {
+  color: #90f1ef
+}
+
+.search-container {
+  box-shadow: 1px 1px 2px #363636;
+}
+
