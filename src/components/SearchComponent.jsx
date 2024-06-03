@@ -41,9 +41,10 @@ export default function SearchComponent({ counter }) {
     return (
         <section className="section mt-2 pt-0">
 
-            <div className="container">
-                <div className="notification is-white">
-
+           
+                
+                <div className="container">
+                <div className="notification is-white" >
                     <nav className="level">
 
                         <div className="level-left">
@@ -51,7 +52,7 @@ export default function SearchComponent({ counter }) {
                                 <p className="subtitle is-5 has-text-weight-semibold">{tab === "/Plants" ? "Search Plants" : "Search Posts"}</p>
                             </div>
                             <div className="level-item">
-                                <div className="field has-addons">
+                                <div className="field has-addons mb-1">
                                     <p className="control">
                                         { tab === "/Plants" ?
                                            <input onChange={plantInputChange} value={plantSearchInput} className="input" type="text" name="plantsSearch" placeholder="Tip: Spelling Matters" />
@@ -69,31 +70,32 @@ export default function SearchComponent({ counter }) {
 
                         <div className="level-right">
                             <div className="level-item">
-                                <div className="tabs is-toggle">
+                                <div className="tabs is-toggle is-toggle-rounded">
                                     <ul>
                                         <li className={tab.toLowerCase() === "/posts" ? "is-active" : ""}>
-                                            <Link to="Posts">
+                                            <Link id="toggle-posts" to="Posts">
                                                 {/* <span class="icon is-small"
                             ><i class="fas fa-image" aria-hidden="true"></i
                             ></span> */}
-                                                <span>Search Posts</span>
+                                                <span >Search Posts</span>
                                             </Link>
                                         </li>
                                         <li className={tab.toLowerCase() === "/plants" ? "is-active" : ""}>
-                                            <Link to="Plants">
+                                            <Link id="toggle-plants" to="Plants">
                                                 {/* <span class="icon is-small"
                             ><i class="fas fa-music" aria-hidden="true"></i
                             ></span> */}
-                                                <span>Search Plants</span>
+                                                <span >Search Plants</span>
                                             </Link>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-
+                           
                     </nav>
-
+                    </div>
+                    </div>
 
 
 
@@ -111,8 +113,8 @@ export default function SearchComponent({ counter }) {
                     }</div>
 
                     <Outlet context={[passedCounter, setPassedCounter]} />
-                </div>
-            </div>
+               
+            
 
         </section>
     )

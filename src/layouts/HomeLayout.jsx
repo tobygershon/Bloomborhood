@@ -56,17 +56,14 @@ export default function HomeLayout() {
     return (
         <div>
             <div>{loggedIn &&
-                <section className="section pt-2 pb-5">
-                    <div class="columns">
-                        <div className="column"></div>
-                        <div className="column is-half">
-                           
-                                <button onClick={toggleModal} className="button is-fullwidth is-rounded">Click to Create a Post to Share Your Extra Plants!</button>
-                            
+                <nav className="level mb-3">
+                    <div className="level-item has-text-centered">
+                        <div>
+                            <button id="post-btn" onClick={toggleModal} className="button has-text-primary-80-invert has-text-weight-semibold is-centered">Post your Plants to Share!</button>
                         </div>
-                        <div className="column"></div>
                     </div>
-                </section>
+                </nav>
+
             }</div>
 
             <Home />
@@ -76,7 +73,7 @@ export default function HomeLayout() {
                 <div className="modal-background" onClick={toggleModal}></div>
                 <div className="modal-card">
                     <header className="modal-card-head">
-                        <p className="modal-card-title">Sign Up with Email</p>
+                        <p className="modal-card-title">Create a Post to Share Your Extra Plants</p>
                         <button className="delete" aria-label="close" onClick={toggleModal}></button>
                     </header>
                     <section className="modal-card-body">Name

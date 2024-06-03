@@ -1,3 +1,5 @@
+
+
 html {
   height: 100%;
   margin: 0 auto;
@@ -36,6 +38,18 @@ div.hero-body {
   box-shadow: -1px -2px 5px inset #ffef9f;
 }
 
+#post-btn {
+  background-color: #7bf1a8;
+}
+
+#post-btn:hover {
+  background-color: #c1fba4;
+}
+
+#footer {
+  border-radius: 5px;
+}
+
 #hero-box {
   border-radius: 50px;
   /* border: 2px solid #363636; */
@@ -57,4 +71,23 @@ div.hero-body {
 .search-container {
   box-shadow: 1px 1px 2px #363636;
 }
+
+#toggle-plants, #toggle-posts {
+  text-decoration: none;
+  font-weight: 700
+}
+
+li.is-active > #toggle-posts, li.is-active > #toggle-plants {
+   background-color: #7bf1a8;
+    color: black;
+    border: solid 1px black;
+}
+
+li.is-active > #toggle-posts:hover, li.is-active > #toggle-plants:hover {
+  background-color: #c1fba4;
+   color: black;
+   border: solid 1px black;
+}
+
+
 
