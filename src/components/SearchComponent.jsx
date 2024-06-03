@@ -101,8 +101,8 @@ export default function SearchComponent({ counter }) {
 
 
                     <div>{pathname === "/" &&
-                        <div className="container my-1">
-                            <div className="notification" >
+                        <div className="container my-1 search-container">
+                            <div className="notification is-white search-box" >
                                 <div className="columns">
                                     <div className="column">sample test</div>
                                     <div className="column">test data</div>

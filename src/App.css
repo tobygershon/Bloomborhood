@@ -54,7 +54,7 @@ div.hero-body {
 
 #hero-box {
   border-radius: 50px;
-  /* border: 2px solid #363636; */
+  border: 2px solid #363636;
   box-shadow: 1px 2px 10px #363636;
 }
 
@@ -71,8 +71,15 @@ div.hero-body {
 }
 
 .search-container {
-  box-shadow: 1px 1px 2px #363636;
+  box-shadow: 1px 1px 10px #363636;
+  border: 5px solid #c1fba4;
+  border-radius: 10px;
 }
+
+/* .search-box {
+  border-radius: 10px;
+  
+} */
 
 #toggle-plants, #toggle-posts {
   text-decoration: none;
@@ -80,15 +87,16 @@ div.hero-body {
 }
 
 li.is-active > #toggle-posts, li.is-active > #toggle-plants {
-   background-color: #7bf1a8;
+   background-color: #c1fba4;
+
     color: black;
     
 
 }
 
 li.is-active > #toggle-posts:hover, li.is-active > #toggle-plants:hover {
-  background-color: #c1fba4;
-
+  background-color: #7bf1a8;
+  box-shadow: 1px 1px 2px inset #363636;
 }
 
 

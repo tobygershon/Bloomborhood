@@ -20,33 +20,37 @@ export default function PostCard(props) {
 
     return (
         <>
-            <div onClick={toggleExpanded}>{ !isExpanded &&
+            <div onClick={toggleExpanded}>{!isExpanded &&
                 <div className="container my-3 search-container">
-                    <div className="notification is-white">
+                    <div className="notification is-white search-box">
                         <div className="columns">
-                            <div className="column">{props.post.plantName}</div>
-                            <div className="column">{props.post.description}</div>
-                             <div className="column">{props.post.wasRequested ? "was requested" : "not yet requested"}</div>
+                            <div className="column is-flex is-flex-direction-column">
+                                <span className="is-flex is-justify-content-center is-size-5 has-text-weight-semibold mb-1">{props.post.plantName}</span>
+                                <span className="is-flex is-justify-content-center">{props.post.description}</span>
+                            </div>
+                            <div className="column">
+                                <span className="">{props.post.wasRequested ? "was requested" : "not yet requested"}</span>
+                            </div>
                             <div className="column">
                                 <button className="button" onClick={addressRequest}>
                                     {addressRequested ? "Hide Address" : "Show Address"}
                                 </button>
-                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             }</div>
 
-            <div onClick={toggleExpanded}>{ isExpanded &&
-            <div className="container my-1">
-                <div className="notification" >
-                    <div className="columns">
-                        <div className="column">Expanded info</div>
-                        <div className="column">{props.post.description}</div>
-                        <div className="column">{}</div>
+            <div onClick={toggleExpanded}>{isExpanded &&
+                <div className="container my-1">
+                    <div className="notification" >
+                        <div className="columns">
+                            <div className="column">Expanded info</div>
+                            <div className="column">{props.post.description}</div>
+                            <div className="column">{ }</div>
+                        </div>
                     </div>
                 </div>
-            </div>
             }</div>
         </>
     )
