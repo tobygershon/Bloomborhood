@@ -15,7 +15,7 @@ export default function HomeLayout() {
 
     console.log(loggedIn)
     console.log(userId)
-   
+
 
     const [newPostFormData, setNewPostFormData] = React.useState({
         plantName: "",
@@ -64,13 +64,35 @@ export default function HomeLayout() {
     return (
         <div>
             <div>{loggedIn &&
-                <nav className="level mt-4 mb-5">
-                    <div className="level-item has-text-centered">
-                        <div>
-                            <button id="post-btn" onClick={toggleModal} className="button has-text-primary-80-invert has-text-weight-semibold is-centered">Post your Plants to Share!</button>
+                <section className="section py-0" >
+                    <div className="container">
+                        <div className="notification is-white py-0" >
+                            <nav className="level mt-4 mb-5">
+                                <div className="level-left">
+                                <div className="level-item has-text-centered">
+                                        <div>
+                                            <button className="button has-text-primary-80-invert has-text-weight-semibold ">Update Your Profile</button>
+                                        </div>
+                                    </div>
+                                    <div className="level-item has-text-centered">
+                                        <div>
+                                            <span className="is-size-5 has-text-weight-semibold">Share Credits<i className="fa-solid fa-seedling is-size-5"></i></span>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div className="level-right">
+                                    <div className="level-item has-text-centered">
+                                        <div>
+                                            <button id="post-btn" onClick={toggleModal} className="button has-text-primary-80-invert has-text-weight-semibold is-centered">Post Plants to Share!</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </nav>
                         </div>
                     </div>
-                </nav>
+                </section>
 
             }</div>
 
