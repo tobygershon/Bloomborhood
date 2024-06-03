@@ -2,22 +2,27 @@ import React from "react";
 import Home from "../components/Home";
 import SearchComponent from "../components/SearchComponent";
 import { addPost } from "../services/firebaseDBService";
-import { useOutletContext, redirect } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 export default function HomeLayout() {
 
 
-    const [loggedIn, setLoggedIn] = useOutletContext();
+    const loggedIn = useOutletContext()[0];
+    const userId = useOutletContext()[1];
     const [modalOpen, setModalOpen] = React.useState(false);
     const [buttonIsLoading, setButtonIsLoading] = React.useState(false);
     const [counter, setCounter] = React.useState(0);
 
-    console.log("homelayout render")
+    console.log(loggedIn)
+    console.log(userId)
+   
 
     const [newPostFormData, setNewPostFormData] = React.useState({
         plantName: "",
         description: "",
-        other: ""
+        address: "",
+        zip: "",
+        location: ""
     })
 
     function toggleModal() {
@@ -38,7 +43,9 @@ export default function HomeLayout() {
         setNewPostFormData({
             plantName: "",
             description: "",
-            other: ""
+            address: "",
+            zip: "",
+            location: ""
         })
     }
 
@@ -46,9 +53,10 @@ export default function HomeLayout() {
 
         // setButtonIsLoading(true);
         //make sure to add any other necessary post object fields here
-        addPost(newPostFormData.plantName, newPostFormData.description, newPostFormData.other);
+        addPost(newPostFormData.plantName, newPostFormData.description, newPostFormData.address, newPostFormData.zip, newPostFormData.location, userId);
         // setButtonIsLoading(false);
         toggleModal();
+        alert("Your Post has been submitted.  Thank you!")
         resetNewPostFormData();
         setCounter(prev => prev + 1);
     }
@@ -56,7 +64,7 @@ export default function HomeLayout() {
     return (
         <div>
             <div>{loggedIn &&
-                <nav className="level mb-3">
+                <nav className="level mt-4 mb-5">
                     <div className="level-item has-text-centered">
                         <div>
                             <button id="post-btn" onClick={toggleModal} className="button has-text-primary-80-invert has-text-weight-semibold is-centered">Post your Plants to Share!</button>
@@ -76,15 +84,21 @@ export default function HomeLayout() {
                         <p className="modal-card-title">Create a Post to Share Your Extra Plants</p>
                         <button className="delete" aria-label="close" onClick={toggleModal}></button>
                     </header>
-                    <section className="modal-card-body">Name
-                        <p className="control">
+                    <section className="modal-card-body">
+                        <p className="control mb-2">
                             <input onChange={handleNewPostFormChange} className="input" type="text" placeholder="Plant Name" value={newPostFormData.plantName} name="plantName" />
                         </p>
-                        <p className="control">
+                        <p className="control mb-2">
                             <input onChange={handleNewPostFormChange} className="input" type="text" placeholder="Description" value={newPostFormData.description} name="description" />
                         </p>
+                        <p className="control mb-2">
+                            <input onChange={handleNewPostFormChange} className="input" type="text" placeholder="Address of Pickup" value={newPostFormData.address} name="address" />
+                        </p>
+                        <p className="control mb-2">
+                            <input onChange={handleNewPostFormChange} className="input" type="text" placeholder="Zip Code of Pickup" value={newPostFormData.zip} name="zip" />
+                        </p>
                         <p className="control">
-                            <input onChange={handleNewPostFormChange} className="input" type="text" placeholder="other" value={newPostFormData.other} name="other" />
+                            <input onChange={handleNewPostFormChange} className="input" type="text" placeholder="Location of Plants (i.e. 'on the curb', 'by the front steps'" value={newPostFormData.location} name="location" />
                         </p>
                     </section>
                     <footer className="modal-card-foot">

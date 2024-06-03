@@ -1,15 +1,16 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 
 
-export function newUserSignUp(email, password) {
+export async function newUserSignUp(email, password) {
 
+    let newUser;
+    
     const auth = getAuth();
 
-    createUserWithEmailAndPassword(auth, email, password)
+    await createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed up 
-            const user = userCredential.user;
-            // ...
+            newUser = userCredential.user;
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -17,7 +18,7 @@ export function newUserSignUp(email, password) {
             // ..
         });
 
-    return user
+        return newUser.uid;
 }
 
 export function signInUser(email, password) {

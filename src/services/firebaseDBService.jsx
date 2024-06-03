@@ -19,6 +19,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const postsCollectionRef = collection(db, "posts");
+const usersCollectionRef = collection(db, "users");
 
 export async function getAllPosts() {
     const postsSnapshot = await getDocs(postsCollectionRef);
@@ -60,14 +61,31 @@ export async function getPostById(id) {
     return post;
 }
 
-export async function addPost(plantNameInput, descriptionInput, otherInput) {
+export async function addPost(plantNameInput, descriptionInput, addressInput, zipInput, locationInput, postingUserId) {
     const newDocRef = await addDoc(postsCollectionRef, {
-        address: "front end test address post",
+        userId: postingUserId,
+        plantName: plantNameInput, 
         description: descriptionInput,
-        plantName: plantNameInput,
-        other: otherInput,
+        address: addressInput,
+        zip: zipInput,
+        location: locationInput,
         postTime: Timestamp.fromDate(new Date()),
-        wasRequested: false
+        wasRequested: false,
+        numberOfRequests: 0,
+        isAvailable: true
+    })
+}
+
+export async function addUser(userId, userEmail) {
+    const newDocRef = await addDoc(usersCollectionRef, {
+        ID: userId,
+        createdTimeStamp: Timestamp.fromDate(new Date()),
+        lastLoginTimeStamp: Timestamp.fromDate(new Date()),
+        email: userEmail,
+        credits: 0
+        // searchZips: requestedZips,
+        // plantRequests: requestedPlants,
+        // searches: []
     })
 }
 

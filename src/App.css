@@ -39,11 +39,13 @@ div.hero-body {
 }
 
 #post-btn {
-  background-color: #7bf1a8;
+  background-color:  #c1fba4;
+  box-shadow: 1px 1px 2px #363636;
 }
 
 #post-btn:hover {
-  background-color: #c1fba4;
+  background-color: #7bf1a8;
+  box-shadow: 1px 1px 2px inset #363636;
 }
 
 #footer {
@@ -80,13 +82,13 @@ div.hero-body {
 li.is-active > #toggle-posts, li.is-active > #toggle-plants {
    background-color: #7bf1a8;
     color: black;
-    border: solid 1px black;
+    
+
 }
 
 li.is-active > #toggle-posts:hover, li.is-active > #toggle-plants:hover {
   background-color: #c1fba4;
-   color: black;
-   border: solid 1px black;
+
 }
 
 
