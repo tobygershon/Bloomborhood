@@ -111,7 +111,7 @@ export default function HomeLayout() {
                             <input onChange={handleNewPostFormChange} className="input" type="text" placeholder="Plant Name" value={newPostFormData.plantName} name="plantName" />
                         </p>
                         <p className="control mb-2">
-                            <input onChange={handleNewPostFormChange} className="input" type="text" placeholder="Description" value={newPostFormData.description} name="description" />
+                            <input onChange={handleNewPostFormChange} className="input" type="text" placeholder="Description (under 50 letters please)" value={newPostFormData.description} name="description" />
                         </p>
                         <p className="control mb-2">
                             <input onChange={handleNewPostFormChange} className="input" type="text" placeholder="Address of Pickup" value={newPostFormData.address} name="address" />

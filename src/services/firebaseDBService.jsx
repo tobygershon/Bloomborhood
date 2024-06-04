@@ -21,7 +21,19 @@ const db = getFirestore(app);
 const postsCollectionRef = collection(db, "posts");
 const usersCollectionRef = collection(db, "users");
 
-export async function getAllPosts() {
+export async function getAllPosts(zip) {
+    if (zip) {
+        const q = query(postsCollectionRef, where("zip", "==", zip));
+
+        const querySnapshot = await getDocs(q);
+        const dataArray = querySnapshot.docs.map(doc => ({
+            ...doc.data(),
+            id: doc.id
+    }));
+
+    return dataArray;
+
+    } else {
     const postsSnapshot = await getDocs(postsCollectionRef);
     const dataArray = postsSnapshot.docs.map(doc => ({
         ...doc.data(),
@@ -30,16 +42,17 @@ export async function getAllPosts() {
 
     return dataArray;
 }
+}
 
 export async function getPostsByZip(zip) {
 
     const q = query(postsCollectionRef, where("zip", "==", zip));
 
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
-    console.log(doc.id, " => ", doc.data());
-});
+    const dataArray = querySnapshot.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id
+}));
 
     //to get query list of posts:
     // import query and where above from firestore

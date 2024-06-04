@@ -99,5 +99,24 @@ li.is-active > #toggle-posts:hover, li.is-active > #toggle-plants:hover {
   box-shadow: 1px 1px 2px inset #363636;
 }
 
+.box {
+  height: 7rem;
+  box-shadow: 1px 1px 5px black;
+  
+}
+
+.box.box-1 {
+  background-color: #ffd6e0;
+}
+
+.box.box-2 {
+  background-color: #ffef9f;
+}
+
+.box.box-3 {
+  background-color: #90f1ef;  
+}
+
+
 
 

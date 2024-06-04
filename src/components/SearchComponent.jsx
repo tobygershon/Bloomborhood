@@ -3,8 +3,6 @@ import { Outlet, Link, useLocation } from "react-router-dom";
 
 export default function SearchComponent({ counter }) {
 
-    console.log("search render")
-
     const [tab, setTab] = React.useState("")
     const [passedCounter, setPassedCounter] = React.useState(0)
 
@@ -16,7 +14,9 @@ export default function SearchComponent({ counter }) {
     //Plant and Post searches state and methods below
 
     const [plantSearchInput, setPlantSearchInput] = React.useState("");
+    
     const [postsSearchInput, setPostsSearchInput] = React.useState("");
+    // const [postsSearchData, setPostsSearchData] = React.useState("")
 
     function plantInputChange(event) {
         setPlantSearchInput(event.target.value)
@@ -32,10 +32,10 @@ export default function SearchComponent({ counter }) {
 
 
     function handlePostsSearchClick() {
-
+    
+  
     }
 
-    console.log(plantSearchInput)
     console.log(postsSearchInput)
 
     return (

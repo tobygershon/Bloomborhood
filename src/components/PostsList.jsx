@@ -1,7 +1,7 @@
 import React from "react";
 import { useLoaderData, Link, useOutletContext} from "react-router-dom";
 import PostCard from "./PostCard"
-import { getAllPosts, getPostsByZip, getPostById } from '../services/firebaseDBService'
+import { getAllPosts } from '../services/firebaseDBService'
 
 
 export function loader() {
