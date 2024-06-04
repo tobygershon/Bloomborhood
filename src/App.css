@@ -72,14 +72,14 @@ div.hero-body {
 
 .search-container {
   box-shadow: 1px 1px 10px #363636;
-  border: 5px solid #c1fba4;
+  border: 7px solid #c1fba4;
   border-radius: 10px;
 }
 
-/* .search-box {
-  border-radius: 10px;
-  
-} */
+.search-box {
+  border: 2px solid #363636;
+
+}
 
 #toggle-plants, #toggle-posts {
   text-decoration: none;

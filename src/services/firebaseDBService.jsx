@@ -70,6 +70,7 @@ export async function addPost(plantNameInput, descriptionInput, addressInput, zi
         zip: zipInput,
         location: locationInput,
         postTime: Timestamp.fromDate(new Date()),
+        firstRequestTime: "",
         wasRequested: false,
         numberOfRequests: 0,
         isAvailable: true

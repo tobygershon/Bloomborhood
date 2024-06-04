@@ -81,33 +81,37 @@ export default function Login() {
     return (
         <section className="section pt-2 pb-5">
 
-            <nav className="level mb-0">
+            <div className="container">
+                <div className="notification is-white py-0" >
+                    <nav className="level mb-0">
 
-                <div className="level-left">
-                    <div className="level-item">
-                        <p className="subtitle is-5 has-text-weight-semibold">Why Login?</p>
-                    </div>
+                        <div className="level-left">
+                            <div className="level-item">
+                                <p className="subtitle is-5 has-text-weight-semibold">Why Login?</p>
+                            </div>
 
-                </div>
-                <div className="level-right">
-                    <div className="level-item">
-                        <div className="field has-addons">
-                            <p className="control">
-                                <input onChange={handleFormChange} className="input" type="email" placeholder="email" value={loginFormData.email} name="email" />
-                            </p>
-                            <p className="control">
-                                <input onChange={handleFormChange} className="input" type="text" placeholder="password" value={loginFormData.password} name="password" />
-                            </p>
-                            <p className="control">
-                                <button onClick={handleSubmit} className="button">Login</button>
-                            </p>
                         </div>
-                    </div>
-                    <div className="level-item">
-                        <p className="subtitle is-5 has-text-weight-semibold">New? <button onClick={toggleModal}>Sign Up!</button></p>
-                    </div>
+                        <div className="level-right">
+                            <div className="level-item">
+                                <div className="field has-addons">
+                                    <p className="control">
+                                        <input onChange={handleFormChange} className="input" type="email" placeholder="email" value={loginFormData.email} name="email" />
+                                    </p>
+                                    <p className="control">
+                                        <input onChange={handleFormChange} className="input" type="text" placeholder="password" value={loginFormData.password} name="password" />
+                                    </p>
+                                    <p className="control">
+                                        <button onClick={handleSubmit} className="button">Login</button>
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="level-item">
+                                <p className="subtitle is-5 has-text-weight-semibold">New? <button onClick={toggleModal}>Sign Up!</button></p>
+                            </div>
+                        </div>
+                    </nav>
                 </div>
-            </nav>
+            </div>
 
             <div className={modalOpen ? "modal is-active" : "modal"}>
                 <div className="modal-background" onClick={toggleModal}></div>
@@ -143,6 +147,6 @@ export default function Login() {
                 </div>
             </div>
 
-        </section>
+        </section >
     )
 }

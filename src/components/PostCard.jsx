@@ -5,41 +5,39 @@ export default function PostCard(props) {
 
     const [isExpanded, setIsExpanded] = React.useState(false);
     const [addressRequested, setAddressRequested] = React.useState(false)
-    const [requestedAddress, setRequestedAddress] = React.useState("")
 
     function toggleExpanded() {
         setIsExpanded(!isExpanded);
     }
 
-    async function addressRequest() {
+    function addressRequest() {
 
-        setAddressRequested(!addressRequested);
-        const requestedPost = await getPostById(props.post.id)
-        setRequestedAddress(requestedPost.address)
+        setAddressRequested(true);
+        alert("The address has been sent to your email")
     }
 
     return (
         <>
-            <div onClick={toggleExpanded}>{!isExpanded &&
-                <div className="container my-3 search-container">
+            
+                <div className="container my-4 search-container">
                     <div className="notification is-white search-box">
                         <div className="columns">
-                            <div className="column is-flex is-flex-direction-column">
-                                <span className="is-flex is-justify-content-center is-size-5 has-text-weight-semibold mb-1">{props.post.plantName}</span>
-                                <span className="is-flex is-justify-content-center">{props.post.description}</span>
+                            <div className="column is-flex is-flex-direction-column is-align-items-center is-justify-content-center">
+                                <p className="is-flex is-justify-content-center is-size-6 is-flex is-align-items-center">Type of Plant: <span className="ml-1 mb-1 is-size-4 has-text-weight-semibold">{props.post.plantName}</span></p>
+                                <p className="is-flex is-justify-content-center">Description: <span>{props.post.description}</span></p>
                             </div>
-                            <div className="column">
-                                <span className="">{props.post.wasRequested ? "was requested" : "not yet requested"}</span>
+                            <div className="column is-flex is-flex-direction-column is-align-items-center is-justify-content-space-between">
+                                <span className="is-flex is-justify-content-center is-size-5 is-text-weight-semibold">{props.post.wasRequested ? "Has been requested " + props.post.numberOfRequests + " time" + (props.post.numberOfRequests === 1 ? "" : "s") : "This hasn't been requested yet"}</span>
+                                <span className="is-flex is-justify-content-center is-size-5 is-text-weight-semibold">{props.post.wasRequested ? "Was first requested at " + props.post.firstRequestTime : "Be the first to request!"}</span>
                             </div>
-                            <div className="column">
-                                <button className="button" onClick={addressRequest}>
-                                    {addressRequested ? "Hide Address" : "Show Address"}
-                                </button>
+                            <div className="column is-flex is-flex-direction-column is-align-items-center is-justify-content-center">
+                                <div>{ !addressRequested && <button className="button" onClick={addressRequest}>Request Address</button>}</div>
+                                    <div>{ addressRequested && "Remember, the policy is first come first served.  Right now your plants are still listed as available, but may not be by the time you pick up"}</div> 
+                                
                             </div>
                         </div>
                     </div>
                 </div>
-            }</div>
 
             <div onClick={toggleExpanded}>{isExpanded &&
                 <div className="container my-1">
