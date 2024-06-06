@@ -1,16 +1,11 @@
 import React from 'react';
 
 export default function Home() {
-
-    const [hidden, setHidden] = React.useState(false);
-
-    function timeout() {
-        setTimeout(setHidden(true), 1000);
-    }
+    
 
     return (
 
-        <section className={`hero is-small`}>
+        <section className={"is-hidden-mobile hero is-small"}>
             <div id="hero-box" className="hero-body is-flex is-align-items-center is-justify-content-flex-end">
                 <div className="is-flex is-flex-direction-column">
                     <p className="title has-text-white is-size-2-desktop is-size-4-mobile has-text-weight-bold has-text-right mr-2 mb-1">It's a <span id="bloomiful">Bloomiful</span> Day in the <span id="Bloom">Bloom</span><span id="borhood">borhood</span></p>

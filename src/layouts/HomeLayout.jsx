@@ -103,7 +103,7 @@ export default function HomeLayout() {
                 <div className="modal-background" onClick={toggleModal}></div>
                 <div className="modal-card">
                     <header className="modal-card-head">
-                        <p className="modal-card-title">Create a Post to Share Your Extra Plants</p>
+                        <p className="modal-card-title">Post to Share Your Plants</p>
                         <button className="delete" aria-label="close" onClick={toggleModal}></button>
                     </header>
                     <section className="modal-card-body">
