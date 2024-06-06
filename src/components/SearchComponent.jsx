@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, Link, useLocation } from "react-router-dom";
+import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function SearchComponent({ counter }) {
 
@@ -26,17 +26,18 @@ export default function SearchComponent({ counter }) {
         setPostsSearchInput(event.target.value)
     }
 
+    const navigate = useNavigate();
+
     function handlePlantSearchClick() {
 
     }
 
 
     function handlePostsSearchClick() {
-    
-  
+        postsSearchInput.length === 5 ?
+        navigate(`Posts/${postsSearchInput}`, { state: postsSearchInput } )
+        : setPostsSearchInput("5 digit zip please")
     }
-
-    console.log(postsSearchInput)
 
     return (
         <section className="section mt-2 pt-0">
@@ -60,7 +61,7 @@ export default function SearchComponent({ counter }) {
                                         }
                                         </p>
                                     <p className="control">
-                                        {tab === "Plants" ? <button onClick={handlePlantSearchClick} id="plants-search-btn" className="button">Search</button> 
+                                        {tab === "Plants" ? <Link to={`Posts/${postsSearchInput}`} ><button onClick={handlePostsSearchClick} id="plants-search-btn" className="button">Search</button></Link>
                                             : <button onClick={handlePostsSearchClick} id="posts-search-btn" className="button">Search</button>}
                                     </p>
                                 </div>

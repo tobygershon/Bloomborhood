@@ -13,9 +13,6 @@ export default function HomeLayout() {
     const [buttonIsLoading, setButtonIsLoading] = React.useState(false);
     const [counter, setCounter] = React.useState(0);
 
-    console.log(loggedIn)
-    console.log(userId)
-
 
     const [newPostFormData, setNewPostFormData] = React.useState({
         plantName: "",
@@ -58,7 +55,7 @@ export default function HomeLayout() {
         toggleModal();
         alert("Your Post has been submitted.  Thank you!")
         resetNewPostFormData();
-        setCounter(prev => prev + 1);
+        setCounter(prev => (prev + 1));
     }
 
     return (

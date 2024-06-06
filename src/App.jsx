@@ -29,6 +29,9 @@ function App() {
       <Route path="" element={<HomeLayout />} >
 
         <Route path="Posts" element={<PostsList />} loader={postsLoader} />
+
+        <Route path="Posts/:zip" element={<PostsList />} loader={postsLoader} />
+
         <Route path="Plants" element={<PlantSearchList />} loader={plantSearchLoader}/>
 
       </Route>

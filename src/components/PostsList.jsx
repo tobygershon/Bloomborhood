@@ -1,41 +1,44 @@
 import React from "react";
-import { useLoaderData, Link, useOutletContext} from "react-router-dom";
+import { useLoaderData, useOutletContext, useParams, useLocation} from "react-router-dom";
 import PostCard from "./PostCard"
 import { getAllPosts } from '../services/firebaseDBService'
 
 
-export function loader() {
-    return getAllPosts();
+export function loader( { params } ) {
+    console.log('loader')
+    console.log(params.zip)
+    return getAllPosts(params.zip);
 }
 
 export default function PostsList() {
 
-    let data = useLoaderData();
+    const data = useLoaderData()
+    const zip = useLocation().state
 
-    const [postsResult, setPostsResult] = React.useState(data);
+    const [passedZipInput, setPassedZipInput] = React.useState(zip)
     const [passedCounter, setPassedCounter] = useOutletContext();
-
-
-    React.useEffect(() => {
-        async function updatePosts() {
-            const update = await getAllPosts();
-            setPostsResult(update);
-        }
-        updatePosts();
-
-    }, [passedCounter])
-
-
+    // const [postsResult, setPostsResult] = React.useState();
     
-    const postCards = postsResult.map(post => {
+
+    React.useEffect(() => setPassedZipInput(zip), [zip, passedCounter]);
+
+    // React.useEffect(() => {
+    //     async function updatePosts() {
+    //         const update = await getAllPosts(passedZipInput);
+    //         setPostsResult(update);
+    //         console.log('update fired')
+    //     }
+    //     updatePosts();
+
+    // }, [passedCounter, data])
+    
+    const postCards = data.map(post => {
         return <PostCard key={post.id} post={post} />
     })
 
     return (
         <>
-            <Link >
                 {postCards}
-            </Link>
         </>
     )
 }
