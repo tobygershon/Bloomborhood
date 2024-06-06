@@ -71,12 +71,12 @@ export default function HomeLayout() {
                                 <div className="level-left">
                                 <div className="level-item has-text-centered">
                                         <div>
-                                            <button className="button has-text-primary-80-invert has-text-weight-semibold ">Update Your Profile</button>
+                                            <button id="update-btn" className="button has-text-primary-80-invert has-text-weight-semibold ">Update Your Profile</button>
                                         </div>
                                     </div>
                                     <div className="level-item has-text-centered">
                                         <div>
-                                            <span className="is-size-5 has-text-weight-semibold">Share Credits<i className="fa-solid fa-seedling is-size-5"></i></span>
+                                            <span className="is-size-5 has-text-weight-semibold is-hidden-mobile">Share Credits<i className="fa-solid fa-seedling is-size-5"></i></span>
                                         </div>
                                     </div>
                                     

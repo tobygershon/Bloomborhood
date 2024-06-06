@@ -87,7 +87,7 @@ export default function Login() {
 
                         <div className="level-left">
                             <div className="level-item">
-                                <p className="subtitle is-5 has-text-weight-semibold">Why Login?</p>
+                                <p className="subtitle is-5 has-text-weight-semibold is-hidden-mobile">Why Login?</p>
                             </div>
 
                         </div>
