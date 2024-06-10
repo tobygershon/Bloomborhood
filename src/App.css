@@ -3,7 +3,7 @@
 html {
   height: 100%;
   margin: 0 auto;
-  background-color: #7bf1a8
+  background-color: #90f1ef
 }
 
 body {
@@ -54,7 +54,7 @@ div.hero-body {
 
 #hero-box {
   border-radius: 50px;
-  border: 2px solid #363636;
+  /* border: 2px solid #363636; */
   box-shadow: 1px 2px 10px #363636;
 }
 
@@ -63,21 +63,21 @@ div.hero-body {
 }
 
 #Bloom {
-  color: #ffd6e0
+  color: #ffd6e0;
 }
 
 #borhood {
-  color: #90f1ef
+  color: #90f1ef;
 }
 
 .search-container {
-  box-shadow: 1px 1px 10px #363636;
-  border: 7px solid #c1fba4;
+  box-shadow: 2px 1px 5px #363636;
+  /* border: 1px solid #c1fba4; */
   border-radius: 10px;
 }
 
 .search-box {
-  border: 2px solid #363636;
+  /* border: 1px solid #7bf1a8; */
 
 }
 
@@ -100,7 +100,7 @@ li.is-active > #toggle-posts:hover, li.is-active > #toggle-plants:hover {
 }
 
 .box {
-  height: 7rem;
+  height: 6rem;
   /* box-shadow: 1px 0 5px black; */
   
 }
