@@ -79,7 +79,7 @@ export default function Login() {
 
 
     return (
-        <section className="section pt-2 pb-5">
+        <section className="section pt-0 pb-3">
 
             <div className="container">
                 <div className="notification is-white py-0" >

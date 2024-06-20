@@ -64,7 +64,7 @@ export default function HomeLayout() {
                 <section className="section py-0" >
                     <div className="container">
                         <div className="notification is-white py-0" >
-                            <nav className="level mt-4 mb-5">
+                            <nav className="level mt-2 mb-3">
                                 <div className="level-left">
                                 <div className="level-item has-text-centered">
                                         <div>
