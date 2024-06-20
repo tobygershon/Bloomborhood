@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getEnvVar } from './netlifyEnvVar';
 
 const plantAPI = axios.create({
     baseURL: 'https://perenual.com/api'
@@ -6,7 +7,7 @@ const plantAPI = axios.create({
 
 
 export async function getAllPlants() {
-    const value = Netlify.env.get("PLANT_API_KEY");
+    const value =  await getEnvVar();
     const response = await plantAPI.get(`species-list?key=${value}`);
     return response.data.data;
 }
