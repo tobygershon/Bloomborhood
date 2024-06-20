@@ -1,5 +1,4 @@
 import axios from 'axios';
-import PLANT_API_KEY from 'dotenv'
 
 const plantAPI = axios.create({
     baseURL: 'https://perenual.com/api'
