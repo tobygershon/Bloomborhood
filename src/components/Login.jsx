@@ -17,7 +17,8 @@ export default function Login() {
         requestedPlants: []
     })
 
-    const [modalOpen, setModalOpen] = React.useState(false);
+    const [signUpModalOpen, setSignUpModalOpen] = React.useState(false);
+    const [learnModalOpen, setLearnModalOpen] = React.useState(false);
     const [passwordsMatch, setPasswordsMatch] = React.useState(true);
     const [buttonIsLoading, setButtonIsLoading] = React.useState(false);
 
@@ -73,22 +74,23 @@ export default function Login() {
         }
     }
 
-    function toggleModal() {
-        setModalOpen(prevModalOpen => !prevModalOpen);
+    function toggleSignUpModal() {
+        setSignUpModalOpen(prevModalOpen => !prevModalOpen);
+    }
+
+    function toggleLearnModal() {
+        setLearnModalOpen(prevModalOpen => !prevModalOpen);
     }
 
 
     return (
-        <section className="section pt-0 pb-3">
+        <section className="section pt-1 pb-3 px-0">
 
             <div className="container">
-                <div className="notification is-white py-0" >
+                <div className="notification is-white py-0 px-0" >
                     <nav className="level mb-0">
 
                         <div className="level-left">
-                            <div className="level-item">
-                                <p className="subtitle is-5 has-text-weight-semibold is-hidden-mobile">Why Login?</p>
-                            </div>
 
                         </div>
                         <div className="level-right">
@@ -106,19 +108,22 @@ export default function Login() {
                                 </div>
                             </div>
                             <div className="level-item">
-                                <p className="subtitle is-5 has-text-weight-semibold">New? <button onClick={toggleModal}>Sign Up!</button></p>
+                                <p className="subtitle is-5 has-text-weight-semibold">New?&nbsp;&nbsp;<button className="login-level-btn" onClick={toggleSignUpModal}>Sign Up!</button></p>
+                            </div>
+                            <div className="level-item">
+                                <p className="subtitle is-5 has-text-weight-semibold is-hidden-mobile"><button className="login-level-btn" onClick={toggleLearnModal}>Learn Why?</button></p>
                             </div>
                         </div>
                     </nav>
                 </div>
             </div>
 
-            <div className={modalOpen ? "modal is-active" : "modal"}>
-                <div className="modal-background" onClick={toggleModal}></div>
+            <div className={signUpModalOpen ? "modal is-active" : "modal"}>
+                <div className="modal-background" onClick={toggleSignUpModal}></div>
                 <div className="modal-card">
                     <header className="modal-card-head">
                         <p className="modal-card-title">Sign Up with Email</p>
-                        <button className="delete" aria-label="close" onClick={toggleModal}></button>
+                        <button className="delete" aria-label="close" onClick={toggleSignUpModal}></button>
                     </header>
                     <section className="modal-card-body">Create Username and Password
                         <p className="control mb-2">
@@ -141,7 +146,37 @@ export default function Login() {
                     <footer className="modal-card-foot">
                         <div className="buttons">
                             <button className={buttonIsLoading ? "button is-success is-loading" : "button is-success"} onClick={handleNewUserSubmit}>Save changes</button>
-                            <button className="button" onClick={toggleModal}>Cancel</button>
+                            <button className="button" onClick={toggleSignUpModal}>Cancel</button>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+
+            <div className={learnModalOpen ? "modal is-active" : "modal"}>
+                <div className="modal-background" onClick={toggleLearnModal}></div>
+                <div className="modal-card">
+                    <header className="modal-card-head">
+                        <p className="modal-card-title">Why should I sign up?</p>
+                        <button className="delete" aria-label="close" onClick={toggleLearnModal}></button>
+                    </header>
+                    <section className="modal-card-body">
+                        <div className="content">
+
+                            <h6>Get Plants</h6>
+                            <p>Anyone can search posts, but only logged in users have access to the pick-up address</p>
+                            <h6>Share Plants</h6>
+                            <p>Only registered users can post their extra plants to share</p>
+                            <h6>Earn Credits</h6>
+                            <p>When you share plants you earn credits that 'buy' you exclusive rights to pick up a post of your choice</p>
+                            <h6>User Experience</h6>
+                            <p>Logged in users recieve a more personalized experience</p>
+
+                        </div>
+                    </section>
+
+                    <footer className="modal-card-foot">
+                        <div className="buttons">
+                            <button className="button" onClick={toggleLearnModal} aria-label="close">Got it!</button>
                         </div>
                     </footer>
                 </div>

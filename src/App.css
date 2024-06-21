@@ -32,17 +32,27 @@ div.hero-body {
   background-size: cover;
 }
 
+#hero-box {
+  border-radius: 3px;
+  /* border: 2px solid #363636; */
+  box-shadow: 1px 1px 6px #363636;
+}
+
 #header {
   border-radius: 5px;
   margin-bottom: 10px;
-  
+  box-shadow: 1px 1px 6px #363636;
+}
 
+#sign-out-btn:hover {
+  color:#c1fba4;
 }
 
 #post-btn,
 #update-btn {
   background-color: #c1fba4;
   box-shadow: 1px 1px 2px #363636;
+  border-radius: 100px;
 }
 
 #post-btn:hover,
@@ -51,15 +61,11 @@ div.hero-body {
   box-shadow: 1px 1px 2px inset #363636;
 }
 
-#footer {
-  border-radius: 5px;
+.login-level-btn:hover {
+  color:#7bf1a8;
 }
 
-#hero-box {
-  border-radius: 50px;
-  /* border: 2px solid #363636; */
-  box-shadow: 1px 2px 10px #363636;
-}
+
 
 #bloomiful {
   color: #ffef9f;
@@ -121,5 +127,9 @@ li.is-active>#toggle-plants:hover {
 }
 
 .about-img {
-  height: 100px;
+  box-shadow: 1px 1px 6px #363636;
+}
+
+#footer {
+  border-radius: 5px;
 }

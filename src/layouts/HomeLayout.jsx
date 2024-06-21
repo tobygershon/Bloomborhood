@@ -61,34 +61,35 @@ export default function HomeLayout() {
     return (
         <div>
             <div>{loggedIn &&
-                <section className="section py-0" >
-                    <div className="container">
-                        <div className="notification is-white py-0" >
-                            <nav className="level mt-2 mb-3">
-                                <div className="level-left">
-                                <div className="level-item has-text-centered">
-                                        <div>
-                                            <button id="update-btn" className="button has-text-primary-80-invert has-text-weight-semibold ">Update Your Profile</button>
-                                        </div>
-                                    </div>
-                                    <div className="level-item has-text-centered">
-                                        <div>
-                                            <span className="is-size-5 has-text-weight-semibold is-hidden-mobile">Share Credits<i className="fa-solid fa-seedling is-size-5"></i></span>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <div className="level-right">
-                                    <div className="level-item has-text-centered">
-                                        <div>
-                                            <button id="post-btn" onClick={toggleModal} className="button has-text-primary-80-invert has-text-weight-semibold is-centered">Post Plants to Share!</button>
-                                        </div>
-                                    </div>
-                                </div>
+                <section className="section py-0 px-0" >
 
-                            </nav>
-                        </div>
+                    <div className="notification is-white py-0" >
+                        <nav className="level mt-2 mb-3">
+                            <div className="level-left">
+                            <div className="level-item has-text-centered">
+                                    <div>
+                                        <span className="is-size-5 has-text-weight-semibold is-hidden-mobile">Welcome Back! You Have Share Credits&nbsp;<i className="fa-solid fa-seedling is-size-5"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="level-right">
+                                
+                                <div className="level-item has-text-centered">
+                                    <div>
+                                        <button id="post-btn" onClick={toggleModal} className="button has-text-primary-80-invert has-text-weight-semibold is-centered">Post Plants to Share!</button>
+                                    </div>
+                                </div>
+                                <div className="level-item has-text-centered">
+                                    <div>
+                                        <button id="update-btn" className="button has-text-primary-80-invert has-text-weight-semibold ">Update Your Profile</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </nav>
                     </div>
+
                 </section>
 
             }</div>

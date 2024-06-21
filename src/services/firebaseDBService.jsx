@@ -93,3 +93,12 @@ export async function updatePost(id) {
         address: ''
     })
 }
+
+export async function getKeyById(id) {
+    const docRef = await doc(db, "keys", id);
+    const postSnapshot = await getDoc(docRef);
+
+    const key = postSnapshot.data().plantKey;
+
+    return key;
+}

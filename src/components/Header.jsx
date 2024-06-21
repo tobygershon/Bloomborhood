@@ -39,7 +39,7 @@ export default function Header(props) {
             <div id="navbarBasicExample" className={`navbar-menu ${menuActive ? "is-active" : ""}`}>
                 <div className="navbar-end">
                     <div className="navbar-item">{
-                        props.loggedIn && <Link><button onClick={handleClick}>Sign Out</button></Link>
+                        props.loggedIn && <button id="sign-out-btn" onClick={handleClick}>Sign Out</button>
                     }</div>
                     <Link to="/About" className="navbar-item">
                         About
