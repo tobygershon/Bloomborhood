@@ -1,23 +1,28 @@
 html {
   height: 100%;
   margin: 0 auto;
-  background-color: #90f1ef
+  /* background-color: #90f1ef */
+  background-image: url(assets/background_img.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 body {
   height: 100%;
+  /* opacity: .8; */
   /* background-color:hsl(0, 0%, 21%); */
   width: 100%;
   margin: 0 auto;
-  padding: .5rem;
-
+  padding: .75rem;
 }
 
 #root {
-  background-color: white;
+  background-color: rgb(255, 255, 255, .75);
   /* max-width: 1280px; */
   margin: 0 auto;
-  padding: 1rem;
+  padding: .5rem;
   border-radius: 10px;
 }
 
@@ -42,6 +47,10 @@ div.hero-body {
   border-radius: 5px;
   margin-bottom: 10px;
   box-shadow: 1px 1px 6px #363636;
+}
+
+.background.notification {
+  background-color: rgb(255, 255, 255, .0);
 }
 
 #sign-out-btn:hover {
@@ -87,28 +96,31 @@ div.hero-body {
 
 #toggle-plants,
 #toggle-posts {
+  background-color: white;
   text-decoration: none;
-  font-weight: 700
+  font-weight: 700;
+  border: .5px solid #363636;
 }
 
 li.is-active>#toggle-posts,
 li.is-active>#toggle-plants {
   background-color: #c1fba4;
-
   color: black;
-
-
 }
 
-li.is-active>#toggle-posts:hover,
-li.is-active>#toggle-plants:hover {
+li>#toggle-posts:hover,
+li>#toggle-plants:hover {
   background-color: #7bf1a8;
-  box-shadow: 1px 1px 2px inset #363636;
+}
+
+li>#toggle-posts:active,
+li>#toggle-plants:active {
+  background-color: #7bf1a8;
+  box-shadow: 2px 2px inset #363636;
 }
 
 .post-box {
   height: 6rem;
-  
 }
 
 .post-box.box-1 {
@@ -128,6 +140,12 @@ li.is-active>#toggle-plants:hover {
 
 .about-img {
   box-shadow: 1px 1px 6px #363636;
+}
+
+#about-div {
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  margin-bottom: 1rem;
 }
 
 #footer {

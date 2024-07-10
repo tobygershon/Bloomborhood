@@ -87,7 +87,7 @@ export default function Login() {
         <section className="section pt-1 pb-3 px-0">
 
             <div className="container">
-                <div className="notification is-white py-0 px-0" >
+                <div className="background notification is-white py-0 px-0" >
                     <nav className="level mb-0">
 
                         <div className="level-left">

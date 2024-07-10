@@ -1,7 +1,7 @@
 
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
-import { getFirestore, collection, getDocs, doc, getDoc, addDoc, Timestamp, updateDoc, query, where } from "firebase/firestore/lite";  //remove lite if you want to use the full version with real-time updates 
+import { getFirestore, collection, getDocs, doc, getDoc, addDoc, Timestamp, updateDoc, query, where, increment } from "firebase/firestore/lite";  //remove lite if you want to use the full version with real-time updates 
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -84,14 +84,22 @@ export async function addUser(userId, userEmail) {
     })
 }
 
-export async function updatePost(id) {
-    const updateDocRef = doc(db, 'posts', id);
+export async function updatePost(post) {
+    const updateDocRef = doc(db, 'posts', post.id);
 
-    await updateDoc(updateDocRef, {
-        plantName: '',
-        wasRequested: true,
-        address: ''
-    })
+    if (post.wasRequested == false) {
+
+        await updateDoc(updateDocRef, {
+            wasRequested: true,
+            firstRequestTime: Timestamp.fromDate(new Date()),
+            numberOfRequests: increment(1)
+        })
+    } else {
+
+        await updateDoc(updateDocRef, {
+            numberOfRequests: increment(1)
+        })
+    }
 }
 
 export async function getKeyById(id) {

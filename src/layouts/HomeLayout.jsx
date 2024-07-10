@@ -63,10 +63,10 @@ export default function HomeLayout() {
             <div>{loggedIn &&
                 <section className="section py-0 px-0" >
 
-                    <div className="notification is-white py-0" >
+                    <div className="background notification is-white py-0" >
                         <nav className="level mt-2 mb-3">
                             <div className="level-left">
-                            <div className="level-item has-text-centered">
+                                <div className="level-item has-text-centered">
                                     <div>
                                         <span className="is-size-5 has-text-weight-semibold is-hidden-mobile">Welcome Back! You Have Share Credits&nbsp;<i className="fa-solid fa-seedling is-size-5"></i></span>
                                     </div>

@@ -4,11 +4,11 @@ import patio from "../assets/patio.jpg"
 
 export default function About() {
     return (
-        <div>
+        <div id="about-div">
 
-            <section className="section  pt-5 pb-0">
+            <section className="section pt-5 pb-0">
                 <div className="columns">
-                    <div className="box column is-flex is-align-items-center is-one-third is-background-white my-0">
+                    <div className="box column is-background-white is-flex is-align-items-center is-one-third my-0">
                         <figure className="image about-img ">
                             <img src={patio} />
                         </figure>
@@ -23,7 +23,7 @@ export default function About() {
                                 My Bloomborhood aims to make sharing extra plants with neighbors easier.
                             </div>
                             <div className="my-3">
-                                Search, Post, Learn, and participate in beautifying your bloomborhood.
+                                Search, Post, Learn, and Participate in beautifying your bloomborhood.
                             </div>
                         </h2>
                     </div>
@@ -47,7 +47,7 @@ export default function About() {
                             </div>
                         </h2>
                     </div>
-                    <div className="box column  is-flex is-align-items-center is-hidden-mobile is-one-third is-background-white my-0">
+                    <div className="box column is-background-white  is-flex is-align-items-center is-hidden-mobile is-one-third my-0">
                         <figure className="image about-img">
                             <img src={phlox} />
                         </figure>
@@ -57,7 +57,7 @@ export default function About() {
 
             <section className="section pt-0 pb-5">
                 <div className="columns">
-                    <div className="box column is-flex is-align-items-center is-hidden-mobile is-one-third is-background-white my-0">
+                    <div className="box column is-background-white is-flex is-align-items-center is-hidden-mobile is-one-third my-0">
                         <figure className="image about-img">
                             <img src={roses} />
                         </figure>
