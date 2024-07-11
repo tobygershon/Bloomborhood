@@ -73,16 +73,16 @@ export default function HomeLayout() {
                                 </div>
                             </div>
 
-                            <div className="level-right">
+                            <div id="btn-box" className="level-right is-flex-mobile is-flex-direction-row">
                                 
                                 <div className="level-item has-text-centered">
                                     <div>
-                                        <button id="post-btn" onClick={toggleModal} className="button has-text-primary-80-invert has-text-weight-semibold is-centered">Post Plants to Share!</button>
+                                        <button id="post-btn" onClick={toggleModal} className="button is-small has-text-primary-80-invert has-text-weight-semibold is-centered">Post Plants to Share!</button>
                                     </div>
                                 </div>
                                 <div className="level-item has-text-centered">
                                     <div>
-                                        <button id="update-btn" className="button has-text-primary-80-invert has-text-weight-semibold ">Update Your Profile</button>
+                                        <button id="update-btn" className="button is-small has-text-primary-80-invert has-text-weight-semibold ">Update Your Profile</button>
                                     </div>
                                 </div>
                             </div>

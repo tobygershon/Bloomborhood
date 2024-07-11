@@ -57,8 +57,13 @@ div.hero-body {
   color:#c1fba4;
 }
 
+/* #btn-box {
+  width: 100%;
+} */
+
 #post-btn,
 #update-btn {
+  width: 150px;
   background-color: #c1fba4;
   box-shadow: 1px 1px 2px #363636;
   border-radius: 100px;
@@ -73,8 +78,6 @@ div.hero-body {
 .login-level-btn:hover {
   color:#7bf1a8;
 }
-
-
 
 #bloomiful {
   color: #ffef9f;

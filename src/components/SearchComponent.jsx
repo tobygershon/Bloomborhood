@@ -14,7 +14,7 @@ export default function SearchComponent({ counter }) {
     //Plant and Post searches state and methods below
 
     const [plantSearchInput, setPlantSearchInput] = React.useState("");
-    
+
     const [postsSearchInput, setPostsSearchInput] = React.useState("");
     // const [postsSearchData, setPostsSearchData] = React.useState("")
 
@@ -39,18 +39,18 @@ export default function SearchComponent({ counter }) {
 
     function handlePostsSearchClick() {
         if (postsSearchInput.length === 5) {
-        navigate(`Posts/${postsSearchInput}`, { state: postsSearchInput })
-        setTab("Posts")
+            navigate(`Posts/${postsSearchInput}`, { state: postsSearchInput })
+            setTab("Posts")
         } else {
             setPostsSearchInput("5 digit zip please")
-            }
+        }
     }
 
     return (
-        <section className="section mt-2 pt-0">
+        <section className="section mt-0 pt-0">
 
-                <div className="container">
-                <div className="background notification is-white" >
+            <div className="container">
+                <div className="background notification is-white pt-0" >
                     <nav className="level">
 
                         <div className="level-left">
@@ -60,11 +60,11 @@ export default function SearchComponent({ counter }) {
                             <div className="level-item">
                                 <div className="field has-addons mb-1">
                                     <p className="control">
-                                        { tab === "/Plants" ?
-                                           <input onChange={plantInputChange} value={plantSearchInput} className="input" type="text" name="plantsSearch" placeholder="Tip: Spelling Matters" />
-                                         : <input onChange={postsInputChange} onFocus={clearPostSearchInput} value={postsSearchInput} className="input" type="text" name="postsSearch" placeholder="5 digit Zip (ex: 01001)" />
+                                        {tab === "/Plants" ?
+                                            <input onChange={plantInputChange} value={plantSearchInput} className="input" type="text" name="plantsSearch" placeholder="Tip: Spelling Matters" />
+                                            : <input onChange={postsInputChange} onFocus={clearPostSearchInput} value={postsSearchInput} className="input" type="text" name="postsSearch" placeholder="5 digit Zip (ex: 01001)" />
                                         }
-                                        </p>
+                                    </p>
                                     <p className="control">
                                         {tab === "/Plants" ? <button onClick={handlePlantSearchClick} id="plants-search-btn" className="button">Search</button>
                                             : <button onClick={handlePostsSearchClick} id="posts-search-btn" className="button">Search</button>}
@@ -98,29 +98,29 @@ export default function SearchComponent({ counter }) {
                                 </div>
                             </div>
                         </div>
-                           
+
                     </nav>
-                    </div>
-                    </div>
+                </div>
+            </div>
 
 
 
 
-                    <div>{location.pathname === "/" &&
-                        <div className="container my-1 search-container">
-                            <div className="notification is-white search-box" >
-                                <div className="columns">
-                                    <div className="column">sample test</div>
-                                    <div className="column">test data</div>
-                                    <div className="column">sample data</div>
-                                </div>
-                            </div>
+            <div>{location.pathname === "/" &&
+                <div className="container my-1 search-container">
+                    <div className="notification is-white search-box" >
+                        <div className="columns">
+                            <div className="column">sample test</div>
+                            <div className="column">test data</div>
+                            <div className="column">sample data</div>
                         </div>
-                    }</div>
+                    </div>
+                </div>
+            }</div>
 
-                    <Outlet context={[passedCounter, setPassedCounter]} />
-               
-            
+            <Outlet context={[passedCounter, setPassedCounter]} />
+
+
 
         </section>
     )
