@@ -21,11 +21,31 @@ const db = getFirestore(app);
 const postsCollectionRef = collection(db, "posts");
 const usersCollectionRef = collection(db, "users");
 
-export async function getAllPosts(zip) {
+export async function getPostsForUser(zipArray) {
 
     let dataArray; 
 
-    if (zip && zip.length === 5) {
+   
+    if (zipArray.length > 0) {
+        const q = query(postsCollectionRef, where("zip", "in", zipArray));
+        const querySnapshot = await getDocs(q);
+        dataArray = querySnapshot.docs.map(doc => ({
+            ...doc.data(),
+            id: doc.id
+    }));
+
+    } else {
+        dataArray = []
+    }
+
+    return dataArray;
+}
+
+export async function getPostsByZipInput(zip) {
+
+    let dataArray; 
+   
+    if (zip.length === 5) {
         const q = query(postsCollectionRef, where("zip", "==", zip));
         const querySnapshot = await getDocs(q);
         dataArray = querySnapshot.docs.map(doc => ({
@@ -34,12 +54,10 @@ export async function getAllPosts(zip) {
     }));
 
     } else {
-    const postsSnapshot = await getDocs(postsCollectionRef);
-    dataArray = postsSnapshot.docs.map(doc => ({
-        ...doc.data(),
-        id: doc.id
-    }));
-}
+        dataArray = []
+        // perhaps return a specific doc or object giving info that no posts for zip exist or input was incorrect
+    }
+
     return dataArray;
 }
 
@@ -71,19 +89,6 @@ export async function addPost(plantNameInput, descriptionInput, addressInput, zi
     })
 }
 
-export async function addUser(userId, userEmail) {
-    const newDocRef = await addDoc(usersCollectionRef, {
-        ID: userId,
-        createdTimeStamp: Timestamp.fromDate(new Date()),
-        lastLoginTimeStamp: Timestamp.fromDate(new Date()),
-        email: userEmail,
-        credits: 0
-        // searchZips: requestedZips,
-        // plantRequests: requestedPlants,
-        // searches: []
-    })
-}
-
 export async function updatePost(post) {
     const updateDocRef = doc(db, 'posts', post.id);
 
@@ -101,6 +106,28 @@ export async function updatePost(post) {
         })
     }
 }
+
+export async function addUser(userId, userEmail, zipArray) {
+    const newDocRef = await addDoc(usersCollectionRef, {
+        ID: userId,
+        createdTimeStamp: Timestamp.fromDate(new Date()),
+        lastLoginTimeStamp: Timestamp.fromDate(new Date()),
+        email: userEmail,
+        credits: 0,
+        zipArray: zipArray,
+        // plantRequests: requestedPlants,
+        // searches: []
+    })
+}
+
+export async function getZipArrayForUser(uid) {
+    const q = query(usersCollectionRef, where("ID", "==", uid));
+    const querySnapshot = await getDocs(q);
+
+    return querySnapshot.docs[0].data().zipArray;
+}
+
+
 
 export async function getKeyById(id) {
     const docRef = await doc(db, "keys", id);

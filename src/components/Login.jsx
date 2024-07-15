@@ -13,8 +13,8 @@ export default function Login() {
         email: "",
         password: "",
         passwordAgain: "",
-        requestedZips: [],
-        requestedPlants: []
+        requestedZips: "",
+        // requestedPlants: []
     })
 
     const [signUpModalOpen, setSignUpModalOpen] = React.useState(false);
@@ -63,8 +63,9 @@ export default function Login() {
     async function handleNewUserSubmit() {
         if (signUpFormData.password === signUpFormData.passwordAgain && signUpFormData.password.trim() !== "") {
             setButtonIsLoading(true);
+            const zipArray = convertZipStringToArray(signUpFormData.requestedZips);
             const ID = await newUserSignUp(signUpFormData.email.toLowerCase(), signUpFormData.password.toLowerCase());
-            addUser(ID, signUpFormData.email.toLowerCase(), signUpFormData.requestedZips, signUpFormData.requestedPlants);
+            addUser(ID, signUpFormData.email.toLowerCase(), zipArray);
             //add error handling.  if submitted w/o any imputs it gets stuck loading
             setButtonIsLoading(false);
             // resetSignUpData();
@@ -72,6 +73,11 @@ export default function Login() {
         } else {
             setPasswordsMatch(false);
         }
+    }
+
+    function convertZipStringToArray(zips) {
+        const zipArray = zips.replaceAll(",", "").split(" ");
+        return zipArray.filter((zip => zip.length === 5))
     }
 
     function toggleSignUpModal() {
@@ -133,15 +139,15 @@ export default function Login() {
                             <input onChange={handleNewUserFormChange} className="input" type="text" placeholder="password" value={signUpFormData.password} name="password" />
                         </p>
                         <p className={passwordsMatch ? "is-hidden" : ""}>Please make sure passwords match</p>
-                        <p className="control">
+                        <p className="control mb-2">
                             <input onChange={handleNewUserFormChange} className="input" type="text" placeholder="re-type password" value={signUpFormData.passwordAgain} name="passwordAgain" />
                         </p>
-                        <p className="control mb-2">
-                            <input onChange={handleNewUserFormChange} className="input" type="text" placeholder="Enter Local Zip Codes to Search" value={signUpFormData.requestedZips} name="requestedZips" />
-                        </p>
                         <p className="control">
-                            <input onChange={handleNewUserFormChange} className="input" type="text" placeholder="Enter any plant names to recieve email alerts when posted" value={signUpFormData.requestedPlants} name="requestedPlants" />
+                            <input onChange={handleNewUserFormChange} className="input" type="text" placeholder="Enter your local 5 digit zip codes separated by SPACES ex.(10001 10002 etc)" value={signUpFormData.requestedZips} name="requestedZips" />
                         </p>
+                        {/* <p className="control">
+                            <input onChange={handleNewUserFormChange} className="input" type="text" placeholder="Enter any plant names to recieve email alerts when posted" value={signUpFormData.requestedPlants} name="requestedPlants" />
+                        </p> */}
                     </section>
                     <footer className="modal-card-foot">
                         <div className="buttons">

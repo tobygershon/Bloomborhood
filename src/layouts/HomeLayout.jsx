@@ -3,15 +3,31 @@ import Home from "../components/Home";
 import SearchComponent from "../components/SearchComponent";
 import { addPost } from "../services/firebaseDBService";
 import { useOutletContext } from "react-router-dom";
+import { getZipArrayForUser } from "../services/firebaseDBService";
 
 export default function HomeLayout() {
-
+    console.log('homeLayout')
 
     const loggedIn = useOutletContext()[0];
     const userId = useOutletContext()[1];
+    
+    const [userArray, setUserArray] = React.useState([]);
+
+    React.useEffect(() => {
+        async function getUserArray() {
+            const zipArray = await getZipArrayForUser(userId);
+            if (zipArray) {
+            setUserArray(zipArray)
+            }
+        }
+        if(userId) {
+        getUserArray();
+        }
+    }, [userId]) 
+
+
     const [modalOpen, setModalOpen] = React.useState(false);
     const [buttonIsLoading, setButtonIsLoading] = React.useState(false);
-    const [counter, setCounter] = React.useState(0);
 
 
     const [newPostFormData, setNewPostFormData] = React.useState({
@@ -55,7 +71,7 @@ export default function HomeLayout() {
         toggleModal();
         alert("Your Post has been submitted.  Thank you!")
         resetNewPostFormData();
-        setCounter(prev => (prev + 1));
+
     }
 
     return (
@@ -95,7 +111,7 @@ export default function HomeLayout() {
             }</div>
 
             <Home />
-            <SearchComponent counter={counter} />
+            <SearchComponent loggedIn={loggedIn} userId={userId} />
 
             <div className={modalOpen ? "modal is-active" : "modal"}>
                 <div className="modal-background" onClick={toggleModal}></div>

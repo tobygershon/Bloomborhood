@@ -70,7 +70,6 @@ export function getCurrentUser2() {
     const user = auth.currentUser;
 
     if (user) {
-        console.log(user.uid)
         return user;
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user

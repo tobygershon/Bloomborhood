@@ -23,7 +23,7 @@ export default function About() {
                                 My Bloomborhood aims to make sharing extra plants with neighbors easier.
                             </div>
                             <div className="my-3">
-                                Search, Post, Learn, and Participate in beautifying your bloomborhood.
+                                Search, Post, Learn, and Participate in beautifying your Bloomborhood.
                             </div>
                         </h2>
                     </div>

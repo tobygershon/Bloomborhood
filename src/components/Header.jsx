@@ -4,7 +4,7 @@ import logo from '../assets/MyBloomborhoodDark.png'
 import { signOutUser } from '../services/firebaseAuthService.jsx';
 
 
-export default function Header(props) {
+export default function Header({ loggedIn }) {
 
     const [menuActive, setMenuActive] = React.useState(false);
 
@@ -23,7 +23,7 @@ export default function Header(props) {
         <nav id="header" className="navbar has-background-grey-darker" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
 
-                <Link to="/" className="navbar-item px-4 py-3 mb-1" >
+                <Link to={loggedIn ? "Posts" : "/"} className="navbar-item px-4 py-3 mb-1" >
                     <img src={logo} alt="My Bloomborhood logo" style={{ width: 250 }} />
                 </Link>
 
@@ -39,7 +39,7 @@ export default function Header(props) {
             <div id="navbarBasicExample" className={`navbar-menu ${menuActive ? "is-active" : ""}`}>
                 <div className="navbar-end">
                     <div className="navbar-item">{
-                        props.loggedIn && <button id="sign-out-btn" onClick={handleClick}>Sign Out</button>
+                        loggedIn && <button id="sign-out-btn" onClick={handleClick}>Sign Out</button>
                     }</div>
                     <Link to="/About" className="navbar-item">
                         About

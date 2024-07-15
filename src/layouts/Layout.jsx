@@ -6,6 +6,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { Footer } from '../components/Footer';
 
 export default function Layout() {
+    console.log('layout')
 
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [userId, setUserId] = React.useState("");
@@ -18,11 +19,13 @@ export default function Layout() {
             // https://firebase.google.com/docs/reference/js/auth.user
             setUserId(user.uid);
             setLoggedIn(true);
+            console.log("user exists")
             // ...
         } else {
             // User is signed out
             setUserId("");
             setLoggedIn(false);
+            console.log('no user')
         }
     });
 

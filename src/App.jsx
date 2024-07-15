@@ -4,7 +4,7 @@ import Layout from './layouts/Layout.jsx'
 import About from './components/About.jsx'
 import NotFound from './components/NotFound.jsx'
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom"
-import PostsList, { loader as postsLoader } from './components/PostsList.jsx'
+import PostsList from './components/PostsList.jsx'
 import PlantSearchList, { loader as plantSearchLoader } from './components/PlantSearchList.jsx'
 import HomeLayout from './layouts/HomeLayout.jsx'
 
@@ -28,9 +28,9 @@ function App() {
 
       <Route path="" element={<HomeLayout />} >
 
-        <Route path="Posts" element={<PostsList />} loader={postsLoader} />
+        <Route path="Posts" element={<PostsList />} />
 
-        <Route path="Posts/:zip" element={<PostsList />} loader={postsLoader} />
+        <Route path="Posts/:zip" element={<PostsList />} />
 
         <Route path="Plants" element={<PlantSearchList />} loader={plantSearchLoader}/>
 

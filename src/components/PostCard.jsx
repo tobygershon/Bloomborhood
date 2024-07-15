@@ -34,18 +34,17 @@ export default function PostCard(props) {
         }
 
         let returnTime = "";
-
-            if (min) {
-                returnTime += `${min - hours * 60} minutes`;
+            if (days ) {
+                            returnTime = `${days} day` + (days === 1 ? "" : "s");
+            } else if (hours) {
+                returnTime = `${hours} hour` + (hours === 1 ? "" : "s");
+            } else if (min) {
+                returnTime = `${min} minutes`;
             } else {
-                returnTime += '1 minute';
+                returnTime = '1 minute';
             }
-            if (hours) {
-                returnTime = `${hours - days * 24} hours, ` + returnTime;
-            }
-            if (days) {
-                returnTime = `${days} days, ` + returnTime;
-            }
+            
+            
 
            return returnTime; 
         } 
@@ -54,12 +53,11 @@ export default function PostCard(props) {
     
     return (
         <>
-
             <div className="container my-4 search-container">
                 <div className="notification has-background-white-ter search-box">
                     <div className="columns is-gapless">
                         <div className="column ">
-                            <div className="post-box box-1 is-flex is-flex-direction-column is-align-items-center is-justify-content-center has-text-weight-semibold">
+                            <div className="post-box box-1 is-flex is-flex-direction-column is-align-items-center is-justify-content-center has-text-weight-semibold px-4">
                                 <p className="is-flex is-justify-content-center is-size-7 is-size-6-desktop is-flex is-align-items-center has-text-grey">
                                     <i className="fa-solid fa-seedling is-size-5"></i><span className="ml-2 is-size-5 is-size-4-desktop has-text-dark">{props.post.plantName}</span>
                                 </p>
@@ -67,7 +65,7 @@ export default function PostCard(props) {
                             </div>
                         </div>
                         <div className="column">
-                            <div className="post-box box-2 is-flex is-flex-direction-column is-align-items-center is-justify-content-center has-text-dark is-size-6 is-size-5-desktop has-text-weight-semibold">
+                            <div className="post-box box-2 is-flex is-flex-direction-column is-align-items-center is-justify-content-center has-text-dark is-size-6 is-size-5-desktop has-text-weight-semibold px-4">
                                 <p className="is-flex is-justify-content-center is-align-items-center is-size-7 is-size-6-desktop has-text-grey">
                                     <i className="fas fa-stream is-size-5"></i><span className="ml-2 has-text-weight-semibold has-text-dark">{props.post.description}</span>
                                     </p>
@@ -82,7 +80,8 @@ export default function PostCard(props) {
                                 </div>}
 
 
-                                <div>{!addressRequested && <button className="button" onClick={addressRequest}>Request Address</button>}</div>
+                                <div>{!addressRequested && props.post.plantName !== "Sample Post" && <button className="button" onClick={addressRequest}>Request Address</button>}</div>
+                                <div>{!addressRequested && props.post.plantName === "Sample Post" && <button className="button" onClick={addressRequest} disabled>Request Address</button>}</div>
                                 <div>{addressRequested && "Remember, the policy is first come first serve.  Right now your plants are still listed as available, but may not be by the time you pick up"}</div>
                             </div>
                         </div>

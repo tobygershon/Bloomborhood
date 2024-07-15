@@ -1,22 +1,57 @@
 import React from "react";
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
+import { getZipArrayForUser, getPostsForUser } from "../services/firebaseDBService";
+import PostCard from "./PostCard";
 
-export default function SearchComponent({ counter }) {
+export default function SearchComponent({ loggedIn, userId }) {
+    console.log('searchComp')
 
-    const [tab, setTab] = React.useState("")
-    const [passedCounter, setPassedCounter] = React.useState(0)
+    const samplePost = {
+        plantName: "Sample Post",
+        description: "Each post displays plant information, and 'request' details",
+    }
 
-    React.useEffect(() => setPassedCounter(counter), [counter])
+    const [tab, setTab] = React.useState("");
+    const [userArray, setUserArray] = React.useState([]);
+    const [posts, setPosts] = React.useState([samplePost])
+
+    const navigate = useNavigate();
 
     const location = useLocation();
     React.useEffect(() => setTab(location.pathname), [location])
 
+    React.useEffect(() => {
+
+        async function getPosts() {
+            const zipArray = await getZipArrayForUser(userId);
+            if (zipArray) {
+                setUserArray(zipArray)
+
+                const postsArray = await getPostsForUser(zipArray);
+                if (postsArray) {
+                    setPosts(postsArray);
+                    if (posts) {
+                        navigate("Posts");
+                        setTab("/Posts")
+                    }
+                }
+            }
+        }
+
+        if (loggedIn) {
+            getPosts();
+        } else {
+            setPosts([])
+            setUserArray([])
+        }
+    }, [loggedIn])
+
+
+
     //Plant and Post searches state and methods below
 
     const [plantSearchInput, setPlantSearchInput] = React.useState("");
-
     const [postsSearchInput, setPostsSearchInput] = React.useState("");
-    // const [postsSearchData, setPostsSearchData] = React.useState("")
 
     function plantInputChange(event) {
         setPlantSearchInput(event.target.value)
@@ -26,8 +61,6 @@ export default function SearchComponent({ counter }) {
         setPostsSearchInput(event.target.value)
     }
 
-    const navigate = useNavigate();
-
     function handlePlantSearchClick() {
 
     }
@@ -36,15 +69,31 @@ export default function SearchComponent({ counter }) {
         setPostsSearchInput("")
     }
 
+    async function handlePostsSearchClick() {
 
-    function handlePostsSearchClick() {
         if (postsSearchInput.length === 5) {
-            navigate(`Posts/${postsSearchInput}`, { state: postsSearchInput })
-            setTab("Posts")
+            const searchArray = await getPostsForUser([postsSearchInput])
+            if (searchArray) {
+                setPosts(searchArray)
+                navigate("Posts")
+                setTab("/Posts");
+            }
+
         } else {
-            setPostsSearchInput("5 digit zip please")
+            setPostsSearchInput("5 digit zips please")
         }
     }
+
+    async function handleUserPostsClick() {
+        if (userArray) {
+            const returnedArray = await getPostsForUser(userArray);
+            if (returnedArray) {
+                setPosts(returnedArray)
+            }
+        }
+    }
+
+
 
     return (
         <section className="section mt-0 pt-0">
@@ -67,7 +116,8 @@ export default function SearchComponent({ counter }) {
                                     </p>
                                     <p className="control">
                                         {tab === "/Plants" ? <button onClick={handlePlantSearchClick} id="plants-search-btn" className="button">Search</button>
-                                            : <button onClick={handlePostsSearchClick} id="posts-search-btn" className="button">Search</button>}
+                                            : <div><button onClick={handlePostsSearchClick} id="posts-search-btn" className={loggedIn ? "logged-in button" : "button"}>Search Zip</button>
+                                                {loggedIn ? <button onClick={handleUserPostsClick} id="user-posts-btn" className="button">My Posts</button> : ""}</div>}
                                     </p>
                                 </div>
                             </div>
@@ -78,15 +128,15 @@ export default function SearchComponent({ counter }) {
                             <div className="level-item">
                                 <div className="tabs is-toggle is-toggle-rounded">
                                     <ul>
-                                        <li className={tab.toLowerCase().substring(0, 6) === "/posts" ? "is-active" : ""}>
-                                            <Link id="toggle-posts" to={postsSearchInput.length === 5 ? `Posts/${postsSearchInput}` : "Posts"}>
+                                        <li className={tab.substring(0, 6) === "/Posts" ? "is-active" : ""}>
+                                            <Link id="toggle-posts" to="Posts">
                                                 {/* <span class="icon is-small"
                             ><i class="fas fa-image" aria-hidden="true"></i
                             ></span> */}
                                                 <span >Search Posts</span>
                                             </Link>
                                         </li>
-                                        <li className={tab.toLowerCase().substring(0, 7) === "/plants" ? "is-active" : ""}>
+                                        <li className={tab.substring(0, 7) === "/Plants" ? "is-active" : ""}>
                                             <Link id="toggle-plants" to="Plants">
                                                 {/* <span class="icon is-small"
                             ><i class="fas fa-music" aria-hidden="true"></i
@@ -104,21 +154,13 @@ export default function SearchComponent({ counter }) {
             </div>
 
 
+            <div>
+                {posts.length === 0 | (!loggedIn && location.pathname === "/") &&
+                    <PostCard post={samplePost}/>
+                }
+            </div>
 
-
-            <div>{location.pathname === "/" &&
-                <div className="container my-1 search-container">
-                    <div className="notification is-white search-box" >
-                        <div className="columns">
-                            <div className="column">sample test</div>
-                            <div className="column">test data</div>
-                            <div className="column">sample data</div>
-                        </div>
-                    </div>
-                </div>
-            }</div>
-
-            <Outlet context={[passedCounter, setPassedCounter]} />
+            <Outlet context={[posts, setPosts]} />
 
 
 
