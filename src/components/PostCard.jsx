@@ -72,7 +72,7 @@ export default function PostCard(props) {
                             </div>
                         </div>
                         <div className="column">
-                            <div className="post-box box-3 is-flex is-flex-direction-column is-align-items-center is-justify-content-space-evenly has-text-dark is-size-7 is-size-6-desktop ">
+                            <div className="post-box box-3 is-flex is-flex-direction-column is-align-items-center is-justify-content-space-evenly has-text-dark is-size-7 is-size-6-desktop px-4">
 
                                 {!addressRequested && <div>
                                     <span className="is-flex is-justify-content-center ">{props.post.wasRequested ? "Requested " + props.post.numberOfRequests + " time" + (props.post.numberOfRequests === 1 ? "" : "s") : "Be the first to request!"}</span>
@@ -80,9 +80,9 @@ export default function PostCard(props) {
                                 </div>}
 
 
-                                <div>{!addressRequested && props.post.plantName !== "Sample Post" && <button className="button" onClick={addressRequest}>Request Address</button>}</div>
-                                <div>{!addressRequested && props.post.plantName === "Sample Post" && <button className="button" onClick={addressRequest} disabled>Request Address</button>}</div>
-                                <div>{addressRequested && "Remember, the policy is first come first serve.  Right now your plants are still listed as available, but may not be by the time you pick up"}</div>
+                                {!addressRequested && props.post.plantName !== "Sample Post" && <button className="button" onClick={addressRequest}>Request Address</button>}
+                                {!addressRequested && props.post.plantName === "Sample Post" && <button className="button" onClick={addressRequest} disabled>Request Address</button>}
+                                {addressRequested && "Note: The policy is first come, first serve.  Your plants may not be available by the time you pick up."}
                             </div>
                         </div>
                     </div>

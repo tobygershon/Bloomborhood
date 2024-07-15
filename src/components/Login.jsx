@@ -90,7 +90,7 @@ export default function Login() {
 
 
     return (
-        <section className="section pt-1 pb-3 px-0">
+        <section className="section pt-0 pb-3 px-0">
 
             <div className="container">
                 <div className="background notification is-white py-0 px-0" >
@@ -109,7 +109,7 @@ export default function Login() {
                                         <input onChange={handleFormChange} className="input" type="text" placeholder="password" value={loginFormData.password} name="password" />
                                     </p>
                                     <p className="control">
-                                        <button onClick={handleSubmit} className="button">Login</button>
+                                        <button onClick={handleSubmit} className="button is-rounded">Login</button>
                                     </p>
                                 </div>
                             </div>

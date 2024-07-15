@@ -78,33 +78,35 @@ export default function HomeLayout() {
         <div>
             <div>{loggedIn &&
                 <section className="section py-0 px-0" >
-
+                    
                     <div className="background notification is-white py-0" >
-                        <nav className="level mt-2 mb-3">
+                        <nav className="level py-1 mx-5 my-3 is-flex-mobile is-align-items-center">
                             <div className="level-left">
                                 <div className="level-item has-text-centered">
                                     <div>
                                         <span className="is-size-5 has-text-weight-semibold is-hidden-mobile">Welcome Back! You Have Share Credits&nbsp;<i className="fa-solid fa-seedling is-size-5"></i></span>
                                     </div>
+                                </div> 
+                                <div className="level-item has-text-centered">
+                                    <div>
+                                        <button id="post-btn" onClick={toggleModal} className="button is-small has-text-weight-semibold has-text-primary-80-invert is-centered">Post Your Plants</button>
+                                    </div>
+                                </div>
+                                <div className="level-item has-text-centered">
+                                    <div>
+                                        <button id="update-btn" className="button is-small has-text-weight-semibold has-text-primary-80-invert ">Update Profile</button>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div id="btn-box" className="level-right is-flex-mobile is-flex-direction-row">
+                            {/* <div id="btn-box" className="level-right is-flex-mobile is-flex-direction-row">
                                 
-                                <div className="level-item has-text-centered">
-                                    <div>
-                                        <button id="post-btn" onClick={toggleModal} className="button is-small has-text-primary-80-invert has-text-weight-semibold is-centered">Post Plants to Share!</button>
-                                    </div>
-                                </div>
-                                <div className="level-item has-text-centered">
-                                    <div>
-                                        <button id="update-btn" className="button is-small has-text-primary-80-invert has-text-weight-semibold ">Update Your Profile</button>
-                                    </div>
-                                </div>
-                            </div>
+                               
+                            </div> */}
 
                         </nav>
                     </div>
+                   
 
                 </section>
 
@@ -117,7 +119,7 @@ export default function HomeLayout() {
                 <div className="modal-background" onClick={toggleModal}></div>
                 <div className="modal-card">
                     <header className="modal-card-head">
-                        <p className="modal-card-title">Post to Share Your Plants</p>
+                        <p className="modal-card-title">Post to Share Your Extra Plants</p>
                         <button className="delete" aria-label="close" onClick={toggleModal}></button>
                     </header>
                     <section className="modal-card-body">

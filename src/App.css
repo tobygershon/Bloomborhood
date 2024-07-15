@@ -40,7 +40,7 @@ div.hero-body {
 #hero-box {
   border-radius: 3px;
   /* border: 2px solid #363636; */
-  box-shadow: 1px 1px 6px #363636;
+  box-shadow: 1px 1px 15px #363636;
 }
 
 #header {
@@ -65,12 +65,18 @@ div.hero-body {
 #update-btn {
   width: 150px;
   background-color: #c1fba4;
-  box-shadow: 1px 1px 2px #363636;
+  border: .5px solid #363636;
+  /* box-shadow: 1px 1px 2px #363636; */
   border-radius: 100px;
 }
 
 #post-btn:hover,
 #update-btn:hover {
+  background-color: #7bf1a8;
+}
+
+#post-btn:active,
+#update-btn:active {
   background-color: #7bf1a8;
   box-shadow: 1px 1px 2px inset #363636;
 }
@@ -152,7 +158,8 @@ li>#toggle-plants:active {
 #about-div {
   background-color: rgb(255, 255, 255);
   border-radius: 30px;
-  margin-bottom: 1rem;
+  margin: .5rem 2rem 2rem 2rem;
+  padding: 2rem;
 }
 
 #footer {

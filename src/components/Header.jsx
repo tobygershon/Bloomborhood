@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../assets/MyBloomborhoodDark.png'
 import { signOutUser } from '../services/firebaseAuthService.jsx';
 
@@ -8,6 +8,8 @@ export default function Header({ loggedIn }) {
 
     const [menuActive, setMenuActive] = React.useState(false);
 
+    const navigate = useNavigate();
+
     function toggleNavMenu() {
         setMenuActive(!menuActive)
     }
@@ -15,12 +17,13 @@ export default function Header({ loggedIn }) {
     function handleClick() {
         toggleNavMenu();
         signOutUser();
+        navigate("/")
         
     }
 
     return (
 
-        <nav id="header" className="navbar has-background-grey-darker" role="navigation" aria-label="main navigation">
+        <nav id="header" className="navbar has-background-grey-darker mb-4" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
 
                 <Link to={loggedIn ? "Posts" : "/"} className="navbar-item px-4 py-3 mb-1" >

@@ -8,7 +8,7 @@ export default function SearchComponent({ loggedIn, userId }) {
 
     const samplePost = {
         plantName: "Sample Post",
-        description: "Each post displays plant information, and 'request' details",
+        description: "Each post displays plant information, and request details",
     }
 
     const [tab, setTab] = React.useState("");
@@ -104,24 +104,28 @@ export default function SearchComponent({ loggedIn, userId }) {
 
                         <div className="level-left">
                             <div className="level-item">
-                                <p className="subtitle is-5 has-text-weight-semibold">{tab === "/Plants" ? "Search Plants" : "Search Posts"}</p>
+                                <p className="subtitle has-text-weight-semibold">{tab === "/Plants" ? "Search Plants" : "Search Posts"}</p>
                             </div>
                             <div className="level-item">
-                                <div className="field mb-0">
+                                <div className={loggedIn ? "field mb-0" : "field mb-0 has-addons"}>
                                     <p className="control">
                                         {tab === "/Plants" ?
                                             <input onChange={plantInputChange} value={plantSearchInput} className="input" type="text" name="plantsSearch" placeholder="Tip: Spelling Matters" />
                                             : <input onChange={postsInputChange} onFocus={clearPostSearchInput} value={postsSearchInput} className="input" type="text" name="postsSearch" placeholder="5 digit Zip (ex: 01001)" />
                                         }
                                     </p>
+                                    <p className="control">
+                                        {tab === "/Plants" ? <button onClick={handlePlantSearchClick} id="plants-search-btn" className="button is-rounded">Search</button>
+                                            : !loggedIn && 
+                                                <button onClick={handlePostsSearchClick} id="posts-search-btn" className="button is-rounded">Search</button>}
+                                    </p>
                                 </div>
                             </div>
                             <div className="level-item">
                                 <div className="field has-addons mb-0">
                                     <p className="control">
-                                        {tab === "/Plants" ? <button onClick={handlePlantSearchClick} id="plants-search-btn" className="button">Search</button>
-                                            : <div><button onClick={handlePostsSearchClick} id="posts-search-btn" className={loggedIn ? "logged-in button is-rounded" : "button is-rounded"}>Search Zip</button>
-                                                {loggedIn ? <button onClick={handleUserPostsClick} id="user-posts-btn" className="button ml-1 is-rounded">My Posts</button> : ""}</div>}
+                                        {loggedIn && <div><button onClick={handlePostsSearchClick} id="posts-search-btn" className={loggedIn ? "logged-in button is-rounded is-responsive" : "button is-rounded is-responsive"}>Search Zip</button>
+                                                <button onClick={handleUserPostsClick} id="user-posts-btn" className="button ml-2 is-rounded is-responsive">See My Zips</button></div>}
                                     </p>
                                 </div>
                             </div>
@@ -158,11 +162,10 @@ export default function SearchComponent({ loggedIn, userId }) {
             </div >
 
 
-            <div>
-                {(posts.length === 0 | (!loggedIn && location.pathname === "/")) &&
+                {(!loggedIn && location.pathname === "/") &&
                     <PostCard post={samplePost} />
                 }
-            </div>
+            
 
             <Outlet context={[posts, setPosts]} />
 
