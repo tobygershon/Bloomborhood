@@ -9,13 +9,13 @@ export default function Header({ loggedIn }) {
     const [menuActive, setMenuActive] = React.useState(false);
 
     function toggleNavMenu() {
-        menuActive ?
-            setMenuActive(false)
-            : setMenuActive(true)
+        setMenuActive(!menuActive)
     }
 
     function handleClick() {
+        toggleNavMenu();
         signOutUser();
+        
     }
 
     return (
@@ -41,13 +41,13 @@ export default function Header({ loggedIn }) {
                     <div className="navbar-item">{
                         loggedIn && <button id="sign-out-btn" onClick={handleClick}>Sign Out</button>
                     }</div>
-                    <Link to="/About" className="navbar-item">
+                    <Link onClick={toggleNavMenu} to="/About" className="navbar-item">
                         About
                     </Link>
-                    <Link className="navbar-item">
+                    <Link onClick={toggleNavMenu} className="navbar-item">
                         Contact
                     </Link>
-                    <Link className="navbar-item">
+                    <Link onClick={toggleNavMenu} className="navbar-item">
                         Report an issue
                     </Link>
                 </div>
