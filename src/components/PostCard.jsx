@@ -67,7 +67,7 @@ export default function PostCard(props) {
                         <div className="column">
                             <div className="post-box box-2 is-flex is-flex-direction-column is-align-items-center is-justify-content-center has-text-dark is-size-6 is-size-5-desktop has-text-weight-semibold px-4">
                                 <p className="is-flex is-justify-content-center is-align-items-center is-size-7 is-size-6-desktop has-text-grey">
-                                    <i className="fas fa-stream is-size-5"></i><span className="ml-2 has-text-weight-semibold has-text-dark">{props.post.description}</span>
+                                    <i className="fas fa-stream is-size-5"></i><span className="ml-4 has-text-weight-semibold has-text-dark">{props.post.description}</span>
                                     </p>
                             </div>
                         </div>

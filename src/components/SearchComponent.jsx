@@ -107,17 +107,21 @@ export default function SearchComponent({ loggedIn, userId }) {
                                 <p className="subtitle is-5 has-text-weight-semibold">{tab === "/Plants" ? "Search Plants" : "Search Posts"}</p>
                             </div>
                             <div className="level-item">
-                                <div className="field has-addons mb-1">
+                                <div className="field mb-0">
                                     <p className="control">
                                         {tab === "/Plants" ?
                                             <input onChange={plantInputChange} value={plantSearchInput} className="input" type="text" name="plantsSearch" placeholder="Tip: Spelling Matters" />
                                             : <input onChange={postsInputChange} onFocus={clearPostSearchInput} value={postsSearchInput} className="input" type="text" name="postsSearch" placeholder="5 digit Zip (ex: 01001)" />
                                         }
                                     </p>
+                                </div>
+                            </div>
+                            <div className="level-item">
+                                <div className="field has-addons mb-0">
                                     <p className="control">
                                         {tab === "/Plants" ? <button onClick={handlePlantSearchClick} id="plants-search-btn" className="button">Search</button>
-                                            : <div><button onClick={handlePostsSearchClick} id="posts-search-btn" className={loggedIn ? "logged-in button" : "button"}>Search Zip</button>
-                                                {loggedIn ? <button onClick={handleUserPostsClick} id="user-posts-btn" className="button">My Posts</button> : ""}</div>}
+                                            : <div><button onClick={handlePostsSearchClick} id="posts-search-btn" className={loggedIn ? "logged-in button is-rounded" : "button is-rounded"}>Search Zip</button>
+                                                {loggedIn ? <button onClick={handleUserPostsClick} id="user-posts-btn" className="button ml-1 is-rounded">My Posts</button> : ""}</div>}
                                     </p>
                                 </div>
                             </div>
@@ -150,13 +154,13 @@ export default function SearchComponent({ loggedIn, userId }) {
                         </div>
 
                     </nav>
-                </div>
-            </div>
+                </div >
+            </div >
 
 
             <div>
-                {posts.length === 0 | (!loggedIn && location.pathname === "/") &&
-                    <PostCard post={samplePost}/>
+                {(posts.length === 0 | (!loggedIn && location.pathname === "/")) &&
+                    <PostCard post={samplePost} />
                 }
             </div>
 
@@ -164,6 +168,6 @@ export default function SearchComponent({ loggedIn, userId }) {
 
 
 
-        </section>
+        </section >
     )
 }

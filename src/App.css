@@ -122,9 +122,9 @@ li>#toggle-plants:active {
   box-shadow: 2px 2px inset #363636;
 }
 
-#posts-search-btn.logged-in {
+/* #posts-search-btn.logged-in {
    border-radius: 0px;
-}
+} */
 
 .post-box {
   height: 6rem;
