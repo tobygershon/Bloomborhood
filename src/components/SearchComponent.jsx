@@ -107,7 +107,7 @@ export default function SearchComponent({ loggedIn, userId }) {
                                 <p className="subtitle has-text-weight-semibold">{tab === "/Plants" ? "Search Plants" : "Search Posts"}</p>
                             </div>
                             <div className="level-item">
-                                <div className={loggedIn ? "field mb-0" : "field mb-0 has-addons"}>
+                                <div className={ (loggedIn && tab === "/Posts") ? "field mb-0" : "field mb-0 has-addons"}>
                                     <p className="control">
                                         {tab === "/Plants" ?
                                             <input onChange={plantInputChange} value={plantSearchInput} className="input" type="text" name="plantsSearch" placeholder="Tip: Spelling Matters" />
@@ -124,7 +124,7 @@ export default function SearchComponent({ loggedIn, userId }) {
                             <div className="level-item">
                                 <div className="field has-addons mb-0">
                                     <p className="control">
-                                        {loggedIn && <div><button onClick={handlePostsSearchClick} id="posts-search-btn" className={loggedIn ? "logged-in button is-rounded is-responsive" : "button is-rounded is-responsive"}>Search Zip Code</button>
+                                        {(loggedIn && tab === "/Posts") && <div><button onClick={handlePostsSearchClick} id="posts-search-btn" className={loggedIn ? "logged-in button is-rounded is-responsive" : "button is-rounded is-responsive"}>Search Zip Code</button>
                                                 <button onClick={handleUserPostsClick} id="user-posts-btn" className="button ml-2 is-rounded is-responsive">Back to My Zips</button></div>}
                                     </p>
                                 </div>

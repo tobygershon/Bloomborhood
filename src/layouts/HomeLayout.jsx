@@ -25,13 +25,14 @@ export default function HomeLayout() {
 
     React.useEffect(() => {
         async function getCredits() {
-        const userCredits = await getCreditsForUser(userId);
-        if (userCredits) {
-            setUserCredits(userCredits);
+            const userCredits = await getCreditsForUser(userId);
+            if (userCredits) {
+                setUserCredits(userCredits);
+            }
         }
-        }
-
+        if (userId) {
         getCredits();
+        }
     }, [userId])
 
     // credits icons array
@@ -91,7 +92,7 @@ export default function HomeLayout() {
                             <div className="level-left is-flex is-flex-direction-row">
                                 <div className="level-item has-text-centered">
                                     <div>
-                                        <span className="is-size-5 has-text-weight-semibold is-hidden-mobile">Welcome Back! {userCredits? `You Have ${userCredits} Share Credit${userCredits > 1 ? "'s" : ""}` : ""}&nbsp;{showCreditIcons()}</span>
+                                        <span className="is-size-5 has-text-weight-semibold is-hidden-mobile">Welcome! {userCredits ? `You Have ${userCredits} Share Credit${userCredits > 1 ? "'s" : ""}` : ""}&nbsp;{showCreditIcons()}</span>
                                     </div>
                                 </div> 
                                 <div className="level-item has-text-centered">

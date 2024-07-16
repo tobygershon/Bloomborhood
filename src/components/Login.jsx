@@ -1,6 +1,6 @@
 import React from "react";
 import { signInUser, newUserSignUp } from "../services/firebaseAuthService.jsx";
-import { addUser } from "../services/firebaseDBService.jsx";
+import { addUser, updateLastLogin } from "../services/firebaseDBService.jsx";
 
 export default function Login() {
 
@@ -56,8 +56,11 @@ export default function Login() {
     }
 
     function handleSubmit() {
-        signInUser(loginFormData.email.toLowerCase(), loginFormData.password.toLowerCase());
+        const user = signInUser(loginFormData.email.toLowerCase(), loginFormData.password.toLowerCase());
         resetLoginData();
+        if (user) {
+        updateLastLogin(user.uid)
+        }
     }
 
     async function handleNewUserSubmit() {

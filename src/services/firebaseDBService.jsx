@@ -107,6 +107,19 @@ export async function updatePost(post) {
     }
 }
 
+export async function updateLastLogin(uid) {
+    const userDocRef = query(usersCollectionRef, where("ID", "==", uid));
+    const querySnapshot = await getDocs(userDocRef);
+
+    const docId = querySnapshot.docs[0].id
+    
+    const updateDocRef = (doc(db, 'users', docId))
+
+    await updateDoc(updateDocRef, {
+        lastLoginTimeStamp: Timestamp.fromDate(new Date())
+    })
+}
+
 export async function addUser(userId, userEmail, zipArray) {
     const newDocRef = await addDoc(usersCollectionRef, {
         ID: userId,

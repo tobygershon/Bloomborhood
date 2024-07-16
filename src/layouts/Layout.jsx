@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Header from '../components/Header';
 import Login from '../components/Login';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { updateLastLogin } from '../services/firebaseDBService';
 import { Footer } from '../components/Footer';
 
 export default function Layout() {
@@ -19,6 +20,7 @@ export default function Layout() {
             // https://firebase.google.com/docs/reference/js/auth.user
             setUserId(user.uid);
             setLoggedIn(true);
+            updateLastLogin(user.uid)
             console.log("user exists")
             // ...
         } else {
