@@ -8,12 +8,12 @@ export default function About() {
 
             <section className="section pt-5 pb-0">
                 <div className="columns">
-                    <div className="box column is-background-white is-flex is-align-items-center is-one-third my-0">
+                    <div className="box is-shadowless column is-background-white is-flex is-align-items-center is-one-third my-0">
                         <figure className="image about-img ">
                             <img src={patio} />
                         </figure>
                     </div>
-                    <div className="box column is-background-white is-flex is-flex-direction-column is-justify-content-center my-0">
+                    <div className="box is-shadowless column is-background-white is-flex is-flex-direction-column is-justify-content-center my-0">
                         <h1 className="title mb-3 is-size-5-touch has-text-grey-light">Inspiration</h1>
                         <h2 className="subtitle is-size-6-touch has-text-grey-dark">
                             <div className="my-3">
@@ -33,7 +33,7 @@ export default function About() {
 
             <section className="section py-0">
                 <div className="columns">
-                    <div className="box column is-background-white is-flex is-flex-direction-column is-justify-content-center my-0">
+                    <div className="box is-shadowless column is-background-white is-flex is-flex-direction-column is-justify-content-center my-0">
                         <h1 className="title mb-3 is-size-5-touch has-text-grey-light">Policy</h1>
                         <h2 className="subtitle is-size-6-touch has-text-grey-dark">
                             <div className="my-3">
@@ -47,7 +47,7 @@ export default function About() {
                             </div>
                         </h2>
                     </div>
-                    <div className="box column is-background-white  is-flex is-align-items-center is-hidden-mobile is-one-third my-0">
+                    <div className="box is-shadowless column is-background-white  is-flex is-align-items-center is-hidden-mobile is-one-third my-0">
                         <figure className="image about-img">
                             <img src={phlox} />
                         </figure>
@@ -57,12 +57,12 @@ export default function About() {
 
             <section className="section pt-0 pb-5">
                 <div className="columns">
-                    <div className="box column is-background-white is-flex is-align-items-center is-hidden-mobile is-one-third my-0">
+                    <div className="box is-shadowless column is-background-white is-flex is-align-items-center is-hidden-mobile is-one-third my-0">
                         <figure className="image about-img">
                             <img src={roses} />
                         </figure>
                     </div>
-                    <div className="box column is-background-white is-flex is-flex-direction-column is-justify-content-center my-0">
+                    <div className="box is-shadowless column is-background-white is-flex is-flex-direction-column is-justify-content-center my-0">
                         <h1 className="title is-size-5-touch has-text-grey-light mb-3">Earn Share Credits&nbsp;<i className="fa-solid fa-seedling is-size-4 has-text-grey-dark"></i></h1>
                         <h2 className="subtitle is-size-6-touch has-text-grey-dark">
                             <div className="my-3">

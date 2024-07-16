@@ -127,6 +127,13 @@ export async function getZipArrayForUser(uid) {
     return querySnapshot.docs[0].data().zipArray;
 }
 
+export async function getCreditsForUser(uid) {
+    const q = query(usersCollectionRef, where("ID", "==", uid));
+    const querySnapshot = await getDocs(q);
+
+    return querySnapshot.docs[0].data().credits;
+}
+
 
 
 export async function getKeyById(id) {
