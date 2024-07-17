@@ -99,7 +99,7 @@ export default function SearchComponent({ loggedIn, userId }) {
         <section className="section mt-0 pt-0">
 
             <div className="container">
-                <div className="background notification is-white pt-0" >
+                <div className="background notification is-white pt-0 px-2" >
                     <nav className="level">
 
                         <div className="level-left">
@@ -124,8 +124,8 @@ export default function SearchComponent({ loggedIn, userId }) {
                             <div className="level-item">
                                 <div className="field has-addons mb-0">
                                     <p className="control">
-                                        {(loggedIn && tab === "/Posts") && <div><button onClick={handlePostsSearchClick} id="posts-search-btn" className={loggedIn ? "logged-in button is-rounded is-responsive" : "button is-rounded is-responsive"}>Search Zip Code</button>
-                                                <button onClick={handleUserPostsClick} id="user-posts-btn" className="button ml-2 is-rounded is-responsive">Back to My Zips</button></div>}
+                                        {(loggedIn && tab === "/Posts") && <div><button onClick={handlePostsSearchClick} id="posts-search-btn" className={loggedIn ? "logged-in button is-rounded is-size-7-mobile is-responsive" : "button is-rounded is-responsive"}>Search Zip Code</button>
+                                                <button onClick={handleUserPostsClick} id="user-posts-btn" className="button ml-2 is-rounded is-size-7-mobile is-responsive">Back to My Zips</button></div>}
                                     </p>
                                 </div>
                             </div>

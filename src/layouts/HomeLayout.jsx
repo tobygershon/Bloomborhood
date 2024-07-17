@@ -97,11 +97,11 @@ export default function HomeLayout() {
                                 </div> 
                                 <div className="level-item has-text-centered">
                                     <div>
-                                        <button id="post-btn" onClick={toggleModal} className="button has-text-weight-semibold has-text-primary-80-invert is-centered is-responsive">Post Your Plants</button>
+                                        <button id="post-btn" onClick={toggleModal} className="button has-text-weight-semibold is-size-7-mobile has-text-primary-80-invert is-centered is-responsive">Post Your Plants</button>
                                     </div>
                                 </div>
                                 <div>
-                                        <button id="update-btn" className="button has-text-weight-semibold has-text-primary-80-invert is-responsive">Update Profile</button>
+                                        <button id="update-btn" className="button has-text-weight-semibold is-size-7-mobile has-text-primary-80-invert is-responsive">Update Profile</button>
                                     </div>
                                
                             </div>
