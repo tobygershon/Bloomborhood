@@ -14,7 +14,7 @@ export default function PostCard(props) {
         setAddressRequested(true);
         alert("The address has been sent to your email")
         updatePostRequest(props.post)
-        addMail('tgershon@hotmail.com', subject, html);
+        addMail('tobygershon@gmail.com', subject, html);
     }
 
     function getTimeFromLastRequest(requestTime) {
