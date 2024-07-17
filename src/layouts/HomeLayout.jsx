@@ -9,7 +9,7 @@ export default function HomeLayout() {
     console.log('homeLayout')
 
     const loggedIn = useOutletContext()[0];
-    const userId = useOutletContext()[1];
+    const user = useOutletContext()[1];
 
     const [userCredits, setUserCredits] = React.useState(0)    
     const [modalOpen, setModalOpen] = React.useState(false);
@@ -25,22 +25,22 @@ export default function HomeLayout() {
 
     React.useEffect(() => {
         async function getCredits() {
-            const userCredits = await getCreditsForUser(userId);
+            const userCredits = await getCreditsForUser(user.uid);
             if (userCredits) {
                 setUserCredits(userCredits);
             }
         }
-        if (userId) {
+        if (user.uid) {
         getCredits();
         }
-    }, [userId])
+    }, [user.uid])
 
     // credits icons array
 
     function showCreditIcons() {
         let creditArray = []
         for (let i = 0; i < userCredits; i++) {
-            creditArray.push(<><i className="fa-solid fa-seedling is-size-5"></i>&nbsp;</>);
+            creditArray.push(<><i key={i + 1} className="fa-solid fa-seedling is-size-5"></i>&nbsp;</>);
         }
 
         return creditArray;
@@ -74,7 +74,7 @@ export default function HomeLayout() {
 
         // setButtonIsLoading(true);
         //make sure to add any other necessary post object fields here
-        addPost(newPostFormData.plantName, newPostFormData.description, newPostFormData.address, newPostFormData.zip, newPostFormData.location, userId);
+        addPost(newPostFormData.plantName, newPostFormData.description, newPostFormData.address, newPostFormData.zip, newPostFormData.location, user.uid);
         // setButtonIsLoading(false);
         toggleModal();
         alert("Your Post has been submitted.  Thank you!")
@@ -120,7 +120,7 @@ export default function HomeLayout() {
             }</div>
 
             <Home />
-            <SearchComponent loggedIn={loggedIn} userId={userId} />
+            <SearchComponent loggedIn={loggedIn} user={user} />
 
             <div className={modalOpen ? "modal is-active" : "modal"}>
                 <div className="modal-background" onClick={toggleModal}></div>

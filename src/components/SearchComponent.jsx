@@ -3,7 +3,7 @@ import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { getZipArrayForUser, getPostsForUser } from "../services/firebaseDBService";
 import PostCard from "./PostCard";
 
-export default function SearchComponent({ loggedIn, userId }) {
+export default function SearchComponent({ loggedIn, user }) {
     console.log('searchComp')
 
     const samplePost = {
@@ -23,7 +23,7 @@ export default function SearchComponent({ loggedIn, userId }) {
     React.useEffect(() => {
 
         async function getPosts() {
-            const zipArray = await getZipArrayForUser(userId);
+            const zipArray = await getZipArrayForUser(user.uid);
             if (zipArray) {
                 setUserArray(zipArray)
 
@@ -167,7 +167,7 @@ export default function SearchComponent({ loggedIn, userId }) {
                 }
             
 
-            <Outlet context={[posts, setPosts]} />
+            <Outlet context={[[posts, setPosts], loggedIn, user]} />
 
 
 

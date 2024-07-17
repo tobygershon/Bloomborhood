@@ -1,15 +1,20 @@
 import React from "react";
-import { getPostById, updatePost } from "../services/firebaseDBService";
+import { updatePostRequest, addMail } from "../services/firebaseDBService";
+
 
 export default function PostCard(props) {
 
     const [addressRequested, setAddressRequested] = React.useState(false)
 
     function addressRequest() {
+        const subject = 'Bloomborhood Address Request';
+        const html = `to: ${props.user.email}<br><h1>Requested Address</h1><br><h3>Address: ${props.post.address}</h3><br>
+        <h3>Location: ${props.post.location}</h3><br><br><a href='https://bloomborhood.netlify.app/Confirm/${props.post.id}'>Click to verify pickup</a>`;
 
         setAddressRequested(true);
         alert("The address has been sent to your email")
-        updatePost(props.post)
+        updatePostRequest(props.post)
+        addMail('tgershon@hotmail.com', subject, html);
     }
 
     function getTimeFromLastRequest(requestTime) {
@@ -80,7 +85,8 @@ export default function PostCard(props) {
                                 </div>}
 
 
-                                {!addressRequested && props.post.plantName !== "Sample Post" && <button className="button" onClick={addressRequest}>Request Address</button>}
+                                {!addressRequested && props.post.plantName !== "Sample Post" && props.loggedIn && <button className="button" onClick={addressRequest}>Request Address</button>}
+                                {!addressRequested && props.post.plantName !== "Sample Post" && !props.loggedIn && <div className="hover-div"><button className="button" onClick={""} disabled>Request Address</button></div>}
                                 {!addressRequested && props.post.plantName === "Sample Post" && <button className="button" onClick={addressRequest} disabled>Request Address</button>}
                                 {addressRequested && "Note: The policy is first come, first serve.  Your plants may not be available by the time you pick up."}
                             </div>

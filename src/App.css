@@ -151,6 +151,27 @@ li>#toggle-plants:active {
   border-radius: 0 5px 5px 0;
 }
 
+.hover-div {
+  position: relative;
+}
+
+.hover-div::after {
+  font-size: .9rem;
+  color: red;
+  content: "You must be logged in";
+  position: absolute;
+  top: 100%;
+  left: 5px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hover-div:hover::after {
+  visibility: visible;
+  opacity: 1;
+}
+
 .about-img {
   box-shadow: 1px 1px 6px #363636;
 }
@@ -165,4 +186,9 @@ li>#toggle-plants:active {
 
 #footer {
   border-radius: 5px;
+}
+
+#test {
+  font-size: 2rem;
+  color: black;
 }
