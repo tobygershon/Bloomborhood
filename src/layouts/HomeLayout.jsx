@@ -1,9 +1,25 @@
 import React from "react";
+import { redirect } from "react-router-dom";
 import Home from "../components/Home";
 import SearchComponent from "../components/SearchComponent";
 import { addPost } from "../services/firebaseDBService";
 import { useOutletContext } from "react-router-dom";
 import { getZipArrayForUser, getCreditsForUser } from "../services/firebaseDBService";
+
+export function loader() {
+    let params = new URLSearchParams(document.location.search);
+    const task = params.get('task');
+    const id = params.get('id');
+
+    if (task === 'confirm') {
+        console.log(task)
+        console.log(id)
+        throw redirect(`/Confirm/${id}`)
+    } else {
+        console.log('layoutLoader didnt do it');
+        return null;
+    }
+}
 
 export default function HomeLayout() {
     console.log('homeLayout')

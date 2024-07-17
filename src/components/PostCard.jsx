@@ -9,7 +9,7 @@ export default function PostCard(props) {
     function addressRequest() {
         const subject = 'Bloomborhood Address Request';
         const html = `to: ${props.user.email}<br><h1>Requested Address</h1><br><h3>Address: ${props.post.address}</h3><br>
-        <h3>Location: ${props.post.location}</h3><br><br><a href='https://bloomborhood.netlify.app/Confirm/${props.post.id}'>Click to verify pickup</a>`;
+        <h3>Location: ${props.post.location}</h3><br><br><a href='https://bloomborhood.netlify.app?task=confirm&id=${props.post.id}'>Click to verify pickup</a>`;
 
         setAddressRequested(true);
         alert("The address has been sent to your email")

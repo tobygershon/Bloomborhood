@@ -7,7 +7,7 @@ import NotFound from './components/NotFound.jsx'
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom"
 import PostsList from './components/PostsList.jsx'
 import PlantSearchList, { loader as plantSearchLoader } from './components/PlantSearchList.jsx'
-import HomeLayout from './layouts/HomeLayout.jsx'
+import HomeLayout, { loader as layoutLoader } from './layouts/HomeLayout.jsx'
 
 function App() {
   // const [plants, setPlants] = useState(['plant1', 'plant2'])
@@ -27,7 +27,7 @@ function App() {
 
     <Route path="/" element={<Layout />} >
 
-      <Route path="" element={<HomeLayout />} >
+      <Route path="" element={<HomeLayout />} loader={layoutLoader}>
 
         <Route path="Posts" element={<PostsList />} />
 
