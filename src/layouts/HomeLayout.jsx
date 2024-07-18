@@ -4,7 +4,7 @@ import Home from "../components/Home";
 import SearchComponent from "../components/SearchComponent";
 import { addPost } from "../services/firebaseDBService";
 import { useOutletContext } from "react-router-dom";
-import { getZipArrayForUser, getCreditsForUser } from "../services/firebaseDBService";
+import { getCreditsForUser } from "../services/firebaseDBService";
 
 export function loader() {
     let params = new URLSearchParams(document.location.search);
@@ -12,11 +12,8 @@ export function loader() {
     const id = params.get('id');
 
     if (task === 'confirm') {
-        console.log(task)
-        console.log(id)
         throw redirect(`/Confirm/${id}`)
     } else {
-        console.log('layoutLoader didnt do it');
         return null;
     }
 }
@@ -142,7 +139,7 @@ export default function HomeLayout() {
                 <div className="modal-background" onClick={toggleModal}></div>
                 <div className="modal-card">
                     <header className="modal-card-head">
-                        <p className="modal-card-title">Post to Share Your Extra Plants</p>
+                        <p className="modal-card-title">Share Your Extra Plants</p>
                         <button className="delete" aria-label="close" onClick={toggleModal}></button>
                     </header>
                     <section className="modal-card-body">
