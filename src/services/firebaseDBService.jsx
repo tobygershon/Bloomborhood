@@ -1,7 +1,7 @@
 
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
-import { getFirestore, collection, getDocs, doc, getDoc, addDoc, Timestamp, updateDoc, query, where, increment } from "firebase/firestore/lite";  //remove lite if you want to use the full version with real-time updates 
+import { getFirestore, collection, getDocs, doc, getDoc, addDoc, Timestamp, updateDoc, query, where, increment, arrayUnion } from "firebase/firestore/lite";  //remove lite if you want to use the full version with real-time updates 
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -192,7 +192,7 @@ export async function updateCreditsForUser(uid, rating, postId) {
         })
     } else if (rating === 'poor') {
         await updateDoc(updateDocRef, {
-            [postId]: 'poor review'
+            poorReviews: arrayUnion(postId)
         })
     } else {
         console.log('something went wrong with updating user credits/rating')
