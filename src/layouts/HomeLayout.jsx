@@ -2,7 +2,7 @@ import React from "react";
 import { redirect } from "react-router-dom";
 import Home from "../components/Home";
 import SearchComponent from "../components/SearchComponent";
-import { addPost, updateCreditsForUser } from "../services/firebaseDBService";
+import { addPost, addCreditsForUser } from "../services/firebaseDBService";
 import { useOutletContext } from "react-router-dom";
 import { getCreditsForUser } from "../services/firebaseDBService";
 
@@ -14,7 +14,7 @@ export function loader() {
     const userId = params.get('id')
 
     if (task === 'confirm') {
-        updateCreditsForUser(userId, rating, postID);
+        addCreditsForUser(userId, rating, postID);
         throw redirect(`/Confirm/${postID}`)
     } else {
         return null;
@@ -50,7 +50,7 @@ export default function HomeLayout() {
         if (loggedIn) {
         getCredits();
         }
-    }, [user.uid])
+    }, [loggedIn])
 
     // credits icons array
 
@@ -137,7 +137,7 @@ export default function HomeLayout() {
             }</div>
 
             <Home />
-            <SearchComponent loggedIn={loggedIn} user={user} />
+            <SearchComponent loggedIn={loggedIn} user={user} credits={userCredits}/>
 
             <div className={modalOpen ? "modal is-active" : "modal"}>
                 <div className="modal-background" onClick={toggleModal}></div>

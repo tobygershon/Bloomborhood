@@ -1,8 +1,14 @@
 import React from "react";
-import { updatePostRequest, addMail } from "../services/firebaseDBService";
+import { updatePostRequest, addMail, deductCreditForUser, updatePostConfirmPickup } from "../services/firebaseDBService";
 
 
 export default function PostCard(props) {
+
+    const [modalOpen, setModalOpen] = React.useState(false);
+
+    function toggleModal() {
+        setModalOpen(!modalOpen)
+    }
 
     const [addressRequested, setAddressRequested] = React.useState(false)
 
@@ -16,9 +22,27 @@ export default function PostCard(props) {
         <p>Were the plants as good as DEAD WEEDS? Click to confirm <a href='https://bloomborhood.netlify.app?task=confirm&postID=${props.post.id}&rating=poor&id=${props.post.userId}'><button>pickup</button></a>`;
 
         setAddressRequested(true);
-        alert("The address has been sent to your email")
-        updatePostRequest(props.post)
+        openModal();
+        updatePostRequest(props.post);
         addMail(props.user.email, subject, html);
+    }
+
+    function openModal() {
+        (props.credits >= 1 && props.post.wasRequested === false) ? toggleModal() : alert("The address has been sent to your email");
+    }
+
+    function useCredits() {
+        deductCreditForUser(props.user.uid);
+        //set isAvailable to false
+        updatePostConfirmPickup(props.post.id)
+        alert("Great!  The address has been sent to your email.  You are the only one who can see this address, so no need to rush to pick up the plants.")
+        toggleModal()
+    }
+
+    function doNotUseCredits() {
+        toggleModal()
+        alert("The address has been sent to your email")
+        
     }
 
     function getTimeFromLastRequest(requestTime) {
@@ -31,7 +55,7 @@ export default function PostCard(props) {
         let days = 0;
         let hours = 0;
         let min = 0;
-        
+
         if (timeDiffDays >= 1) {
             days = Math.floor(timeDiffDays)
         }
@@ -43,23 +67,23 @@ export default function PostCard(props) {
         }
 
         let returnTime = "";
-            if (days ) {
-                            returnTime = `${days} day` + (days === 1 ? "" : "s");
-            } else if (hours) {
-                returnTime = `${hours} hour` + (hours === 1 ? "" : "s");
-            } else if (min) {
-                returnTime = `${min} minutes`;
-            } else {
-                returnTime = '1 minute';
-            }
-            
-            
+        if (days) {
+            returnTime = `${days} day` + (days === 1 ? "" : "s");
+        } else if (hours) {
+            returnTime = `${hours} hour` + (hours === 1 ? "" : "s");
+        } else if (min) {
+            returnTime = `${min} minutes`;
+        } else {
+            returnTime = '1 minute';
+        }
 
-           return returnTime; 
-        } 
 
-        
-    
+
+        return returnTime;
+    }
+
+
+
     return (
         <>
             <div className="container my-4 search-container">
@@ -77,7 +101,7 @@ export default function PostCard(props) {
                             <div className="post-box box-2 is-flex is-flex-direction-column is-align-items-center is-justify-content-center has-text-dark is-size-6 is-size-5-desktop has-text-weight-semibold px-4">
                                 <p className="is-flex is-justify-content-center is-align-items-center is-size-7 is-size-6-desktop has-text-grey">
                                     <i className="fas fa-stream is-size-5"></i><span className="ml-4 has-text-weight-semibold has-text-dark">{props.post.description}</span>
-                                    </p>
+                                </p>
                             </div>
                         </div>
                         <div className="column">
@@ -96,6 +120,25 @@ export default function PostCard(props) {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div className={modalOpen ? "modal is-active" : "modal"}>
+                <div onClick={toggleModal}className="modal-background"></div>
+                <div className="modal-card">
+                    <header className="modal-card-head">
+                        <p className="modal-card-title">Use your share credit?</p>
+                        <button onClick={toggleModal} className="delete" aria-label="close"></button>
+                    </header>
+                    <section className="modal-card-body">
+                        <p>Do you want to use one of your share credits to ensure that you are the only person who can request the address?</p>
+                    </section>
+                    <footer className="modal-card-foot">
+                        <div className="buttons">
+                            <button onClick={useCredits} className="button is-success">Yes!</button>
+                            <button onClick={doNotUseCredits} className="button">No Thanks</button>
+                        </div>
+                    </footer>
                 </div>
             </div>
 

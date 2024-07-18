@@ -179,7 +179,7 @@ export async function getCreditsForUser(uid) {
     return querySnapshot.docs[0].data().credits;
 }
 
-export async function updateCreditsForUser(uid, rating, postId) {
+export async function addCreditsForUser(uid, rating, postId) {
     const q = query(usersCollectionRef, where("ID", "==", uid));
     const querySnapshot = await getDocs(q);
 
@@ -197,6 +197,19 @@ export async function updateCreditsForUser(uid, rating, postId) {
     } else {
         console.log('something went wrong with updating user credits/rating')
     }
+}
+
+export async function deductCreditForUser(uid) {
+    const q = query(usersCollectionRef, where("ID", "==", uid));
+    const querySnapshot = await getDocs(q);
+
+    const docId = querySnapshot.docs[0].id
+
+    const updateDocRef = (doc(db, 'users', docId))
+
+    await updateDoc(updateDocRef, {
+        credits: increment(-1)
+    })
 }
 
 

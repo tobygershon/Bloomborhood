@@ -3,7 +3,7 @@ import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { getZipArrayForUser, getPostsForUser } from "../services/firebaseDBService";
 import PostCard from "./PostCard";
 
-export default function SearchComponent({ loggedIn, user }) {
+export default function SearchComponent({ loggedIn, user, credits }) {
     console.log('searchComp')
 
     const samplePost = {
@@ -167,7 +167,7 @@ export default function SearchComponent({ loggedIn, user }) {
                 }
             
 
-            <Outlet context={[[posts, setPosts], loggedIn, user]} />
+            <Outlet context={[[posts, setPosts], loggedIn, user, credits]} />
 
 
 
