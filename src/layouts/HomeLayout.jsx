@@ -2,17 +2,20 @@ import React from "react";
 import { redirect } from "react-router-dom";
 import Home from "../components/Home";
 import SearchComponent from "../components/SearchComponent";
-import { addPost } from "../services/firebaseDBService";
+import { addPost, updateCreditsForUser } from "../services/firebaseDBService";
 import { useOutletContext } from "react-router-dom";
 import { getCreditsForUser } from "../services/firebaseDBService";
 
 export function loader() {
     let params = new URLSearchParams(document.location.search);
     const task = params.get('task');
-    const id = params.get('id');
+    const postID = params.get('postID');
+    const rating = params.get('rating')
+    const userId = params.get('id')
 
     if (task === 'confirm') {
-        throw redirect(`/Confirm/${id}`)
+        updateCreditsForUser(userId, rating, postID);
+        throw redirect(`/Confirm/${postID}`)
     } else {
         return null;
     }
@@ -25,6 +28,7 @@ export default function HomeLayout() {
     const user = useOutletContext()[1];
 
     const [userCredits, setUserCredits] = React.useState(0)    
+    console.log(userCredits)
     const [modalOpen, setModalOpen] = React.useState(false);
     const [buttonIsLoading, setButtonIsLoading] = React.useState(false);
 
@@ -43,7 +47,7 @@ export default function HomeLayout() {
                 setUserCredits(userCredits);
             }
         }
-        if (user.uid) {
+        if (loggedIn) {
         getCredits();
         }
     }, [user.uid])

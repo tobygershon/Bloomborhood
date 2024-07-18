@@ -99,8 +99,8 @@ export async function addMail(userEmail, subject, html) {
         }
     })
 
-        //Attempted to get state back to determine if successfully sent, but couldn't get back after state was finalized
-        //also tried using === 'PROCESSING" and "PENDING" but still no success
+    //Attempted to get state back to determine if successfully sent, but couldn't get back after state was finalized
+    //also tried using === 'PROCESSING" and "PENDING" but still no success
     // let newDoc = await getDoc(newDocRef)
     // while (newDoc.data().state !== 'SUCCESS' || newDoc.data().state === undefined) {
     //     newDoc = await getDoc(newDocRef)
@@ -108,91 +108,103 @@ export async function addMail(userEmail, subject, html) {
     // }
 
     //     // return newDoc.data().state
-    }
+}
 
 
-    export async function updatePostRequest(post) {
-        const updateDocRef = doc(db, 'posts', post.id);
+export async function updatePostRequest(post) {
+    const updateDocRef = doc(db, 'posts', post.id);
 
-        if (post.wasRequested == false) {
-
-            await updateDoc(updateDocRef, {
-                wasRequested: true,
-                firstRequestTime: Timestamp.fromDate(new Date()),
-                numberOfRequests: increment(1)
-            })
-        } else {
-
-            await updateDoc(updateDocRef, {
-                numberOfRequests: increment(1)
-            })
-        }
-    }
-
-    export async function updatePostConfirmPickup(id) {
-        const updateDocRef = doc(db, 'posts', id);
+    if (post.wasRequested == false) {
 
         await updateDoc(updateDocRef, {
-                isAvailable: false
-            })
-
-        return 'success'
-    }
-
-    export async function updateLastLogin(uid) {
-        const userDocRef = query(usersCollectionRef, where("ID", "==", uid));
-        const querySnapshot = await getDocs(userDocRef);
-
-        const docId = querySnapshot.docs[0].id
-
-        const updateDocRef = (doc(db, 'users', docId))
+            wasRequested: true,
+            firstRequestTime: Timestamp.fromDate(new Date()),
+            numberOfRequests: increment(1)
+        })
+    } else {
 
         await updateDoc(updateDocRef, {
-            lastLoginTimeStamp: Timestamp.fromDate(new Date())
+            numberOfRequests: increment(1)
         })
     }
+}
 
-    export async function addUser(userId, userEmail, zipArray) {
-        const newDocRef = await addDoc(usersCollectionRef, {
-            ID: userId,
-            createdTimeStamp: Timestamp.fromDate(new Date()),
-            lastLoginTimeStamp: Timestamp.fromDate(new Date()),
-            email: userEmail,
-            credits: 0,
-            zipArray: zipArray,
-            // plantRequests: requestedPlants,
-            // searches: []
+export async function updatePostConfirmPickup(id) {
+    const updateDocRef = doc(db, 'posts', id);
+
+    await updateDoc(updateDocRef, {
+        isAvailable: false
+    })
+
+    return 'success'
+}
+
+export async function updateLastLogin(uid) {
+    const userDocRef = query(usersCollectionRef, where("ID", "==", uid));
+    const querySnapshot = await getDocs(userDocRef);
+
+    const docId = querySnapshot.docs[0].id
+
+    const updateDocRef = (doc(db, 'users', docId))
+
+    await updateDoc(updateDocRef, {
+        lastLoginTimeStamp: Timestamp.fromDate(new Date())
+    })
+}
+
+export async function addUser(userId, userEmail, zipArray) {
+    const newDocRef = await addDoc(usersCollectionRef, {
+        ID: userId,
+        createdTimeStamp: Timestamp.fromDate(new Date()),
+        lastLoginTimeStamp: Timestamp.fromDate(new Date()),
+        email: userEmail,
+        credits: 0,
+        zipArray: zipArray,
+        // plantRequests: requestedPlants,
+        // searches: []
+    })
+}
+
+export async function getZipArrayForUser(uid) {
+    const q = query(usersCollectionRef, where("ID", "==", uid));
+    const querySnapshot = await getDocs(q);
+
+    return querySnapshot.docs[0].data().zipArray;
+}
+
+export async function getCreditsForUser(uid) {
+    const q = query(usersCollectionRef, where("ID", "==", uid));
+    const querySnapshot = await getDocs(q);
+
+    return querySnapshot.docs[0].data().credits;
+}
+
+export async function updateCreditsForUser(uid, rating, postId) {
+    const q = query(usersCollectionRef, where("ID", "==", uid));
+    const querySnapshot = await getDocs(q);
+
+    const docId = querySnapshot.docs[0].id
+
+    const updateDocRef = (doc(db, 'users', docId))
+    if (rating === 'good') {
+        await updateDoc(updateDocRef, {
+            credits: increment(1)
         })
+    } else if (rating === 'poor') {
+        await updateDoc(updateDocRef, {
+            [postId]: 'poor review'
+        })
+    } else {
+        console.log('something went wrong with updating user credits/rating')
     }
-
-    export async function getZipArrayForUser(uid) {
-        const q = query(usersCollectionRef, where("ID", "==", uid));
-        const querySnapshot = await getDocs(q);
-
-        return querySnapshot.docs[0].data().zipArray;
-    }
-
-    export async function getCreditsForUser(uid) {
-        const q = query(usersCollectionRef, where("ID", "==", uid));
-        const querySnapshot = await getDocs(q);
-
-        return querySnapshot.docs[0].data().credits;
-    }
+}
 
 
+export async function getKeyById(id) {
+    const docRef = await doc(db, "keys", id);
+    const postSnapshot = await getDoc(docRef);
 
-    export async function getKeyById(id) {
-        const docRef = await doc(db, "keys", id);
-        const postSnapshot = await getDoc(docRef);
+    const key = postSnapshot.data().plantKey;
 
-        const key = postSnapshot.data().plantKey;
-
-        return key;
-    }
-
-// to: ['someone@example.com'],
-// message: {
-//   subject: 'Hello from Firebase!',
-//   text: 'This is the plaintext section of the email body.',
-//   html: 'This is the <code>HTML</code> section of the email body.',
-// }
+    return key;
+}

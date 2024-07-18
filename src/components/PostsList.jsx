@@ -13,7 +13,7 @@ export default function PostsList() {
     const user = useOutletContext()[2];
     console.log(`from PostsList ${loggedIn}`)
     
-    const postCards = posts.map(post => {
+    const postCards = posts.filter((post) => post.isAvailable === true).map(post => {
         return <PostCard key={post.id} post={post} loggedIn={loggedIn} user={user} />
     })
 

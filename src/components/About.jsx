@@ -17,13 +17,13 @@ export default function About() {
                         <h1 className="title mb-3 is-size-5-touch has-text-grey-light">Inspiration</h1>
                         <h2 className="subtitle is-size-6-touch has-text-grey-dark">
                             <div className="my-3">
-                                Cultivating a diverse, lush garden is rewarding ... and Expensive!
+                                Cultivating a diverse, lush garden is rewarding ... and expensive!
                             </div>
                             <div className="my-3">
                                 My Bloomborhood aims to make sharing extra plants with neighbors easier.
                             </div>
                             <div className="my-3">
-                                Search, Post, Learn, and Participate in beautifying your Bloomborhood.
+                                Search, Post, Learn, and Participate in beautifying your bloomborhood.
                             </div>
                         </h2>
                     </div>

@@ -16,7 +16,7 @@ export default function Confirm() {
 
     return (
         
-        <h1 id="test">{loader === 'success' ? "Thank you for confirming!" : "it didn't work"}</h1>
+        <h1 id="test">{loader === 'success' ? "Thank you for confirming!" : "Sorry, something went wrong"}</h1>
         
     )
 }
