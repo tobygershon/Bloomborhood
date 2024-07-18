@@ -180,7 +180,7 @@ li>#toggle-plants:active {
   background-color: rgb(255, 255, 255);
   border-radius: 30px;
   margin: .5rem 1rem 1rem 1rem;
-  padding: 1rem;
+  padding: .25rem;
   box-shadow: 1px 1px 30px #363636;
 }
 
