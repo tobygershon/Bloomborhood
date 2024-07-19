@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 import Layout from './layouts/Layout.jsx'
 import About, { loader as aboutLoader } from './components/About.jsx'
+import Feedback from './components/Feedback.jsx'
 import Confirm, { loader as confirmLoader }from './components/Confirm.jsx'
 import NotFound from './components/NotFound.jsx'
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom"
@@ -38,6 +39,7 @@ function App() {
       </Route>
 
       <Route path="About" element={<About />} loader={aboutLoader} />
+      <Route path="Feedback" element={<Feedback />} />
       <Route path="Confirm/:status" element={<Confirm />} loader={confirmLoader}/>
       <Route path="*" element={<NotFound />} />
 

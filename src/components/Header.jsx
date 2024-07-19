@@ -47,11 +47,11 @@ export default function Header({ loggedIn }) {
                     <Link onClick={toggleNavMenu} to="/About" className="navbar-item">
                         About
                     </Link>
-                    <Link onClick={toggleNavMenu} className="navbar-item">
-                        Contact
+                    <Link onClick={toggleNavMenu} to="/Feedback" className="navbar-item">
+                        Feedback
                     </Link>
                     <Link onClick={toggleNavMenu} className="navbar-item">
-                        Report an issue
+                        Share the site!
                     </Link>
                 </div>
             </div>
