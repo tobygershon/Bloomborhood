@@ -158,6 +158,7 @@ export async function updatePostConfirmPickup(postId, userId, rating) {
     //isAvailable can't be used for this b/c it's changed to false before pickup when someone uses credit at request time.
     //the 2nd conditional is there to check if a pickup user was given, in the case that the post is reported as picked up by the user who posted.
     if (post.pickUp.wasPickedUp !== true) {
+        // needs to also account for posting user reporting as picked up?
         addCreditsForUser(userId, rating, postId);
         await updateDoc(updateDocRef, {
             isAvailable: false,
