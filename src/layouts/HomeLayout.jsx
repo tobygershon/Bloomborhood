@@ -6,7 +6,7 @@ import { addPost, addCreditsForUser, getZipArrayForUser, updateUser, updatePostC
 import { useOutletContext } from "react-router-dom";
 import { getCreditsForUser } from "../services/firebaseDBService";
 
-export function loader() {
+export async function loader() {
     let params = new URLSearchParams(document.location.search);
     const task = params.get('task');
     const postID = params.get('postID');
@@ -14,7 +14,7 @@ export function loader() {
     const userId = params.get('id')
 
     if (task === 'confirm') {
-        const status = updatePostConfirmPickup(postID, userId, rating)
+        const status = await updatePostConfirmPickup(postID, userId, rating)
         throw redirect(`/Confirm/${status}`)
     } else {
         return null;
