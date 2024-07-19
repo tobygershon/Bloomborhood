@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { getZipArrayForUser, getPostsForUser } from "../services/firebaseDBService";
+import { getAllPlants } from "../services/plantSearchWebAPIService";
 import PostCard from "./PostCard";
 
 export default function SearchComponent({ loggedIn, user, credits }) {
@@ -14,6 +15,8 @@ export default function SearchComponent({ loggedIn, user, credits }) {
     const [tab, setTab] = React.useState("");
     const [userArray, setUserArray] = React.useState([]);
     const [posts, setPosts] = React.useState([samplePost])
+    const [plants, setPlants] = React.useState([])
+    const [triggerPlantsSearch, setTriggerPlantsSearch] = React.useState(false)
 
     const navigate = useNavigate();
 
@@ -47,6 +50,16 @@ export default function SearchComponent({ loggedIn, user, credits }) {
     }, [loggedIn])
 
 
+    async function getPlants() {
+        const plantsArray = await getAllPlants(plantSearchInput)
+        setPlants(plantsArray)
+    }
+
+    function handlePlantSearchClick() {
+        getPlants()
+    }
+
+
 
     //Plant and Post searches state and methods below
 
@@ -59,10 +72,6 @@ export default function SearchComponent({ loggedIn, user, credits }) {
 
     function postsInputChange(event) {
         setPostsSearchInput(event.target.value)
-    }
-
-    function handlePlantSearchClick() {
-
     }
 
     function clearPostSearchInput() {
@@ -107,7 +116,7 @@ export default function SearchComponent({ loggedIn, user, credits }) {
                                 <p className="subtitle has-text-weight-semibold">{tab === "/Plants" ? "Search Plants" : "Search Posts"}</p>
                             </div>
                             <div className="level-item">
-                                <div className={ (loggedIn && tab === "/Posts") ? "field mb-0" : "field mb-0 has-addons"}>
+                                <div className={(loggedIn && tab === "/Posts") ? "field mb-0" : "field mb-0 has-addons"}>
                                     <p className="control">
                                         {tab === "/Plants" ?
                                             <input onChange={plantInputChange} value={plantSearchInput} className="input" type="text" name="plantsSearch" placeholder="Tip: Spelling Matters" />
@@ -116,8 +125,8 @@ export default function SearchComponent({ loggedIn, user, credits }) {
                                     </p>
                                     <p className="control">
                                         {tab === "/Plants" ? <button onClick={handlePlantSearchClick} id="plants-search-btn" className="button is-rounded">Search</button>
-                                            : !loggedIn && 
-                                                <button onClick={handlePostsSearchClick} id="posts-search-btn" className="button is-rounded">Search</button>}
+                                            : !loggedIn &&
+                                            <button onClick={handlePostsSearchClick} id="posts-search-btn" className="button is-rounded">Search</button>}
                                     </p>
                                 </div>
                             </div>
@@ -125,7 +134,7 @@ export default function SearchComponent({ loggedIn, user, credits }) {
                                 <div className="field has-addons mb-0">
                                     <p className="control">
                                         {(loggedIn && tab === "/Posts") && <div><button onClick={handlePostsSearchClick} id="posts-search-btn" className={loggedIn ? "logged-in button is-rounded is-size-7-mobile is-responsive" : "button is-rounded is-responsive"}>Search Zip Code</button>
-                                                <button onClick={handleUserPostsClick} id="user-posts-btn" className="button ml-2 is-rounded is-size-7-mobile is-responsive">Back to My Zips</button></div>}
+                                            <button onClick={handleUserPostsClick} id="user-posts-btn" className="button ml-2 is-rounded is-size-7-mobile is-responsive">Back to My Zips</button></div>}
                                     </p>
                                 </div>
                             </div>
@@ -162,12 +171,12 @@ export default function SearchComponent({ loggedIn, user, credits }) {
             </div >
 
 
-                {(!loggedIn && location.pathname === "/") &&
-                    <PostCard post={samplePost} />
-                }
-            
+            {(!loggedIn && location.pathname === "/") &&
+                <PostCard post={samplePost} />
+            }
 
-            <Outlet context={[[posts, setPosts], loggedIn, user, credits]} />
+
+            <Outlet context={[posts, loggedIn, user, credits, plants]} />
 
 
 

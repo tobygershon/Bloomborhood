@@ -17,9 +17,9 @@ export default function PostCard(props) {
         const html = `<h2>Requested Address for ${props.post.plantName} pickup</h2><br><h3>Address: ${props.post.address}</h3><br>
         <h3>Location: ${props.post.location}</h3><br>
         <h3>After picking up, <em>DON'T FORGET</em> to confirm below</h3>
-        <p>Were the plants EXCELLENT quality? Click to confirm <a href='https://bloomborhood.netlify.app?task=confirm&postID=${props.post.id}&rating=good&id=${props.post.userId}'><button>pickup</button></a><br>
-        <p>Were the plants ACCEPTABLE quality? Click to confirm <a href='https://bloomborhood.netlify.app?task=confirm&postID=${props.post.id}&rating=good&id=${props.post.userId}'><button>pickup</button></a><br>
-        <p>Were the plants as good as DEAD WEEDS? Click to confirm <a href='https://bloomborhood.netlify.app?task=confirm&postID=${props.post.id}&rating=poor&id=${props.post.userId}'><button>pickup</button></a>`;
+        <p>Were the plants EXCELLENT quality? Click to confirm <a href='https://bloomborhood.netlify.app?task=confirm&postID=${props.post.id}&rating=good&id=${props.post.userId}&pu=${props.user.uid}'><button>pickup</button></a><br>
+        <p>Were the plants ACCEPTABLE quality? Click to confirm <a href='https://bloomborhood.netlify.app?task=confirm&postID=${props.post.id}&rating=good&id=${props.post.userId}&pu=${props.user.uid}'><button>pickup</button></a><br>
+        <p>Were the plants as good as DEAD WEEDS? Click to confirm <a href='https://bloomborhood.netlify.app?task=confirm&postID=${props.post.id}&rating=poor&id=${props.post.userId}&pu=${props.user.uid}'><button>pickup</button></a>`;
 
         setAddressRequested(true);
         openModal();

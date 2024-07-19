@@ -6,15 +6,16 @@ import { addPost, addCreditsForUser, getZipArrayForUser, updateUser, updatePostC
 import { useOutletContext } from "react-router-dom";
 import { getCreditsForUser } from "../services/firebaseDBService";
 
-export function loader() {
+export async function loader() {
     let params = new URLSearchParams(document.location.search);
     const task = params.get('task');
     const postID = params.get('postID');
     const rating = params.get('rating')
     const userId = params.get('id')
+    const pickUpId = params.get('pu')
 
     if (task === 'confirm') {
-        const status = updatePostConfirmPickup(postID, userId, rating)
+        const status = await updatePostConfirmPickup(postID, userId, rating, pickUpId)
         throw redirect(`/Confirm/${status}`)
     } else {
         return null;
@@ -121,7 +122,7 @@ export default function HomeLayout() {
 
         // setButtonIsLoading(true);
         //make sure to add any other necessary post object fields here
-        addPost(newPostFormData.plantName, newPostFormData.description, newPostFormData.address, newPostFormData.zip, newPostFormData.location, user.uid);
+        addPost(newPostFormData.plantName, newPostFormData.description, newPostFormData.address, newPostFormData.zip, newPostFormData.location, user.uid, user.email);
         // setButtonIsLoading(false);
         togglePostModal();
         alert("Your Post has been submitted.  Thank you!")

@@ -74,7 +74,7 @@ export async function getPostById(id) {
     return post;
 }
 
-export async function addPost(plantNameInput, descriptionInput, addressInput, zipInput, locationInput, postingUserId) {
+export async function addPost(plantNameInput, descriptionInput, addressInput, zipInput, locationInput, postingUserId, userEmail) {
     const newDocRef = await addDoc(postsCollectionRef, {
         userId: postingUserId,
         plantName: plantNameInput,
@@ -88,6 +88,17 @@ export async function addPost(plantNameInput, descriptionInput, addressInput, zi
         numberOfRequests: 0,
         isAvailable: true
     })
+
+    //add postId to user's array of posts that they've submitted
+    updateUserPosts(postingUserId, newDocRef.id)
+
+    //send mail to user who posted confirming post and button to confirm pickup with 'poster' listed under pickupUser
+    const subject = 'MyBloomborhood post confirmation'
+    const html = `<h2>Thank you for posting to share your ${plantNameInput}!</h2><br>
+                 <h4>If you notice that your plants have been picked up, <em>help us out</em> by 
+                 <a href='https://bloomborhood.netlify.app?task=confirm&postID=${newDocRef.id}&rating=none&id=${postingUserId}&pu=poster'><button>Clicking Here</button></a>
+                 to keep our system up to date!</h4>`
+    addMail(userEmail, subject, html)
 }
 
 export async function addMail(userEmail, subject, html) {
@@ -139,41 +150,55 @@ export async function updatePostRequest(post, user) {
     }
 }
 
-export async function updatePostConfirmPickup(postId, userId, rating) {
+export async function updatePostConfirmPickup(postId, postingUserId, rating, pickUpUserId) {
     console.log(postId)
     const updateDocRef = doc(db, "posts", postId);
     const docSnap = await getDoc(updateDocRef)
 
     if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
+        
+        console.log('exists')
+
     } else {
-        // docSnap.data() will be undefined in this case
         console.log("No such document!");
     }
-    const post = docSnap.data();
-    console.log(post)
 
+    const post = docSnap.data();
 
     //below I am checking whether it was already reported as picked up so that credit's arent given more than once.
     //isAvailable can't be used for this b/c it's changed to false before pickup when someone uses credit at request time.
     //the 2nd conditional is there to check if a pickup user was given, in the case that the post is reported as picked up by the user who posted.
-    if (post.pickUp.wasPickedUp !== true) {
+    if (!post.pickUp || post.pickUp.pickUpUser === 'poster') {
         // needs to also account for posting user reporting as picked up?
-        addCreditsForUser(userId, rating, postId);
+        addCreditsForUser(postingUserId, rating, postId);
         await updateDoc(updateDocRef, {
             isAvailable: false,
             pickUp: {
-                wasPickedUp: true,
                 pickUpTime: Timestamp.fromDate(new Date()),
-                user: userId,
-                // incorrect userId, this is posting user's Id, not pick up user
+                pickUpUser: pickUpUserId,
                 rating: rating
             }
         })
         return 'success'
+    } else if (pickUpUserId === 'poster') {
+        //in the case that pickUpUser already reported picking up, and then the user who posted reports pickup
+        return 'success'
     } else {
         return 'failure'
     }
+}
+
+async function updateUserPosts(uid, postId) {
+    const userDocRef = query(usersCollectionRef, where("ID", "==", uid));
+    const querySnapshot = await getDocs(userDocRef);
+
+    const docId = querySnapshot.docs[0].id
+
+    const updateDocRef = (doc(db, 'users', docId))
+
+    await updateDoc(updateDocRef, {
+        posts: arrayUnion(postId)
+    })
 }
 
 export async function updateLastLogin(uid) {

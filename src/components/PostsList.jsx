@@ -8,7 +8,7 @@ import { getCurrentUser2 } from "../services/firebaseAuthService";
 export default function PostsList() {
     console.log('PostsList')
     const [modalOpen, setModalOpen] = React.useState(false)
-    const [posts, setPosts] = useOutletContext()[0];
+    const posts = useOutletContext()[0];
     const loggedIn = useOutletContext()[1];
     const user = useOutletContext()[2];
     const credits = useOutletContext()[3];
@@ -16,6 +16,8 @@ export default function PostsList() {
     const postCards = posts.filter((post) => post.isAvailable === true).map(post => {
         return <PostCard key={post.id} post={post} loggedIn={loggedIn} user={user} credits={credits} />
     })
+
+    
 
     return (
         <>
