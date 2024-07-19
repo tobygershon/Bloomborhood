@@ -156,20 +156,21 @@ export async function updatePostConfirmPickup(postId, userId, rating) {
     //below I am checking whether it was already reported as picked up so that credit's arent given more than once.
     //isAvailable can't be used for this b/c it's changed to false before pickup when someone uses credit at request time.
     //the 2nd conditional is there to check if a pickup user was given, in the case that the post is reported as picked up by the user who posted.
-    if (!post.pickUp) {
-    addCreditsForUser(userId, rating, postId);
-    await updateDoc(updateDocRef, {
-        isAvailable: false,
-        pickUp: {
-            pickUpTime: Timestamp.fromDate(new Date()),
-            user: userId,
-            rating: rating
-        }
-    })
-    return 'success'
-} else {
-    return ''
-}
+    if (!post.pickUp.wasPickedUp) {
+        addCreditsForUser(userId, rating, postId);
+        await updateDoc(updateDocRef, {
+            isAvailable: false,
+            pickUp: {
+                wasPickedUp: true,
+                pickUpTime: Timestamp.fromDate(new Date()),
+                user: userId,
+                rating: rating
+            }
+        })
+        return 'success'
+    } else {
+        return ''
+    }
 }
 
 export async function updateLastLogin(uid) {
