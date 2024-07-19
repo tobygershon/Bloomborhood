@@ -14,8 +14,8 @@ export function loader() {
     const userId = params.get('id')
 
     if (task === 'confirm') {
-        updatePostConfirmPickup(postID, userId, rating)
-        throw redirect(`/Confirm/success`)
+        const status = updatePostConfirmPickup(postID, userId, rating)
+        throw redirect(`/Confirm/${status}`)
     } else {
         return null;
     }
