@@ -111,32 +111,56 @@ export async function addMail(userEmail, subject, html) {
 }
 
 
-export async function updatePostRequest(post) {
+export async function updatePostRequest(post, user) {
     const updateDocRef = doc(db, 'posts', post.id);
+
+    updateUserRequests(user.uid, post.id)
 
     if (post.wasRequested == false) {
 
         await updateDoc(updateDocRef, {
             wasRequested: true,
             firstRequestTime: Timestamp.fromDate(new Date()),
-            numberOfRequests: increment(1)
+            numberOfRequests: increment(1),
+            requestArray: arrayUnion({
+                user: user.uid,
+                requestTime: Timestamp.fromDate(new Date())
+            })
         })
     } else {
 
         await updateDoc(updateDocRef, {
-            numberOfRequests: increment(1)
+            numberOfRequests: increment(1),
+            requestArray: arrayUnion({
+                user: user.uid,
+                requestTime: Timestamp.fromDate(new Date())
+            })
         })
     }
 }
 
-export async function updatePostConfirmPickup(id) {
-    const updateDocRef = doc(db, 'posts', id);
+export async function updatePostConfirmPickup(postId, userId, rating) {
+    const updateDocRef = doc(db, 'posts', postId);
+    const doc = await getDoc(updateDocRef)
 
-    await updateDoc(updateDocRef, {
-        isAvailable: false
-    })
-
-    return 'success'
+    //below I am checking whether it was already reported as picked up so that credit's arent given more than once.
+    //isAvailable can't be used for this b/c it's changed to false before pickup when someone uses credit at request time.
+    //the 2nd conditional is there to check if a pickup user was given, in the case that the post is reported as picked up by the user who posted.
+    if (!doc.data().pickUp.wasPickedUp || !doc.data().pickUp.user) {
+        addCreditsForUser(userId, rating, postId);
+        await updateDoc(updateDocRef, {
+            isAvailable: false,
+            pickUp: {
+                wasPickedUp: true,
+                pickUpTime: Timestamp.fromDate(new Date()),
+                user: userId,
+                rating: rating
+            }
+        })
+        return 'success'
+    } else {
+        return ''
+    }
 }
 
 export async function updateLastLogin(uid) {
@@ -162,6 +186,35 @@ export async function addUser(userId, userEmail, zipArray) {
         zipArray: zipArray,
         // plantRequests: requestedPlants,
         // searches: []
+    })
+}
+
+export async function updateUser(userId, zips) {
+    const q = query(usersCollectionRef, where("ID", "==", userId));
+    const querySnapshot = await getDocs(q);
+
+    const docId = querySnapshot.docs[0].id
+
+    const updateDocRef = (doc(db, 'users', docId))
+
+    await updateDoc(updateDocRef, {
+        zipArray: zips
+    })
+}
+
+export async function updateUserRequests(userId, postId) {
+    const q = query(usersCollectionRef, where("ID", "==", userId));
+    const querySnapshot = await getDocs(q);
+
+    const docId = querySnapshot.docs[0].id
+
+    const updateDocRef = (doc(db, 'users', docId))
+
+    await updateDoc(updateDocRef, {
+        requestsArray: arrayUnion({
+            post: postId,
+            requestTime: Timestamp.fromDate(new Date())
+        })
     })
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 import { redirect } from "react-router-dom";
 import Home from "../components/Home";
 import SearchComponent from "../components/SearchComponent";
-import { addPost, addCreditsForUser } from "../services/firebaseDBService";
+import { addPost, addCreditsForUser, getZipArrayForUser, updateUser, updatePostConfirmPickup } from "../services/firebaseDBService";
 import { useOutletContext } from "react-router-dom";
 import { getCreditsForUser } from "../services/firebaseDBService";
 
@@ -14,8 +14,8 @@ export function loader() {
     const userId = params.get('id')
 
     if (task === 'confirm') {
-        addCreditsForUser(userId, rating, postID);
-        throw redirect(`/Confirm/${postID}`)
+        const status = updatePostConfirmPickup(postID, userId, rating)
+        throw redirect(`/Confirm/${status}`)
     } else {
         return null;
     }
@@ -28,8 +28,8 @@ export default function HomeLayout() {
     const user = useOutletContext()[1];
 
     const [userCredits, setUserCredits] = React.useState(0)    
-    console.log(userCredits)
-    const [modalOpen, setModalOpen] = React.useState(false);
+    const [postModalOpen, setPostModalOpen] = React.useState(false);
+    const [updateModalOpen, setUpdateModalOpen] = React.useState(false);
     const [buttonIsLoading, setButtonIsLoading] = React.useState(false);
 
     const [newPostFormData, setNewPostFormData] = React.useState({
@@ -38,6 +38,10 @@ export default function HomeLayout() {
         address: "",
         zip: "",
         location: ""
+    })
+
+    const [updateUserFormData, setUpdateFormData] = React.useState({
+        zipArray: ""
     })
 
     React.useEffect(() => {
@@ -63,8 +67,23 @@ export default function HomeLayout() {
         return creditArray;
     }
 
-    function toggleModal() {
-        setModalOpen(prevModalOpen => !prevModalOpen);
+    function togglePostModal() {
+        setPostModalOpen(prevPostModalOpen => !prevPostModalOpen);
+    }
+
+    function toggleUpdateModal() {
+        setUpdateModalOpen(prevUpdateModal => !prevUpdateModal)
+    }
+
+    async function openUpdateModal() {
+        const array = await getZipArrayForUser(user.uid);
+        const arrayString = array.join(' ')
+        setUpdateFormData({
+            zipArray: arrayString
+        })
+
+        toggleUpdateModal();
+
     }
 
     function handleNewPostFormChange(event) {
@@ -75,6 +94,17 @@ export default function HomeLayout() {
                 [event.target.name]: event.target.value
             }
         ))
+    }
+
+    function handleUpdateFormChange(event) {
+
+        setUpdateFormData((prevUpdateFormData) => (
+            {
+                ...prevUpdateFormData,
+                [event.target.name]: event.target.value
+            }
+        ))
+
     }
 
     function resetNewPostFormData() {
@@ -93,10 +123,16 @@ export default function HomeLayout() {
         //make sure to add any other necessary post object fields here
         addPost(newPostFormData.plantName, newPostFormData.description, newPostFormData.address, newPostFormData.zip, newPostFormData.location, user.uid);
         // setButtonIsLoading(false);
-        toggleModal();
+        togglePostModal();
         alert("Your Post has been submitted.  Thank you!")
         resetNewPostFormData();
 
+    }
+
+    function handleUpdateUser() {
+        const newArray = updateUserFormData.zipArray.trim().replaceAll(",", "").split(" ").filter((zip) => zip.length === 5);
+        updateUser(user.uid, newArray)
+        toggleUpdateModal()
     }
 
     return (
@@ -114,11 +150,11 @@ export default function HomeLayout() {
                                 </div> 
                                 <div className="level-item has-text-centered">
                                     <div>
-                                        <button id="post-btn" onClick={toggleModal} className="button has-text-weight-semibold is-size-7-mobile has-text-primary-80-invert is-centered is-responsive">Post Your Plants</button>
+                                        <button id="post-btn" onClick={togglePostModal} className="button has-text-weight-semibold is-size-7-mobile has-text-primary-80-invert is-centered is-responsive">Post Your Plants</button>
                                     </div>
                                 </div>
                                 <div>
-                                        <button id="update-btn" className="button has-text-weight-semibold is-size-7-mobile has-text-primary-80-invert is-responsive">Update Profile</button>
+                                        <button id="update-btn" onClick={openUpdateModal} className="button has-text-weight-semibold is-size-7-mobile has-text-primary-80-invert is-responsive">Update Profile</button>
                                     </div>
                                
                             </div>
@@ -139,12 +175,12 @@ export default function HomeLayout() {
             <Home />
             <SearchComponent loggedIn={loggedIn} user={user} credits={userCredits}/>
 
-            <div className={modalOpen ? "modal is-active" : "modal"}>
-                <div className="modal-background" onClick={toggleModal}></div>
+            <div className={postModalOpen ? "modal is-active" : "modal"}>
+                <div className="modal-background" onClick={togglePostModal}></div>
                 <div className="modal-card">
                     <header className="modal-card-head">
                         <p className="modal-card-title">Share Your Extra Plants</p>
-                        <button className="delete" aria-label="close" onClick={toggleModal}></button>
+                        <button className="delete" aria-label="close" onClick={togglePostModal}></button>
                     </header>
                     <section className="modal-card-body">
                         <p className="control mb-2">
@@ -166,7 +202,28 @@ export default function HomeLayout() {
                     <footer className="modal-card-foot">
                         <div className="buttons">
                             <button className={buttonIsLoading ? "button is-success is-loading" : "button is-success"} onClick={handleNewPostSubmit}>Save changes</button>
-                            <button className="button" onClick={toggleModal}>Cancel</button>
+                            <button className="button" onClick={togglePostModal}>Cancel</button>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+
+            <div className={updateModalOpen ? "modal is-active" : "modal"}>
+                <div className="modal-background" onClick={toggleUpdateModal}></div>
+                <div className="modal-card">
+                    <header className="modal-card-head">
+                        <p className="modal-card-title">Update your local zip codes</p>
+                        <button className="delete" aria-label="close" onClick={toggleUpdateModal}></button>
+                    </header>
+                    <section className="modal-card-body">
+                        <p className="control mb-2">
+                            <input onChange={handleUpdateFormChange} className="input" type="text" placeholder="Local zip codes separated by a space" value={updateUserFormData.zipArray} name="zipArray" />
+                        </p>
+                    </section>
+                    <footer className="modal-card-foot">
+                        <div className="buttons">
+                            <button className="button is-success" onClick={handleUpdateUser}>Save changes</button>
+                            <button className="button" onClick={toggleUpdateModal}>Cancel</button>
                         </div>
                     </footer>
                 </div>

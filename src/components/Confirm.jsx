@@ -4,8 +4,7 @@ import { getPostById, updatePostConfirmPickup } from '../services/firebaseDBServ
 
 export function loader( { params } ) {
     
-    return updatePostConfirmPickup(params.postId);
-
+    return params.status
 }
 
 export default function Confirm() {
@@ -16,7 +15,7 @@ export default function Confirm() {
 
     return (
         
-        <h1 id="test">{loader === 'success' ? "Thank you for confirming!" : "Sorry, something went wrong"}</h1>
+        <h1 id="test">{loader === 'success' ? "Thank you for confirming!" : "Sorry, it looks like someone already reported picking this up.  We'll look into it."}</h1>
         
     )
 }

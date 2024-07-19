@@ -23,7 +23,7 @@ export default function PostCard(props) {
 
         setAddressRequested(true);
         openModal();
-        updatePostRequest(props.post);
+        updatePostRequest(props.post, props.user);
         addMail(props.user.email, subject, html);
     }
 

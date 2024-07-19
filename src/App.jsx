@@ -38,7 +38,7 @@ function App() {
       </Route>
 
       <Route path="About" element={<About />} />
-      <Route path="Confirm/:postId" element={<Confirm />} loader={confirmLoader}/>
+      <Route path="Confirm/:status" element={<Confirm />} loader={confirmLoader}/>
       <Route path="*" element={<NotFound />} />
 
     </Route>
