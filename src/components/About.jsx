@@ -1,8 +1,19 @@
 import roses from "../assets/roses.jpg"
 import phlox from "../assets/phlox1.jpg"
 import patio from "../assets/patio.jpg"
+import { useLoaderData } from "react-router-dom";
+
+export function loader() {
+
+    let picArray = [patio, phlox, roses];
+
+    return picArray;
+}
 
 export default function About() {
+
+    const loader = useLoaderData();
+
     return (
         <div id="about-div">
 
@@ -10,7 +21,7 @@ export default function About() {
                 <div className="columns">
                     <div className="box is-shadowless column is-background-white is-flex is-align-items-center is-one-third my-0">
                         <figure className="image about-img ">
-                            <img src={patio} />
+                            <img src={loader[0]} />
                         </figure>
                     </div>
                     <div className="box is-shadowless column is-background-white is-flex is-flex-direction-column is-justify-content-center my-0">
@@ -49,7 +60,7 @@ export default function About() {
                     </div>
                     <div className="box is-shadowless column is-background-white  is-flex is-align-items-center is-hidden-mobile is-one-third my-0">
                         <figure className="image about-img">
-                            <img src={phlox} />
+                            <img src={loader[1]} />
                         </figure>
                     </div>
                 </div>
@@ -59,7 +70,7 @@ export default function About() {
                 <div className="columns">
                     <div className="box is-shadowless column is-background-white is-flex is-align-items-center is-hidden-mobile is-one-third my-0">
                         <figure className="image about-img">
-                            <img src={roses} />
+                            <img src={loader[2]} />
                         </figure>
                     </div>
                     <div className="box is-shadowless column is-background-white is-flex is-flex-direction-column is-justify-content-center my-0">
