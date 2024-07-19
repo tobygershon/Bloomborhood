@@ -20,11 +20,15 @@ export default function PostCard(props) {
         <p>Were the plants EXCELLENT quality? Click to confirm <a href='https://bloomborhood.netlify.app?task=confirm&postID=${props.post.id}&rating=good&id=${props.post.userId}&pu=${props.user.uid}'><button>pickup</button></a><br>
         <p>Were the plants ACCEPTABLE quality? Click to confirm <a href='https://bloomborhood.netlify.app?task=confirm&postID=${props.post.id}&rating=good&id=${props.post.userId}&pu=${props.user.uid}'><button>pickup</button></a><br>
         <p>Were the plants as good as DEAD WEEDS? Click to confirm <a href='https://bloomborhood.netlify.app?task=confirm&postID=${props.post.id}&rating=poor&id=${props.post.userId}&pu=${props.user.uid}'><button>pickup</button></a>`;
-
-        setAddressRequested(true);
-        openModal();
-        updatePostRequest(props.post, props.user);
-        addMail(props.user.email, subject, html);
+        //check to see if requesting user is same as posting user
+        if (props.post.userId !== props.user.uid) {
+            setAddressRequested(true);
+            openModal();
+            updatePostRequest(props.post, props.user);
+            addMail(props.user.email, subject, html);
+        } else {
+            alert("Sorry! You can't request your own posting")
+        }
     }
 
     function openModal() {
@@ -42,7 +46,7 @@ export default function PostCard(props) {
     function doNotUseCredits() {
         toggleModal()
         alert("The address has been sent to your email")
-        
+
     }
 
     function getTimeFromLastRequest(requestTime) {
@@ -124,7 +128,7 @@ export default function PostCard(props) {
             </div>
 
             <div className={modalOpen ? "modal is-active" : "modal"}>
-                <div onClick={toggleModal}className="modal-background"></div>
+                <div onClick={toggleModal} className="modal-background"></div>
                 <div className="modal-card">
                     <header className="modal-card-head">
                         <p className="modal-card-title">Use your share credit?</p>
