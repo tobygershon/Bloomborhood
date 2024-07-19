@@ -140,26 +140,36 @@ export async function updatePostRequest(post, user) {
 }
 
 export async function updatePostConfirmPickup(postId, userId, rating) {
-    const updateDocRef = doc(db, 'posts', postId);
-    const doc = await getDoc(updateDocRef)
+    console.log(postId)
+    const updateDocRef = doc(db, "posts", postId);
+    const docSnap = await getDoc(updateDocRef)
+
+    if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+    } else {
+        // docSnap.data() will be undefined in this case
+        console.log("No such document!");
+    }
+    const post = docSnap.data();
+
 
     //below I am checking whether it was already reported as picked up so that credit's arent given more than once.
     //isAvailable can't be used for this b/c it's changed to false before pickup when someone uses credit at request time.
     //the 2nd conditional is there to check if a pickup user was given, in the case that the post is reported as picked up by the user who posted.
-    if (!doc.data().pickUp) {
-        addCreditsForUser(userId, rating, postId);
-        await updateDoc(updateDocRef, {
-            isAvailable: false,
-            pickUp: {
-                pickUpTime: Timestamp.fromDate(new Date()),
-                user: userId,
-                rating: rating
-            }
-        })
-        return 'success'
-    } else {
-        return ''
-    }
+    if (!post.pickUp) {
+    addCreditsForUser(userId, rating, postId);
+    await updateDoc(updateDocRef, {
+        isAvailable: false,
+        pickUp: {
+            pickUpTime: Timestamp.fromDate(new Date()),
+            user: userId,
+            rating: rating
+        }
+    })
+    return 'success'
+} else {
+    return ''
+}
 }
 
 export async function updateLastLogin(uid) {

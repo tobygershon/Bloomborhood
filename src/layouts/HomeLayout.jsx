@@ -6,7 +6,7 @@ import { addPost, addCreditsForUser, getZipArrayForUser, updateUser, updatePostC
 import { useOutletContext } from "react-router-dom";
 import { getCreditsForUser } from "../services/firebaseDBService";
 
-export async function loader() {
+export function loader() {
     let params = new URLSearchParams(document.location.search);
     const task = params.get('task');
     const postID = params.get('postID');
