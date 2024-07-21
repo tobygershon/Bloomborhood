@@ -71,10 +71,10 @@ export default function Feedback() {
                             <div className="control">
                                 <div className="select ">
                                     <select name="select" onChange={handleFormChange} value={formData.select}>
-                                        <option name="">- Choose -</option>
-                                        <option name="problem">Report a Problem</option>
-                                        <option name="question">Question</option>
-                                        <option name="other">Other Feedback</option>
+                                        <option value="">- Choose -</option>
+                                        <option >Report a Problem</option>
+                                        <option >Question</option>
+                                        <option >Other Feedback</option>
                                     </select>
                                 </div>
                             </div>

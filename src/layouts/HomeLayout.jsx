@@ -23,7 +23,6 @@ export async function loader() {
 }
 
 export default function HomeLayout() {
-    console.log('homeLayout')
 
     const loggedIn = useOutletContext()[0];
     const user = useOutletContext()[1];
@@ -62,7 +61,7 @@ export default function HomeLayout() {
     function showCreditIcons() {
         let creditArray = []
         for (let i = 0; i < userCredits; i++) {
-            creditArray.push(<><i key={i + 1} className="fa-solid fa-seedling is-size-5"></i>&nbsp;</>);
+            creditArray.push(<span key={i + 1}><i className="fa-solid fa-seedling is-size-5"></i>&nbsp;</span>);
         }
 
         return creditArray;

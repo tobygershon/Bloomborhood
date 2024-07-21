@@ -7,7 +7,6 @@ import { updateLastLogin } from '../services/firebaseDBService';
 import { Footer } from '../components/Footer';
 
     export default function Layout() {
-        console.log('layout')
 
         const [loggedIn, setLoggedIn] = React.useState(false);
         const [user, setUser] = React.useState("");

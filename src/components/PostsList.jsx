@@ -6,7 +6,7 @@ import { getCurrentUser2 } from "../services/firebaseAuthService";
 
 
 export default function PostsList() {
-    console.log('PostsList')
+
     const [modalOpen, setModalOpen] = React.useState(false)
     const posts = useOutletContext()[0];
     const loggedIn = useOutletContext()[1];
