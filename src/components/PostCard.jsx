@@ -130,17 +130,17 @@ export default function PostCard(props) {
             <div className={modalOpen ? "modal is-active" : "modal"}>
                 <div onClick={toggleModal} className="modal-background"></div>
                 <div className="modal-card">
-                    <header className="modal-card-head">
-                        <p className="modal-card-title">Use your share credit?</p>
+                    <header className="modal-card-head modal-color">
+                        <p className="modal-card-title has-text-weight-semibold has-text-primary-80-invert">Use your share credit?</p>
                         <button onClick={toggleModal} className="delete" aria-label="close"></button>
                     </header>
                     <section className="modal-card-body">
                         <p>Do you want to use one of your share credits to ensure that you are the only person who can request the address?</p>
                     </section>
-                    <footer className="modal-card-foot">
+                    <footer className="modal-card-foot modal-color">
                         <div className="buttons">
-                            <button onClick={useCredits} className="button is-success">Yes!</button>
-                            <button onClick={doNotUseCredits} className="button">No Thanks</button>
+                            <button onClick={useCredits} className="button btn-css has-text-weight-semibold has-text-primary-80-invert">Yes!</button>
+                            <button onClick={doNotUseCredits} className="button btn-css has-text-weight-semibold has-text-primary-80-invert">No Thanks</button>
                         </div>
                     </footer>
                 </div>

@@ -55,21 +55,21 @@ export default function Feedback() {
                         <div className="field">
                             <label className="label has-text-grey-dark">Please Type Your Name</label>
                             <div className="control">
-                                <input onChange={handleFormChange} className="input" type="text" placeholder="Name" name="name" value={formData.name} />
+                                <input onChange={handleFormChange} className="input input-css" type="text" placeholder="Name" name="name" value={formData.name} />
                             </div>
                         </div>
 
                         <div className="field">
                             <label className="label has-text-grey-dark">Please Type Your Email</label>
                             <div className="control">
-                                <input onChange={handleFormChange} className="input" type="email" placeholder="Email" name="email" value={formData.email} />
+                                <input onChange={handleFormChange} className="input input-css" type="email" placeholder="Email" name="email" value={formData.email} />
                             </div>
                         </div>
 
                         <div className="field">
                             <label className="label has-text-grey-dark">Type of Feedback</label>
                             <div className="control">
-                                <div className="select ">
+                                <div className="select">
                                     <select name="select" onChange={handleFormChange} value={formData.select}>
                                         <option value="">- Choose -</option>
                                         <option >Report a Problem</option>
@@ -83,16 +83,16 @@ export default function Feedback() {
                         <div className="field">
                             <label className="label has-text-grey-dark">Message</label>
                             <div className="control">
-                                <textarea onChange={handleFormChange} className="textarea" placeholder="Type text here" value={formData.textArea} name="textArea"></textarea>
+                                <textarea onChange={handleFormChange} className="textarea input-css" placeholder="Type text here" value={formData.textArea} name="textArea"></textarea>
                             </div>
                         </div>
 
                         <div className="field is-grouped">
                             <div className="control">
-                                <input onClick={handleSubmit} className="button is-responsive" type="submit" value="Submit" />
+                                <input onClick={handleSubmit} className="button is-responsive btn-css has-text-weight-semibold has-text-primary-80-invert" type="submit" value="Submit" />
                             </div>
                             <div className="control">
-                                <input onClick={handleResetInput} className="button is-responsive" type="reset" value="Reset Form" />
+                                <input onClick={handleResetInput} className="button is-responsive btn-css has-text-weight-semibold has-text-primary-80-invert" type="reset" value="Reset Form" />
                             </div>
                         </div>
                     </div>

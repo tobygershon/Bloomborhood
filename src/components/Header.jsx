@@ -41,18 +41,18 @@ export default function Header({ loggedIn }) {
             {/* need to toggle is-active class below when burger is clicked*/}
             <div id="navbarBasicExample" className={`navbar-menu ${menuActive ? "is-active" : ""}`}>
                 <div className="navbar-end">
-                    <div className="navbar-item">{
-                        loggedIn && <button id="sign-out-btn" onClick={handleClick}>Sign Out</button>
-                    }</div>
-                    <Link onClick={toggleNavMenu} to="/About" className="navbar-item">
+                    {
+                        loggedIn && <Link className="navbar-item has-text-grey-light"><button className="sign-out-btn" onClick={handleClick}>Sign Out</button></Link>
+                    }
+                    <Link onClick={toggleNavMenu} to="/About" className="navbar-item has-text-grey-light"><button className="sign-out-btn" >
                         About
-                    </Link>
-                    <Link onClick={toggleNavMenu} to="/Feedback" className="navbar-item">
+                    </button></Link>
+                    <Link onClick={toggleNavMenu} to="/Feedback" className="navbar-item has-text-grey-light"><button className="sign-out-btn">
                         Feedback
-                    </Link>
-                    <Link onClick={toggleNavMenu} className="navbar-item">
+                    </button></Link>
+                    <Link onClick={toggleNavMenu} className="navbar-item has-text-grey-light"><button className="sign-out-btn">
                         Share the site!
-                    </Link>
+                    </button></Link>
                 </div>
             </div>
         </nav >

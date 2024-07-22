@@ -150,7 +150,7 @@ export default function HomeLayout() {
                                 </div> 
                                 <div className="level-item has-text-centered">
                                     <div>
-                                        <button id="post-btn" onClick={togglePostModal} className="button has-text-weight-semibold is-size-7-mobile has-text-primary-80-invert is-centered is-responsive">Post Your Plants</button>
+                                        <button id="post-btn" onClick={togglePostModal} className="button has-text-weight-semibold has-text-primary-80-invert is-size-7-mobile is-centered is-responsive">Post Your Plants</button>
                                     </div>
                                 </div>
                                 <div>
@@ -178,31 +178,31 @@ export default function HomeLayout() {
             <div className={postModalOpen ? "modal is-active" : "modal"}>
                 <div className="modal-background" onClick={togglePostModal}></div>
                 <div className="modal-card">
-                    <header className="modal-card-head">
-                        <p className="modal-card-title">Share Your Extra Plants</p>
+                    <header className="modal-card-head modal-color">
+                        <p className="modal-card-title has-text-weight-semibold has-text-primary-80-invert">Share Your Extra Plants</p>
                         <button className="delete" aria-label="close" onClick={togglePostModal}></button>
                     </header>
                     <section className="modal-card-body">
                         <p className="control mb-2">
-                            <input onChange={handleNewPostFormChange} className="input" type="text" placeholder="Plant Name" value={newPostFormData.plantName} name="plantName" />
+                            <input onChange={handleNewPostFormChange} className="input input-css" type="text" placeholder="Plant Name" value={newPostFormData.plantName} name="plantName" />
                         </p>
                         <p className="control mb-2">
-                            <input onChange={handleNewPostFormChange} className="input" type="text" placeholder="Description (under 50 letters please)" value={newPostFormData.description} name="description" />
+                            <input onChange={handleNewPostFormChange} className="input input-css" type="text" placeholder="Description (under 50 letters please)" value={newPostFormData.description} name="description" />
                         </p>
                         <p className="control mb-2">
-                            <input onChange={handleNewPostFormChange} className="input" type="text" placeholder="Address of Pickup" value={newPostFormData.address} name="address" />
+                            <input onChange={handleNewPostFormChange} className="input input-css" type="text" placeholder="Address of Pickup" value={newPostFormData.address} name="address" />
                         </p>
                         <p className="control mb-2">
-                            <input onChange={handleNewPostFormChange} className="input" type="text" placeholder="Zip Code of Pickup" value={newPostFormData.zip} name="zip" />
+                            <input onChange={handleNewPostFormChange} className="input input-css" type="text" placeholder="Zip Code of Pickup" value={newPostFormData.zip} name="zip" />
                         </p>
                         <p className="control">
-                            <input onChange={handleNewPostFormChange} className="input" type="text" placeholder="Location of Plants (i.e. 'on the curb', 'by the front steps'" value={newPostFormData.location} name="location" />
+                            <input onChange={handleNewPostFormChange} className="input input-css" type="text" placeholder="Location of Plants (i.e. 'on the curb', 'by the front steps'" value={newPostFormData.location} name="location" />
                         </p>
                     </section>
-                    <footer className="modal-card-foot">
+                    <footer className="modal-card-foot modal-color">
                         <div className="buttons">
-                            <button className={buttonIsLoading ? "button is-success is-loading" : "button is-success"} onClick={handleNewPostSubmit}>Save changes</button>
-                            <button className="button" onClick={togglePostModal}>Cancel</button>
+                            <button className={buttonIsLoading ? "button is-success is-loading btn-css has-text-weight-semibold has-text-primary-80-invert" : "button is-success btn-css has-text-weight-semibold has-text-primary-80-invert"} onClick={handleNewPostSubmit}>Save changes</button>
+                            <button className="button btn-css has-text-weight-semibold has-text-primary-80-invert" onClick={togglePostModal}>Cancel</button>
                         </div>
                     </footer>
                 </div>
@@ -211,19 +211,19 @@ export default function HomeLayout() {
             <div className={updateModalOpen ? "modal is-active" : "modal"}>
                 <div className="modal-background" onClick={toggleUpdateModal}></div>
                 <div className="modal-card">
-                    <header className="modal-card-head">
-                        <p className="modal-card-title">Update your local zip codes</p>
+                    <header className="modal-card-head modal-color">
+                        <p className="modal-card-title has-text-weight-semibold has-text-primary-80-invert">Update your local zip codes</p>
                         <button className="delete" aria-label="close" onClick={toggleUpdateModal}></button>
                     </header>
                     <section className="modal-card-body">
                         <p className="control mb-2">
-                            <input onChange={handleUpdateFormChange} className="input" type="text" placeholder="Local zip codes separated by a space" value={updateUserFormData.zipArray} name="zipArray" />
+                            <input onChange={handleUpdateFormChange} className="input input-css" type="text" placeholder="Local zip codes separated by a space" value={updateUserFormData.zipArray} name="zipArray" />
                         </p>
                     </section>
-                    <footer className="modal-card-foot">
+                    <footer className="modal-card-foot modal-color">
                         <div className="buttons">
-                            <button className="button is-success" onClick={handleUpdateUser}>Save changes</button>
-                            <button className="button" onClick={toggleUpdateModal}>Cancel</button>
+                            <button className="button btn-css has-text-weight-semibold has-text-primary-80-invert" onClick={handleUpdateUser}>Save changes</button>
+                            <button className="button btn-css has-text-weight-semibold has-text-primary-80-invert" onClick={toggleUpdateModal}>Cancel</button>
                         </div>
                     </footer>
                 </div>

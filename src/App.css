@@ -53,8 +53,8 @@ div.hero-body {
   background-color: rgb(255, 255, 255, .0);
 }
 
-#sign-out-btn:hover {
-  color:#c1fba4;
+.sign-out-btn:hover {
+  color:#7bf1a8;
 }
 
 /* #btn-box {
@@ -62,23 +62,29 @@ div.hero-body {
 } */
 
 #post-btn,
-#update-btn {
-  /* width: 125px; */
+#update-btn,
+.btn-css {
   background-color: #c1fba4;
-  border: .5px solid #363636;
+  border: 1px solid #363636;
   /* box-shadow: 1px 1px 2px #363636; */
   border-radius: 100px;
 }
 
 #post-btn:hover,
-#update-btn:hover {
+#update-btn:hover, 
+.btn-css:hover {
   background-color: #7bf1a8;
 }
 
 #post-btn:active,
-#update-btn:active {
+#update-btn:active,
+.btn-css:active {
   background-color: #7bf1a8;
   box-shadow: 1px 1px 2px inset #363636;
+}
+
+.input-css {
+  border: 1px solid #363636;
 }
 
 .login-level-btn:hover {
@@ -108,7 +114,7 @@ div.hero-body {
   background-color: white;
   text-decoration: none;
   font-weight: 700;
-  border: .5px solid #363636;
+  border: 1px solid #363636;
 }
 
 li.is-active>#toggle-posts,
@@ -187,7 +193,10 @@ li>#toggle-plants:active {
 #feedback-background {
   background-color: #c1fba4;
   box-shadow: 1px 1px 30px #363636;
+}
 
+.modal-color {
+  background-color: #c1fba4;
 }
 
 #footer {

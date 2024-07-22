@@ -106,13 +106,13 @@ export default function Login() {
                             <div className="level-item">
                                 <div className="field has-addons">
                                     <p className="control">
-                                        <input onChange={handleFormChange} className="input" type="email" placeholder="email" value={loginFormData.email} name="email" />
+                                        <input onChange={handleFormChange} className="input input-css" type="email" placeholder="email" value={loginFormData.email} name="email" />
                                     </p>
                                     <p className="control">
-                                        <input onChange={handleFormChange} className="input" type="text" placeholder="password" value={loginFormData.password} name="password" />
+                                        <input onChange={handleFormChange} className="input input-css" type="text" placeholder="password" value={loginFormData.password} name="password" />
                                     </p>
                                     <p className="control">
-                                        <button onClick={handleSubmit} className="button is-rounded">Login</button>
+                                        <button onClick={handleSubmit} className="button btn-css is-rounded has-text-weight-semibold has-text-primary-80-invert">Login</button>
                                     </p>
                                 </div>
                             </div>
@@ -130,32 +130,32 @@ export default function Login() {
             <div className={signUpModalOpen ? "modal is-active" : "modal"}>
                 <div className="modal-background" onClick={toggleSignUpModal}></div>
                 <div className="modal-card">
-                    <header className="modal-card-head">
-                        <p className="modal-card-title">Sign Up with Email</p>
+                    <header className="modal-card-head modal-color">
+                        <p className="modal-card-title has-text-weight-semibold has-text-primary-80-invert">Sign Up with Email</p>
                         <button className="delete" aria-label="close" onClick={toggleSignUpModal}></button>
                     </header>
                     <section className="modal-card-body">Create Username and Password
                         <p className="control mb-2">
-                            <input onChange={handleNewUserFormChange} className="input" type="email" placeholder="email" value={signUpFormData.email} name="email" />
+                            <input onChange={handleNewUserFormChange} className="input input-css" type="email" placeholder="email" value={signUpFormData.email} name="email" />
                         </p>
                         <p className="control mb-2">
-                            <input onChange={handleNewUserFormChange} className="input" type="text" placeholder="password" value={signUpFormData.password} name="password" />
+                            <input onChange={handleNewUserFormChange} className="input input-css" type="text" placeholder="password" value={signUpFormData.password} name="password" />
                         </p>
                         <p className={passwordsMatch ? "is-hidden" : ""}>Please make sure passwords match</p>
                         <p className="control mb-2">
-                            <input onChange={handleNewUserFormChange} className="input" type="text" placeholder="re-type password" value={signUpFormData.passwordAgain} name="passwordAgain" />
+                            <input onChange={handleNewUserFormChange} className="input input-css" type="text" placeholder="re-type password" value={signUpFormData.passwordAgain} name="passwordAgain" />
                         </p>
                         <p className="control">
-                            <input onChange={handleNewUserFormChange} className="input" type="text" placeholder="Enter your local 5 digit zip codes separated by SPACES ex.(10001 10002 etc)" value={signUpFormData.requestedZips} name="requestedZips" />
+                            <input onChange={handleNewUserFormChange} className="input input-css" type="text" placeholder="Enter your local 5 digit zip codes separated by SPACES ex.(10001 10002 etc)" value={signUpFormData.requestedZips} name="requestedZips" />
                         </p>
                         {/* <p className="control">
                             <input onChange={handleNewUserFormChange} className="input" type="text" placeholder="Enter any plant names to recieve email alerts when posted" value={signUpFormData.requestedPlants} name="requestedPlants" />
                         </p> */}
                     </section>
-                    <footer className="modal-card-foot">
+                    <footer className="modal-card-foot modal-color">
                         <div className="buttons">
-                            <button className={buttonIsLoading ? "button is-success is-loading" : "button is-success"} onClick={handleNewUserSubmit}>Save changes</button>
-                            <button className="button" onClick={toggleSignUpModal}>Cancel</button>
+                            <button className={buttonIsLoading ? "button is-success is-loading btn-css has-text-weight-semibold has-text-primary-80-invert" : "button is-success btn-css has-text-weight-semibold has-text-primary-80-invert"} onClick={handleNewUserSubmit}>Save changes</button>
+                            <button className="button btn-css has-text-weight-semibold has-text-primary-80-invert" onClick={toggleSignUpModal}>Cancel</button>
                         </div>
                     </footer>
                 </div>
@@ -164,8 +164,8 @@ export default function Login() {
             <div className={learnModalOpen ? "modal is-active" : "modal"}>
                 <div className="modal-background" onClick={toggleLearnModal}></div>
                 <div className="modal-card">
-                    <header className="modal-card-head">
-                        <p className="modal-card-title">Why should I sign up?</p>
+                    <header className="modal-card-head modal-color">
+                        <p className="modal-card-title has-text-weight-semibold has-text-primary-80-invert">Why should I sign up?</p>
                         <button className="delete" aria-label="close" onClick={toggleLearnModal}></button>
                     </header>
                     <section className="modal-card-body">
@@ -183,9 +183,9 @@ export default function Login() {
                         </div>
                     </section>
 
-                    <footer className="modal-card-foot">
+                    <footer className="modal-card-foot modal-color">
                         <div className="buttons">
-                            <button className="button" onClick={toggleLearnModal} aria-label="close">Got it!</button>
+                            <button className="button btn-css has-text-weight-semibold has-text-primary-80-invert" onClick={toggleLearnModal} aria-label="close">Got it!</button>
                         </div>
                     </footer>
                 </div>

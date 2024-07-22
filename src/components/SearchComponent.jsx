@@ -15,7 +15,6 @@ export default function SearchComponent({ loggedIn, user, credits }) {
     const [userArray, setUserArray] = React.useState([]);
     const [posts, setPosts] = React.useState([samplePost])
     const [plants, setPlants] = React.useState([])
-    const [triggerPlantsSearch, setTriggerPlantsSearch] = React.useState(false)
 
     const navigate = useNavigate();
 
@@ -118,22 +117,22 @@ export default function SearchComponent({ loggedIn, user, credits }) {
                                 <div className={(loggedIn && tab === "/Posts") ? "field mb-0" : "field mb-0 has-addons"}>
                                     <p className="control">
                                         {tab === "/Plants" ?
-                                            <input onChange={plantInputChange} value={plantSearchInput} className="input" type="text" name="plantsSearch" placeholder="Tip: Spelling Matters" />
-                                            : <input onChange={postsInputChange} onFocus={clearPostSearchInput} value={postsSearchInput} className="input" type="text" name="postsSearch" placeholder="5 digit Zip (ex: 01001)" />
+                                            <input onChange={plantInputChange} value={plantSearchInput} className="input input-css" type="text" name="plantsSearch" placeholder="Tip: Spelling Matters" />
+                                            : <input onChange={postsInputChange} onFocus={clearPostSearchInput} value={postsSearchInput} className="input input-css" type="text" name="postsSearch" placeholder="5 digit Zip (ex: 01001)" />
                                         }
                                     </p>
                                     <p className="control">
-                                        {tab === "/Plants" ? <button onClick={handlePlantSearchClick} id="plants-search-btn" className="button is-rounded">Search</button>
+                                        {tab === "/Plants" ? <button onClick={handlePlantSearchClick} className="button is-rounded btn-css has-text-weight-semibold has-text-primary-80-invert">Search</button>
                                             : !loggedIn &&
-                                            <button onClick={handlePostsSearchClick} id="posts-search-btn" className="button is-rounded">Search</button>}
+                                            <button onClick={handlePostsSearchClick} className="button is-rounded btn-css has-text-weight-semibold has-text-primary-80-invert">Search</button>}
                                     </p>
                                 </div>
                             </div>
                             <div className="level-item">
                                 <div className="field has-addons mb-0">
                                     <p className="control">
-                                        {(loggedIn && tab === "/Posts") && <><button onClick={handlePostsSearchClick} id="posts-search-btn" className={loggedIn ? "logged-in button is-rounded is-size-7-mobile is-responsive" : "button is-rounded is-responsive"}>Search Zip Code</button>
-                                            <button onClick={handleUserPostsClick} id="user-posts-btn" className="button ml-2 is-rounded is-size-7-mobile is-responsive">Back to My Zips</button></>}
+                                        {(loggedIn && tab === "/Posts") && <><button onClick={handlePostsSearchClick} id="posts-search-btn" className={loggedIn ? "logged-in button is-rounded is-size-7-mobile is-responsive btn-css has-text-weight-semibold has-text-primary-80-invert" : "button is-rounded is-responsive btn-input-css has-text-weight-semibold has-text-primary-80-invert"}>Search Zip Code</button>
+                                            <button onClick={handleUserPostsClick} id="user-posts-btn" className="button ml-2 is-rounded is-size-7-mobile is-responsive btn-css has-text-weight-semibold has-text-primary-80-invert">Back to My Zips</button></>}
                                     </p>
                                 </div>
                             </div>
