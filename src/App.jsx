@@ -9,6 +9,7 @@ import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } 
 import PostsList from './components/PostsList.jsx'
 import PlantSearchList, { loader as plantSearchLoader } from './components/PlantSearchList.jsx'
 import HomeLayout, { loader as layoutLoader } from './layouts/HomeLayout.jsx'
+import Share from './components/Share.jsx'
 
 function App() {
   // const [plants, setPlants] = useState(['plant1', 'plant2'])
@@ -40,6 +41,7 @@ function App() {
 
       <Route path="About" element={<About />} loader={aboutLoader} />
       <Route path="Feedback" element={<Feedback />} />
+      <Route path="Share" element={<Share />} />
       <Route path="Confirm/:status" element={<Confirm />} loader={confirmLoader}/>
       <Route path="*" element={<NotFound />} />
 

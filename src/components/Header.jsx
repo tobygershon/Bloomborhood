@@ -50,7 +50,7 @@ export default function Header({ loggedIn }) {
                     <Link onClick={toggleNavMenu} to="/Feedback" className="navbar-item has-text-grey-light"><button className="sign-out-btn">
                         Feedback
                     </button></Link>
-                    <Link onClick={toggleNavMenu} className="navbar-item has-text-grey-light"><button className="sign-out-btn">
+                    <Link onClick={toggleNavMenu} to="/Share" className="navbar-item has-text-grey-light"><button className="sign-out-btn">
                         Share the site!
                     </button></Link>
                 </div>

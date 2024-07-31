@@ -135,6 +135,8 @@ export default function HomeLayout() {
         toggleUpdateModal()
     }
 
+
+
     return (
         <div>
             <div>{loggedIn &&

@@ -156,7 +156,7 @@ export async function updatePostConfirmPickup(postId, postingUserId, rating, pic
     const docSnap = await getDoc(updateDocRef)
 
     if (docSnap.exists()) {
-        
+
         console.log('exists')
 
     } else {
