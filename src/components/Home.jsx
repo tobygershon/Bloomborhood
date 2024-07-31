@@ -36,7 +36,7 @@ export default function Home() {
         <section className={showHero ? "hero is-small mx-4 pb-6 pt-2" : "is-hidden-mobile hero is-small mx-4 pb-6 pt-2"} >
             <div id="hero-box" className="hero-body is-flex is-align-items-center is-justify-content-flex-end">
                 <div className="columns">
-                    <div className={shareBox ? "column is-one-third" : "column is-one-third is-invisible"} style={{opacity: .75}} >
+                    <div className={shareBox ? "column is-one-third is-hidden-mobile" : "column is-one-third is-hidden"} style={{opacity: .75}} >
                         <div className="card is-flex is-flex-direction-column is-justify-content-space-evenly" style={{height: 150}}>
                             <div className="card-content py-4">
                         
