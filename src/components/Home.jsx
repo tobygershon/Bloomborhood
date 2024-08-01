@@ -17,12 +17,12 @@ export default function Home() {
         <section className="hero is-small mx-4 pb-5 pt-2" >
             <div id="hero-box" className="hero-body is-flex is-align-items-center is-justify-content-flex-end">
                 <div className="columns">
-                    <div className={shareBox ? "column is-one-third is-hidden-mobile" : "column is-one-third is-hidden"} style={{opacity: .75}} >
+                    <div className={shareBox ? "column is-one-third is-hidden-mobile" : "column is-one-third is-hidden"} style={{opacity: .85}} >
                         <div className="card is-flex is-flex-direction-column is-justify-content-space-evenly" style={{height: 150}}>
                             <div className="card-content py-4">
                         
-                                <div className="content is-size-7-touch has-text-weight-bold">
-                                    MyBloomborhood only works with lots of neighbors participating!
+                                <div className="content is-size-7-touch has-text-weight-bold has-text-centered">
+                                    MyBloomborhood only works with lots of neighborhood participation!
                                 </div>
                             </div>
                             <footer className="card-footer">

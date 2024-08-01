@@ -52,7 +52,7 @@ export default function Share() {
 
                         <h1 className="title mb-2">Share the Site!</h1>
                         <h2 className="subtitle">
-                            MyBloomborhood only works if lots of people in your neighborhood use the site.  Share us with friends, family, and neighbors to help build a vibrant bloomborhood near you.
+                            Share us with friends, family, and neighbors to help build a vibrant bloomborhood near you.
                         </h2>
                         <div className="columns">
                             <div className="container column is-four-fifths is-centered">
