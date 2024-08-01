@@ -31,7 +31,7 @@ export default function Share() {
                             <p><a href="https://bloomborhood.netlify.app">My Bloomborhood</a> helps neighbors share their extra plants, and participate in beautifying your bloomborhood!</p><br>
                             <h4>bloomborhood.netlify.app</h4>`
 
-        const emailArray = formData.email.replaceAll(",", "").replaceAll(".", "").split(" ").filter((email) => email.length > 5);
+        const emailArray = formData.email.replaceAll(",", "").split(" ").filter((email) => email.length > 5);
         for (let email of emailArray) {
             addMail(email, subjForSubmit, htmlForSubmit)
         }

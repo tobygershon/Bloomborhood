@@ -151,7 +151,6 @@ export async function updatePostRequest(post, user) {
 }
 
 export async function updatePostConfirmPickup(postId, postingUserId, rating, pickUpUserId) {
-    console.log(postId)
     const updateDocRef = doc(db, "posts", postId);
     const docSnap = await getDoc(updateDocRef)
 

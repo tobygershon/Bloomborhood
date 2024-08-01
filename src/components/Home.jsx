@@ -14,7 +14,7 @@ export default function Home() {
 
     return (
 
-        <section className="hero is-small mx-4 pb-4 pt-2" >
+        <section className="hero is-small mx-4 pb-5 pt-2" >
             <div id="hero-box" className="hero-body is-flex is-align-items-center is-justify-content-flex-end">
                 <div className="columns">
                     <div className={shareBox ? "column is-one-third is-hidden-mobile" : "column is-one-third is-hidden"} style={{opacity: .75}} >
