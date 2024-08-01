@@ -190,7 +190,7 @@ li>#toggle-plants:active {
   box-shadow: 1px 1px 30px #363636;
 }
 
-#feedback-background {
+#feedback-background, .share-background {
   background-color: #c1fba4;
   box-shadow: 1px 1px 30px #363636;
 }

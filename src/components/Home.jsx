@@ -3,37 +3,18 @@ import { Link } from 'react-router-dom'
 
 export default function Home() {
 
-    const [shareBox, setShareBox] = React.useState(false)
-    const [mobile, setMobile] = React.useState(false)
-    const [showHero, setShowHero] = React.useState(true)
-
-    function getWindowDimensions() {
-        return window.innerWidth
-        }
-    
-    React.useEffect(() => {
-        if (getWindowDimensions() < 1000) {
-            setMobile(true)
-            setTimeout(() => setShowHero(false), 5000)
-        }
-    }, [])
-    
+    const [shareBox, setShareBox] = React.useState(false)    
       
     React.useEffect(() => {
         setTimeout(() => {
             setShareBox(true)
-        }, 2000)
+        }, 3000)
     }, [])
-
-    function isMobile() {
-        const mobileCSS = {display: none}
-        setTimeout(() => mobileCSS, 5000)
-    }
 
 
     return (
 
-        <section className={showHero ? "hero is-small mx-4 pb-6 pt-2" : "is-hidden-mobile hero is-small mx-4 pb-6 pt-2"} >
+        <section className="hero is-small mx-4 pb-4 pt-2" >
             <div id="hero-box" className="hero-body is-flex is-align-items-center is-justify-content-flex-end">
                 <div className="columns">
                     <div className={shareBox ? "column is-one-third is-hidden-mobile" : "column is-one-third is-hidden"} style={{opacity: .75}} >
@@ -45,7 +26,7 @@ export default function Home() {
                                 </div>
                             </div>
                             <footer className="card-footer">
-                                <Link to="Share" class="card-footer-item"><button className="button is-small btn-css has-text-dark">Share the Site!</button></Link>
+                                <Link to="Share" className="card-footer-item"><button className="button is-small btn-css has-text-dark">Share the Site!</button></Link>
                             </footer>
                         </div>
                     </div>

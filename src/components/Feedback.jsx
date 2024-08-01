@@ -37,8 +37,6 @@ export default function Feedback() {
         handleResetInput();
     }
 
-    console.log(formData)
-
 
     return (
         <>
@@ -47,7 +45,7 @@ export default function Feedback() {
                 <div className="container">
                     <div id="feedback-background" className="notification has-text-grey-dark">
 
-                        <h1 className="title">Feedback</h1>
+                        <h1 className="title mb-2">Feedback</h1>
                         <h2 className="subtitle">
                             Please submit any questions or comments and we'll get back to you as soon as possible.
                         </h2>

@@ -93,7 +93,7 @@ export default function Login() {
 
 
     return (
-        <section className="section pt-0 pb-3 px-0">
+        <section className="section pt-0 pb-2 px-0">
 
             <div className="container">
                 <div className="background notification is-white py-0 px-0" >

@@ -25,8 +25,8 @@ export default function Share() {
     }
 
     function handleSubmit() {
-        const subjForSubmit=`${formData.name} shared MyBloomborhood with you!`
-        const htmlForSubmit=`<h3>${formData.name} wants to share <a href="https://bloomborhood.netlify.app">My Bloomborhood</a> with you!</h3><br>
+        const subjForSubmit = `${formData.name} shared MyBloomborhood with you!`
+        const htmlForSubmit = `<h3>${formData.name} wants to share <a href="https://bloomborhood.netlify.app">My Bloomborhood</a> with you!</h3><br>
                             <p>${formData.textArea}</p><br>
                             <p><a href="https://bloomborhood.netlify.app">My Bloomborhood</a> helps neighbors share their extra plants, and participate in beautifying your bloomborhood!</p><br>
                             <h4>bloomborhood.netlify.app</h4>`
@@ -36,19 +36,38 @@ export default function Share() {
             addMail(email, subjForSubmit, htmlForSubmit)
         }
         handleResetInput()
+        alert("Thanks for sharing!")
     }
+
+    // function handleCopyClick(event) {
+    //     window.Clipboard
+    // }
 
 
     return (
         <>
-        <section className="section pt-2 pb-4">
+            <section className="section pt-2 pb-4">
                 <div className="container">
-                    <div id="feedback-background" className="notification has-text-grey-dark">
+                    <div className="share-background notification has-text-grey-dark">
 
-                        <h1 className="title">Share the Site!</h1>
+                        <h1 className="title mb-2">Share the Site!</h1>
                         <h2 className="subtitle">
                             MyBloomborhood only works if lots of people in your neighborhood use the site.  Share us with friends, family, and neighbors to help build a vibrant bloomborhood near you.
                         </h2>
+                        <div className="columns">
+                            <div className="container column is-four-fifths is-centered">
+                                <div className="notification is-size-5 is-size-6-touch has-text-weight-bold is-flex is-justify-content-space-around is-align-items-center is-hidden-mobile">
+                                    Share our URL address:
+                                    <div className="block has-text-grey is-size-6-touch is-size-7-mobile is-flex is-align-items-center my-0">https://bloomborhood.netlify.app</div>
+                                    {/* <span className="tag is-flex is-align-items-center"> Copy </span> */}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="columns">
+                        <div className="block column is-size-3 is-size-4-mobile is-4 is-offset-4 is-flex is-justify-content-center is-hidden-mobile">
+                            - OR -
+                        </div>
+                        </div>
 
                         <div className="field">
                             <label className="label has-text-grey-dark">Please Type Your Name</label>
