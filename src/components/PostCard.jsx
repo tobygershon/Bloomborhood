@@ -1,5 +1,5 @@
 import React from "react";
-import { updatePostRequest, addMail, deductCreditForUser, updatePostConfirmPickup } from "../services/firebaseDBService";
+import { updatePostRequest, addMail, deductCreditForUser, updatePostConfirmPickup, updatePostWhenShareCreditUsed } from "../services/firebaseDBService";
 
 
 export default function PostCard(props) {
@@ -38,7 +38,7 @@ export default function PostCard(props) {
     function useCredits() {
         deductCreditForUser(props.user.uid);
         //set isAvailable to false
-        updatePostConfirmPickup(props.post.id)
+        updatePostWhenShareCreditUsed(props.post.id)
         alert("Great!  The address has been sent to your email.  You are the only one who can see this address, so no need to rush to pick up the plants.")
         toggleModal()
     }

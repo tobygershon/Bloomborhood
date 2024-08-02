@@ -168,6 +168,14 @@ export async function updatePostRequest(post, user) {
     }
 }
 
+export async function updatePostWhenShareCreditUsed(postId) {
+    const updateDocRef = doc(db, 'posts', postId);
+
+    await updateDoc(updateDocRef, {
+        isAvailable: false
+    })
+}
+
 export async function updatePostConfirmPickup(postId, postingUserId, rating, pickUpUserId) {
     const updateDocRef = doc(db, "posts", postId);
     const docSnap = await getDoc(updateDocRef)
