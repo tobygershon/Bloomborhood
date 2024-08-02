@@ -121,6 +121,24 @@ export async function addMail(userEmail, subject, html) {
     //     // return newDoc.data().state
 }
 
+async function addMailForAllUsersWhoRequestedPost(postId) {
+    const post = await getPostById(postId)
+
+    const subj = "Please confirm plant pickup"
+    
+    for (let request of post.requestArray) {
+        const html = `<h2>The user who posted the ${post.plantName} reported that they were picked up from ${post.address}</h2><br>
+        <h3>If you picked them up, please help us out by confirming below</h3><br>
+        <p>Were the plants EXCELLENT quality? Click to confirm <a href='https://bloomborhood.netlify.app?task=confirm&postID=${post.id}&rating=good&id=${post.userId}&pu=${request.user}'><button>pickup</button></a><br>
+        <p>Were the plants ACCEPTABLE quality? Click to confirm <a href='https://bloomborhood.netlify.app?task=confirm&postID=${post.id}&rating=good&id=${post.userId}&pu=${request.user}'><button>pickup</button></a><br>
+        <p>Were the plants as good as DEAD WEEDS? Click to confirm <a href='https://bloomborhood.netlify.app?task=confirm&postID=${post.id}&rating=poor&id=${post.userId}&pu=${request.user}'><button>pickup</button></a>`;
+        
+        const emailAddress = await getEmailForUser(request.user)
+
+        addMail(emailAddress, subj, html)
+    }
+}
+
 
 export async function updatePostRequest(post, user) {
     const updateDocRef = doc(db, 'posts', post.id);
@@ -168,8 +186,12 @@ export async function updatePostConfirmPickup(postId, postingUserId, rating, pic
     //isAvailable can't be used for this b/c it's changed to false before pickup when someone uses credit at request time.
     //the 2nd conditional is there to check if a pickup user was given, in the case that the post is reported as picked up by the user who posted.
     if (!post.pickUp || post.pickUp.pickUpUser === 'poster') {
-        // needs to also account for posting user reporting as picked up?
-        addCreditsForUser(postingUserId, rating, postId);
+        // needs to also account for posting user reporting as picked up.  no credit given yet, and mail sent to all users who requested to ask for review
+        if (pickUpUserId === 'poster') {
+            addMailForAllUsersWhoRequestedPost(postId)
+        } else {
+            addCreditsForUser(postingUserId, rating, postId);
+        }
         await updateDoc(updateDocRef, {
             isAvailable: false,
             pickUp: {
@@ -260,6 +282,13 @@ export async function getZipArrayForUser(uid) {
     const querySnapshot = await getDocs(q);
 
     return querySnapshot.docs[0].data().zipArray;
+}
+
+async function getEmailForUser(uid) {
+    const q = query(usersCollectionRef, where("ID", "==", uid));
+    const querySnapshot = await getDocs(q);
+
+    return querySnapshot.docs[0].data().email
 }
 
 export async function getCreditsForUser(uid) {

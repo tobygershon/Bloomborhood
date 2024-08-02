@@ -34,7 +34,7 @@ export default function About() {
                                 My Bloomborhood aims to make sharing extra plants with neighbors easier.
                             </div>
                             <div className="my-3">
-                                Search, Post, Learn, and Participate in beautifying your bloomborhood.
+                                Search, post, learn, and participate in beautifying your bloomborhood.
                             </div>
                         </h2>
                     </div>
@@ -48,7 +48,7 @@ export default function About() {
                         <h1 className="title mb-3 is-size-5-touch has-text-grey-light">Policy</h1>
                         <h2 className="subtitle is-size-6-touch has-text-grey-dark">
                             <div className="my-3">
-                                First come, first serve.
+                                First come, first served.
                             </div>
                             <div className="my-3">
                                 Request the address for available plants, but it may be gone before you get there.
