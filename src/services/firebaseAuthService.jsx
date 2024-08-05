@@ -13,19 +13,20 @@ export async function newUserSignUp(email, password) {
             newUser = userCredential.user;
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            console.log(error.code);
+            console.log(error.message);
+
             // ..
         });
 
         return newUser.uid;
 }
 
-export function signInUser(email, password) {
+export async function signInUser(email, password) {
 
     const auth = getAuth();
 
-    signInWithEmailAndPassword(auth, email, password)
+    await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
@@ -33,8 +34,9 @@ export function signInUser(email, password) {
             return user;
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            console.log(error.code);
+            console.log(error.message);
+            alert("Sorry, your email and/or password did not match our records")
         });
 }
 
@@ -46,6 +48,8 @@ export function signOutUser() {
         console.log("user signed out")
     }).catch((error) => {
         // An error happened.
+        console.log(error)
+        alert("Sorry, an error occured.  Please try to logout again")
     });
 }
 

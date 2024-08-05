@@ -77,14 +77,14 @@ export default function Share() {
                         </div>
 
                         <div className="field">
-                            <label className="label has-text-grey-dark">Type the Email Addresses that You'd Like Us to Share MyBloomborhood With.</label>
+                            <label className="label has-text-grey-dark">Enter the email addresses you'd like us to share MyBloomborhood with</label>
                             <div className="control">
                                 <input onChange={handleFormChange} className="input input-css" type="text" placeholder="Emails separated by spaces" name="email" value={formData.email} />
                             </div>
                         </div>
 
                         <div className="field">
-                            <label className="label has-text-grey-dark">Type a Message if You'd Like</label>
+                            <label className="label has-text-grey-dark">If you'd like, type a message to send</label>
                             <div className="control">
                                 <textarea onChange={handleFormChange} className="textarea input-css" placeholder="Feel free to type a message here" value={formData.textArea} name="textArea"></textarea>
                             </div>

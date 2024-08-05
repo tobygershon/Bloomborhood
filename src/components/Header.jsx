@@ -42,7 +42,7 @@ export default function Header({ loggedIn }) {
             <div id="navbarBasicExample" className={`navbar-menu ${menuActive ? "is-active" : ""}`}>
                 <div className="navbar-end">
                     {
-                        loggedIn && <Link className="navbar-item has-text-grey-light"><button className="sign-out-btn" onClick={handleClick}>Sign Out</button></Link>
+                        loggedIn && <Link onClick={handleClick} className="navbar-item has-text-grey-light"><button className="sign-out-btn">Sign Out</button></Link>
                     }
                     <Link onClick={toggleNavMenu} to="/About" className="navbar-item has-text-grey-light"><button className="sign-out-btn" >
                         About
@@ -51,7 +51,7 @@ export default function Header({ loggedIn }) {
                         Feedback
                     </button></Link>
                     <Link onClick={toggleNavMenu} to="/Share" className="navbar-item has-text-grey-light"><button className="sign-out-btn">
-                        Share the site!
+                        Share the Site
                     </button></Link>
                 </div>
             </div>

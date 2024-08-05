@@ -27,7 +27,7 @@ export default function HomeLayout() {
     const loggedIn = useOutletContext()[0];
     const user = useOutletContext()[1];
 
-    const [userCredits, setUserCredits] = React.useState(0)    
+    const [userCredits, setUserCredits] = React.useState(0)
     const [postModalOpen, setPostModalOpen] = React.useState(false);
     const [updateModalOpen, setUpdateModalOpen] = React.useState(false);
     const [buttonIsLoading, setButtonIsLoading] = React.useState(false);
@@ -52,7 +52,7 @@ export default function HomeLayout() {
             }
         }
         if (loggedIn) {
-        getCredits();
+            getCredits();
         }
     }, [loggedIn])
 
@@ -118,14 +118,18 @@ export default function HomeLayout() {
     }
 
     function handleNewPostSubmit() {
-
-        // setButtonIsLoading(true);
-        //make sure to add any other necessary post object fields here
-        addPost(newPostFormData.plantName, newPostFormData.description, newPostFormData.address, newPostFormData.zip, newPostFormData.location, user.uid, user.email);
-        // setButtonIsLoading(false);
+        try {
+            // setButtonIsLoading(true);
+            //make sure to add any other necessary post object fields here
+            addPost(newPostFormData.plantName, newPostFormData.description, newPostFormData.address, newPostFormData.zip, newPostFormData.location, user.uid, user.email);
+            // setButtonIsLoading(false);
+            alert("Your Post has been submitted.  Thank you!")
+        } catch {
+            alert("Sorry, something went wrong.  Your post wasn't submitted.")
+        } finally {
         togglePostModal();
-        alert("Your Post has been submitted.  Thank you!")
         resetNewPostFormData();
+        }
 
     }
 
@@ -141,7 +145,7 @@ export default function HomeLayout() {
         <div>
             <div>{loggedIn &&
                 <section className="section py-0 px-0" >
-                    
+
                     <div className="background notification is-white py-0 px-0" >
                         <nav className="level py-0 mx-5 my-3">
                             <div className="level-left is-flex is-flex-direction-row">
@@ -149,16 +153,16 @@ export default function HomeLayout() {
                                     <div>
                                         <span className="is-size-5 has-text-weight-semibold is-hidden-mobile">Welcome! {userCredits ? `You Have ${userCredits} Share Credit${userCredits > 1 ? "'s" : ""}` : ""}&nbsp;{showCreditIcons()}</span>
                                     </div>
-                                </div> 
+                                </div>
                                 <div className="level-item has-text-centered">
                                     <div>
                                         <button id="post-btn" onClick={togglePostModal} className="button has-text-weight-semibold has-text-primary-80-invert is-size-7-mobile is-centered is-responsive">Post Your Plants</button>
                                     </div>
                                 </div>
                                 <div>
-                                        <button id="update-btn" onClick={openUpdateModal} className="button has-text-weight-semibold is-size-7-mobile has-text-primary-80-invert is-responsive">Update Profile</button>
-                                    </div>
-                               
+                                    <button id="update-btn" onClick={openUpdateModal} className="button has-text-weight-semibold is-size-7-mobile has-text-primary-80-invert is-responsive">Update Profile</button>
+                                </div>
+
                             </div>
 
                             {/* <div id="btn-box" className="level-right is-flex-mobile is-flex-direction-row">
@@ -168,14 +172,14 @@ export default function HomeLayout() {
 
                         </nav>
                     </div>
-                   
+
 
                 </section>
 
             }</div>
 
             <Home />
-            <SearchComponent loggedIn={loggedIn} user={user} credits={userCredits}/>
+            <SearchComponent loggedIn={loggedIn} user={user} credits={userCredits} />
 
             <div className={postModalOpen ? "modal is-active" : "modal"}>
                 <div className="modal-background" onClick={togglePostModal}></div>

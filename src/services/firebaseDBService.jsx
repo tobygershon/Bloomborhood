@@ -95,7 +95,7 @@ export async function addPost(plantNameInput, descriptionInput, addressInput, zi
     //send mail to user who posted confirming post and button to confirm pickup with 'poster' listed under pickupUser
     const subject = 'MyBloomborhood post confirmation'
     const html = `<h2>Thank you for posting to share your ${plantNameInput}!</h2><br>
-                 <h4>If you notice that your plants have been picked up, <em>help us out</em> by 
+                 <h4>If you notice that your plants have been picked up, <em>HELP US OUT</em> by 
                  <a href='https://bloomborhood.netlify.app?task=confirm&postID=${newDocRef.id}&rating=none&id=${postingUserId}&pu=poster'><button>Clicking Here</button></a>
                  to keep our system up to date!</h4>`
     addMail(userEmail, subject, html)

@@ -1,6 +1,6 @@
 import React from "react";
 import { signInUser, newUserSignUp } from "../services/firebaseAuthService.jsx";
-import { addUser, updateLastLogin } from "../services/firebaseDBService.jsx";
+import { addUser, updateLastLogin, addMail } from "../services/firebaseDBService.jsx";
 
 export default function Login() {
 
@@ -55,24 +55,39 @@ export default function Login() {
         })
     }
 
-    function handleSubmit() {
-        const user = signInUser(loginFormData.email.toLowerCase(), loginFormData.password.toLowerCase());
-        resetLoginData();
-        if (user) {
-        updateLastLogin(user.uid)
-        }
+   function handleSubmit() {
+        try {
+            const user = signInUser(loginFormData.email.toLowerCase(), loginFormData.password.toLowerCase());
+                if (user) {
+                updateLastLogin(user.uid)
+                }
+        } catch {
+            alert("Sorry, something went wrong.  Please try again later")
+        } finally {
+          resetLoginData();  
+        }    
     }
 
     async function handleNewUserSubmit() {
+        const subj = "Welcome to MyBloomborhood!"
+        const html = "<h2>Thank you for registering with MyBloomborhood!</h2><br><h3>Now that you're registered you can request addresses for posted plants, as well as share your extra plants and earn share credits!</h3><br><a href='https://bloomborhood.netlify.app/About'><button>Learn more</button></a><br><br><a href='https://bloomborhood.netlify.app/Share'><button>Share the Site!</button></a>"
         if (signUpFormData.password === signUpFormData.passwordAgain && signUpFormData.password.trim() !== "") {
             setButtonIsLoading(true);
             const zipArray = convertZipStringToArray(signUpFormData.requestedZips);
-            const ID = await newUserSignUp(signUpFormData.email.toLowerCase(), signUpFormData.password.toLowerCase());
-            addUser(ID, signUpFormData.email.toLowerCase(), zipArray);
-            //add error handling.  if submitted w/o any imputs it gets stuck loading
+            try {
+                const ID = await newUserSignUp(signUpFormData.email.toLowerCase(), signUpFormData.password.toLowerCase());
+                if (ID) {
+                    addUser(ID, signUpFormData.email.toLowerCase(), zipArray);
+                    addMail(signUpFormData.email.toLowerCase(), subj, html)
+                }
+            } catch {
+                alert('Sorry something went wrong.  Please make sure your email is not already registered')
+            } finally {
+            toggleSignUpModal();
             setButtonIsLoading(false);
-            // resetSignUpData();
             setPasswordsMatch(true);
+            resetSignUpData();
+            }
         } else {
             setPasswordsMatch(false);
         }
@@ -117,7 +132,7 @@ export default function Login() {
                                 </div>
                             </div>
                             <div className="level-item">
-                                <p className="subtitle is-5 has-text-weight-semibold">New?&nbsp;&nbsp;<button className="login-level-btn" onClick={toggleSignUpModal}>Sign Up!</button></p>
+                                <p className="subtitle is-5 has-text-weight-semibold">New?&nbsp;&nbsp;<button className="login-level-btn" onClick={toggleSignUpModal}>Register!</button></p>
                             </div>
                             <div className="level-item">
                                 <p className="subtitle is-5 has-text-weight-semibold is-hidden-mobile"><button className="login-level-btn" onClick={toggleLearnModal}>Learn Why?</button></p>
