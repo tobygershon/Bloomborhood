@@ -9,6 +9,7 @@ export default function PostsList() {
 
     const [modalOpen, setModalOpen] = React.useState(false)
     const posts = useOutletContext()[0];
+    const samplePost = useOutletContext()[5]
     const loggedIn = useOutletContext()[1];
     const user = useOutletContext()[2];
     const credits = useOutletContext()[3];
@@ -22,7 +23,7 @@ export default function PostsList() {
     return (
         <>
             
-                {postCards}
+                {postCards.length > 0 ? postCards : <div><h3 className="is-size-6 has-text-dark has-text-weight-bold" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sorry, no results for this zip code</h3><PostCard post={samplePost} /></div>}
 
         </>
     )

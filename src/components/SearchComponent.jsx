@@ -55,6 +55,7 @@ export default function SearchComponent({ loggedIn, user, credits }) {
 
     function handlePlantSearchClick() {
         getPlants()
+        window.scrollTo(0, 0)
     }
 
 
@@ -84,6 +85,7 @@ export default function SearchComponent({ loggedIn, user, credits }) {
                 setPosts(searchArray)
                 navigate("Posts")
                 setTab("/Posts");
+                window.scrollTo(0, 0)
             }
 
         } else {
@@ -174,7 +176,7 @@ export default function SearchComponent({ loggedIn, user, credits }) {
             }
 
 
-            <Outlet context={[posts, loggedIn, user, credits, plants]} />
+            <Outlet context={[posts, loggedIn, user, credits, plants, samplePost]} />
 
 
 
