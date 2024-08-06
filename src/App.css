@@ -47,6 +47,16 @@ div.hero-body {
   border-radius: 5px;
   margin-bottom: 10px;
   box-shadow: 1px 1px 6px #363636;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+#search-bar {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 65px;
+  z-index: 1;
 }
 
 .background.notification {

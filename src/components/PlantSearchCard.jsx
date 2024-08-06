@@ -25,7 +25,7 @@ export default function PlantSearhCard({ plant }) {
                     <div className="columns is-gapless">
                         <div className="column">
                             <div className="post-box box-1 is-flex is-align-items-center is-justify-content-center has-text-weight-semibold px-4">
-                                <i className="fa-solid fa-seedling is-size-5"></i>
+                                <i className="fa-solid fa-seedling is-size-5 has-text-grey"></i>
                                 <div className="ml-4 is-flex is-flex-direction-column is-justify-content-space-evenly">
                                     <p className="is-flex is-justify-content-center is-size-7 is-size-6-desktop is-align-items-center has-text-grey">
                                         <span className="has-text-centered is-size-6 is-size-5-desktop has-text-dark">{plant.common_name}</span>
@@ -41,7 +41,7 @@ export default function PlantSearhCard({ plant }) {
                         </div>
                         <div className="column">
                             <div className="post-box box-2 is-flex is-align-items-center is-justify-content-center has-text-dark is-size-6 is-size-5-desktop has-text-weight-semibold px-4">
-                                <i className="fas fa-stream is-size-5"></i>
+                                <i className="fas fa-stream is-size-5 has-text-grey"></i>
                                 <div className="is-flex is-flex-direction-column is-align-items-center is-justify-content-space-evenly has-text-weight-semibold px-4">
                                     <p className="is-flex is-justify-content-center is-align-items-center is-size-7 is-size-6-desktop has-text-grey">
                                         <span className="has-text-centered ml-4 has-text-weight-semibold has-text-dark">{plant.cycle}</span>

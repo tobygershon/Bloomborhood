@@ -105,7 +105,7 @@ export default function SearchComponent({ loggedIn, user, credits }) {
     return (
         <section className="section mt-0 pt-2">
 
-            <div className="container">
+            <div id="search-bar" className="container">
                 <div className="background notification is-white pt-0 px-2" >
                     <nav className="level">
 
