@@ -55,7 +55,6 @@ export default function SearchComponent({ loggedIn, user, credits }) {
 
     function handlePlantSearchClick() {
         getPlants()
-        window.scrollTo(0, 0)
     }
 
 
@@ -85,7 +84,6 @@ export default function SearchComponent({ loggedIn, user, credits }) {
                 setPosts(searchArray)
                 navigate("Posts")
                 setTab("/Posts");
-                window.scrollTo(0, 0)
             }
 
         } else {
@@ -124,17 +122,17 @@ export default function SearchComponent({ loggedIn, user, credits }) {
                                         }
                                     </p>
                                     <p className="control">
-                                        {tab === "/Plants" ? <button onClick={handlePlantSearchClick} className="button is-rounded btn-css has-text-weight-semibold has-text-primary-80-invert">Search</button>
+                                        {tab === "/Plants" ? <a href="#hero-box"><button onClick={handlePlantSearchClick} className="button is-rounded btn-css has-text-weight-semibold has-text-primary-80-invert">Search</button></a>
                                             : !loggedIn &&
-                                            <button onClick={handlePostsSearchClick} className="button is-rounded btn-css has-text-weight-semibold has-text-primary-80-invert">Search</button>}
+                                            <a href="#hero-box"><button onClick={handlePostsSearchClick} className="button is-rounded btn-css has-text-weight-semibold has-text-primary-80-invert">Search</button></a>}
                                     </p>
                                 </div>
                             </div>
                             <div className="level-item">
                                 <div className="field has-addons mb-0">
                                     <p className="control">
-                                        {(loggedIn && tab === "/Posts") && <><button onClick={handlePostsSearchClick} id="posts-search-btn" className={loggedIn ? "logged-in button is-rounded is-size-7-mobile is-responsive btn-css has-text-weight-semibold has-text-primary-80-invert" : "button is-rounded is-responsive btn-input-css has-text-weight-semibold has-text-primary-80-invert"}>Search Zip Code</button>
-                                            <button onClick={handleUserPostsClick} id="user-posts-btn" className="button ml-2 is-rounded is-size-7-mobile is-responsive btn-css has-text-weight-semibold has-text-primary-80-invert">Back to My Zips</button></>}
+                                        {(loggedIn && tab === "/Posts") && <><a href="#hero-box"><button onClick={handlePostsSearchClick} id="posts-search-btn" className={loggedIn ? "logged-in button is-rounded is-size-7-mobile is-responsive btn-css has-text-weight-semibold has-text-primary-80-invert" : "button is-rounded is-responsive btn-input-css has-text-weight-semibold has-text-primary-80-invert"}>Search Zip Code</button></a>
+                                            <a href="#hero-box"><button onClick={handleUserPostsClick} id="user-posts-btn" className="button ml-2 is-rounded is-size-7-mobile is-responsive btn-css has-text-weight-semibold has-text-primary-80-invert">Back to My Zips</button></a></>}
                                     </p>
                                 </div>
                             </div>

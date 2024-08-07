@@ -12,6 +12,7 @@ export default function Header({ loggedIn }) {
 
     function toggleNavMenu() {
         setMenuActive(!menuActive)
+        window.scrollTo(0, 0)
     }
 
     function handleClick() {
