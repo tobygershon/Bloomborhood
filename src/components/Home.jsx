@@ -8,7 +8,7 @@ export default function Home() {
     React.useEffect(() => {
         setTimeout(() => {
             setShareBox(true)
-        }, 3000)
+        }, 5000)
     }, [])
 
 
